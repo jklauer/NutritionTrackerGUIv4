@@ -73,8 +73,6 @@ public class StartPage extends AppCompatActivity {
         ContinueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent loadApp = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(loadApp);
 
                 File fileStartPage = new File(getFilesDir(), "fileStartPage.txt");
                 try {
@@ -107,6 +105,8 @@ public class StartPage extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+                Intent loadApp = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(loadApp);
             }
         });
     }
