@@ -43,11 +43,6 @@ public class MainActivity extends AppCompatActivity {
         if(fileStartPage.exists()){
             return false;
         }else{
-            try {
-                fileStartPage.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
             return true;
         }
 
