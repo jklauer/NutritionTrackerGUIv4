@@ -145,4 +145,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/other_allergens_start_page_textView" />
 
+    <TextView
+        android:id="@+id/allergies_start_page_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Select Allergies:"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/allergy_eggs_start_page"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username_input_Start_Page" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
