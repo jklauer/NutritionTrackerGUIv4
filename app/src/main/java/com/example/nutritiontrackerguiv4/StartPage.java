@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,7 +16,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.Buffer;
 
 public class StartPage extends AppCompatActivity {
 
@@ -42,21 +40,55 @@ public class StartPage extends AppCompatActivity {
                 ((EditText)findViewById(R.id.username_input_Start_Page)).setText(line);
                 line = br.readLine();
                 if(line.equals("T")){
-                    ((CheckBox)findViewById(R.id.allergy1_start_page)).setChecked(true);
+                    ((CheckBox)findViewById(R.id.allergy_milk_start_page)).setChecked(true);
                 }else{
-                    ((CheckBox)findViewById(R.id.allergy1_start_page)).setChecked(false);
+                    ((CheckBox)findViewById(R.id.allergy_milk_start_page)).setChecked(false);
                 }
                 line = br.readLine();
                 if(line.equals("T")){
-                    ((CheckBox)findViewById(R.id.allergy2_start_page)).setChecked(true);
+                    ((CheckBox)findViewById(R.id.allergy_eggs_start_page)).setChecked(true);
                 }else{
-                    ((CheckBox)findViewById(R.id.allergy2_start_page)).setChecked(false);
+                    ((CheckBox)findViewById(R.id.allergy_eggs_start_page)).setChecked(false);
                 }
                 line = br.readLine();
                 if(line.equals("T")){
-                    ((CheckBox)findViewById(R.id.allergy3_start_page)).setChecked(true);
+                    ((CheckBox)findViewById(R.id.allergy_fish_start_page)).setChecked(true);
                 }else{
-                    ((CheckBox)findViewById(R.id.allergy3_start_page)).setChecked(false);
+                    ((CheckBox)findViewById(R.id.allergy_fish_start_page)).setChecked(false);
+                }
+                line = br.readLine();
+                if(line.equals("T")){
+                    ((CheckBox)findViewById(R.id.allergy_shellfish_start_page)).setChecked(true);
+                }else{
+                    ((CheckBox)findViewById(R.id.allergy_shellfish_start_page)).setChecked(false);
+                }
+                line = br.readLine();
+                if(line.equals("T")){
+                    ((CheckBox)findViewById(R.id.allergy_tree_nuts_start_page)).setChecked(true);
+                }else{
+                    ((CheckBox)findViewById(R.id.allergy_tree_nuts_start_page)).setChecked(false);
+                }
+                line = br.readLine();
+                if(line.equals("T")){
+                    ((CheckBox)findViewById(R.id.allergy_peanuts_start_page)).setChecked(true);
+                }else{
+                    ((CheckBox)findViewById(R.id.allergy_peanuts_start_page)).setChecked(false);
+                }
+                line = br.readLine();
+                if(line.equals("T")){
+                    ((CheckBox)findViewById(R.id.allergy_wheat_start_page)).setChecked(true);
+                }else{
+                    ((CheckBox)findViewById(R.id.allergy_wheat_start_page)).setChecked(false);
+                }
+                line = br.readLine();
+                if(line.equals("T")){
+                    ((CheckBox)findViewById(R.id.allergy_soybeans_start_page)).setChecked(true);
+                }else{
+                    ((CheckBox)findViewById(R.id.allergy_soybeans_start_page)).setChecked(false);
+                }
+                line = br.readLine();
+                if(line != null && !line.isEmpty()){
+                    ((EditText)findViewById(R.id.other_allergens_edit_text_start_page)).setText(line);
                 }
                 br.close();
             } catch (FileNotFoundException e) {
@@ -83,22 +115,58 @@ public class StartPage extends AppCompatActivity {
                         bw.write(((EditText)findViewById(R.id.username_input_Start_Page)).getText().toString());
                     }
                     bw.newLine();
-                    if( ((CheckBox)findViewById(R.id.allergy1_start_page)).isChecked()){
+                    if( ((CheckBox)findViewById(R.id.allergy_milk_start_page)).isChecked()){
                         bw.write("T");
                     }else{
                         bw.write("F");
                     }
                     bw.newLine();
-                    if( ((CheckBox)findViewById(R.id.allergy2_start_page)).isChecked()){
+                    if( ((CheckBox)findViewById(R.id.allergy_eggs_start_page)).isChecked()){
                         bw.write("T");
                     }else{
                         bw.write("F");
                     }
                     bw.newLine();
-                    if( ((CheckBox)findViewById(R.id.allergy3_start_page)).isChecked()){
+                    if( ((CheckBox)findViewById(R.id.allergy_fish_start_page)).isChecked()){
                         bw.write("T");
                     }else{
                         bw.write("F");
+                    }
+                    bw.newLine();
+                    if( ((CheckBox)findViewById(R.id.allergy_shellfish_start_page)).isChecked()){
+                        bw.write("T");
+                    }else{
+                        bw.write("F");
+                    }
+                    bw.newLine();
+                    if( ((CheckBox)findViewById(R.id.allergy_tree_nuts_start_page)).isChecked()){
+                        bw.write("T");
+                    }else{
+                        bw.write("F");
+                    }
+                    bw.newLine();
+                    if( ((CheckBox)findViewById(R.id.allergy_peanuts_start_page)).isChecked()){
+                        bw.write("T");
+                    }else{
+                        bw.write("F");
+                    }
+                    bw.newLine();
+                    if( ((CheckBox)findViewById(R.id.allergy_wheat_start_page)).isChecked()){
+                        bw.write("T");
+                    }else{
+                        bw.write("F");
+                    }
+                    bw.newLine();
+                    if( ((CheckBox)findViewById(R.id.allergy_soybeans_start_page)).isChecked()){
+                        bw.write("T");
+                    }else{
+                        bw.write("F");
+                    }
+                    bw.newLine();
+                    if( !(((EditText)findViewById(R.id.other_allergens_edit_text_start_page)).getText().toString().isEmpty()) ){
+                        bw.write(((EditText)findViewById(R.id.other_allergens_edit_text_start_page)).getText().toString());
+                    }else{
+                        bw.write("");
                     }
                     bw.close();
                 } catch (IOException e) {

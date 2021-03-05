@@ -39,35 +39,110 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <CheckBox
-        android:id="@+id/allergy1_start_page"
+        android:id="@+id/allergy_milk_start_page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="64dp"
-        android:text="Allergy1"
+        android:text="Milk"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_input_Start_Page" />
 
     <CheckBox
-        android:id="@+id/allergy3_start_page"
+        android:id="@+id/allergy_fish_start_page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="66dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:text="Allergy3"
+        android:text="Fish"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_input_Start_Page" />
 
     <CheckBox
-        android:id="@+id/allergy2_start_page"
+        android:id="@+id/allergy_eggs_start_page"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="62dp"
-        android:text="Allergy2"
+        android:text="Eggs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username_input_Start_Page" />
+
+    <CheckBox
+        android:id="@+id/allergy_tree_nuts_start_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Tree Nuts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/allergy_eggs_start_page" />
+
+    <CheckBox
+        android:id="@+id/allergy_shellfish_start_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:text="Shellfish"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/allergy_milk_start_page" />
+
+    <CheckBox
+        android:id="@+id/allergy_peanuts_start_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:text="Peanuts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/allergy_fish_start_page" />
+
+    <CheckBox
+        android:id="@+id/allergy_wheat_start_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginTop="32dp"
+        android:text="Wheat"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/allergy_shellfish_start_page" />
+
+    <CheckBox
+        android:id="@+id/allergy_soybeans_start_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:text="Soybeans"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/allergy_peanuts_start_page" />
+
+    <TextView
+        android:id="@+id/other_allergens_start_page_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Please enter other allergens separated by commas:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/allergy_wheat_start_page" />
+
+    <EditText
+        android:id="@+id/other_allergens_edit_text_start_page"
+        android:layout_width="387dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/other_allergens_start_page_textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
