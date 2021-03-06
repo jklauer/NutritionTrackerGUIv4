@@ -1,12 +1,24 @@
 package com.example.nutritiontrackerguiv4;
 
+import android.content.Context;
 import android.os.StrictMode;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class SearchForFoodItemAPI {
 
@@ -14,6 +26,7 @@ public class SearchForFoodItemAPI {
     //This function takes in a string query for a food (ex: "Big mac")
     //  and returns a string with the item name and number of calories
     //  in the food item searched for.
+    //  returned string format: NAME###CALORIES
     public static String searchForFoodItem(String query){
 
         query.replace(" ", "%20");
@@ -42,7 +55,7 @@ public class SearchForFoodItemAPI {
             name = output.split("\",\"brand_name")[0];
             output = output.split("nf_calories\":")[1];
             calories = output.split(",")[0];
-            return ("Name: "+name+", Calories: "+calories);
+            return (name+"###"+calories);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

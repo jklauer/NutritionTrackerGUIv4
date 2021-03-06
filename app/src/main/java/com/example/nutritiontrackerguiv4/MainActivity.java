@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
             Intent loadStartPage = new Intent(getApplicationContext(), StartPage.class);
             startActivity(loadStartPage);
         }
+
     }
 
     public boolean handleStartPage(){
