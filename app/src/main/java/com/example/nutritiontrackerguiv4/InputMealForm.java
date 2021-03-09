@@ -49,13 +49,13 @@ public class InputMealForm extends Activity {
                 try {
                     BufferedWriter bw = new BufferedWriter(new FileWriter(mealsPage));
                     if( ((EditText)findViewById(R.id.mealDate)).getText().toString().isEmpty()){
-                        bw.write("Meal Name");
+                        bw.write("Meal Date");
                     }else{
                         bw.write(((EditText)findViewById(R.id.mealDate)).getText().toString());
                     }
                     bw.newLine();
                     if( ((EditText)findViewById(R.id.mealTime)).getText().toString().isEmpty()){
-                        bw.write("Meal Name");
+                        bw.write("Meal Time");
                     }else{
                         bw.write(((EditText)findViewById(R.id.mealTime)).getText().toString());
                     }
@@ -67,19 +67,19 @@ public class InputMealForm extends Activity {
                     }
                     bw.newLine();
                     if( ((EditText)findViewById(R.id.caloriesEntry)).getText().toString().isEmpty()){
-                        bw.write("Meal Name");
+                        bw.write("Meal Calories");
                     }else{
                         bw.write(((EditText)findViewById(R.id.caloriesEntry)).getText().toString());
                     }
                     bw.newLine();
                     if( ((EditText)findViewById(R.id.vitaminA)).getText().toString().isEmpty()){
-                        bw.write("Meal Name");
+                        bw.write("Meal Vitamin A");
                     }else{
                         bw.write(((EditText)findViewById(R.id.vitaminA)).getText().toString());
                     }
                     bw.newLine();
                     if( ((EditText)findViewById(R.id.vitaminC)).getText().toString().isEmpty()){
-                        bw.write("Meal Name");
+                        bw.write("Meal Vitamin C");
                     }else{
                         bw.write(((EditText)findViewById(R.id.vitaminC)).getText().toString());
                     }
