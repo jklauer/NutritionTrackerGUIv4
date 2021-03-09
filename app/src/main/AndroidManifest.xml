@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET"/>
 
+
     <application
 
         android:allowBackup="true"
@@ -13,6 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NutritionTrackerGUIv4">
+        <uses-library android:name="android.test.runner"/>
         <activity android:name=".StartPage"></activity>
         <activity android:name=".InputMealForm" />
         <activity
