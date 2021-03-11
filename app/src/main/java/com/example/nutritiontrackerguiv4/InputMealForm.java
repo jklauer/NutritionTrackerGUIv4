@@ -47,7 +47,7 @@ public class InputMealForm extends Activity {
 
                 File mealsPage = new File(getFilesDir(), "userMealData.txt");
                 try {
-                    BufferedWriter bw = new BufferedWriter(new FileWriter(mealsPage));
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(mealsPage, true));
                     if( ((EditText)findViewById(R.id.mealDate)).getText().toString().isEmpty()){
                         bw.write("Meal Date");
                     }else{
