@@ -35,7 +35,7 @@ public class MealsFragment extends Fragment {
 //            }
 //        });
 
-        loadButtons(root);
+
 
 
 
@@ -44,6 +44,9 @@ public class MealsFragment extends Fragment {
         InputMealFormButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                loadButtons(root);
+
                 Intent loadInputMealForm = new Intent(getActivity(), InputMealForm.class);
                 startActivity(loadInputMealForm);
 
