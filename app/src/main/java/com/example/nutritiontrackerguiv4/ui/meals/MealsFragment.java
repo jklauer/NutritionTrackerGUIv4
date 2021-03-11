@@ -18,6 +18,13 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.nutritiontrackerguiv4.InputMealForm;
 import com.example.nutritiontrackerguiv4.R;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class MealsFragment extends Fragment {
 
     private MealsViewModel mealsViewModel;
@@ -35,9 +42,11 @@ public class MealsFragment extends Fragment {
 //            }
 //        });
 
-
-
-
+        try {
+            loadButtons(root);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
         Button InputMealFormButton = (Button)root.findViewById(R.id.InputMealForm_button);
@@ -45,7 +54,7 @@ public class MealsFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                loadButtons(root);
+                //loadButtons(root);
 
                 Intent loadInputMealForm = new Intent(getActivity(), InputMealForm.class);
                 startActivity(loadInputMealForm);
@@ -63,7 +72,25 @@ public class MealsFragment extends Fragment {
         return root;
     }
 
-    public void loadButtons(View root){
+    public void loadButtons(View root) throws IOException {
+
+        ArrayList<String> buttonNames = new ArrayList<String>();
+
+        BufferedReader br = new BufferedReader(new FileReader(new File(getActivity().getFilesDir(), "userMealData.txt")));
+        int numOfNames = 0;
+        String line = "";
+        while(line != null){
+            for(int i=0; i<5; i++){
+                line = br.readLine();
+            }
+            numOfNames++;
+        }
+        System.out.println("Num of meals: " + numOfNames);
+
+
+
+
+
         LinearLayout ll = (LinearLayout)root.findViewById(R.id.fragment_meals_linear_layout);
         Button btn = new Button(getContext());
         btn.setText("Manual Add");
