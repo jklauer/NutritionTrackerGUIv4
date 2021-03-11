@@ -6,13 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".ui.meals.MealsFragment">
 
-    <Button
-        android:id="@+id/InputMealForm_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Add a meal."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:id="@+id/fragment_meals_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="202dp"
+        tools:layout_editor_absoluteY="87dp">
+
+        <Button
+            android:id="@+id/InputMealForm_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Add a meal." />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

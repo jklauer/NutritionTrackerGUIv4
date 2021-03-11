@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,16 +35,36 @@ public class MealsFragment extends Fragment {
 //            }
 //        });
 
+        loadButtons(root);
+
+
+
+
         Button InputMealFormButton = (Button)root.findViewById(R.id.InputMealForm_button);
         InputMealFormButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent loadInputMealForm = new Intent(getActivity(), InputMealForm.class);
                 startActivity(loadInputMealForm);
+
+
             }
         });
 
 
+
+
+
+
+
         return root;
+    }
+
+    public void loadButtons(View root){
+        LinearLayout ll = (LinearLayout)root.findViewById(R.id.fragment_meals_linear_layout);
+        Button btn = new Button(getContext());
+        btn.setText("Manual Add");
+        btn.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        ll.addView(btn);
     }
 }
