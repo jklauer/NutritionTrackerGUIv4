@@ -26,10 +26,6 @@ import java.net.URLEncoder;
 
 public class InputMealForm extends Activity {
 
-    TextView content;
-    EditText fname, email, login, pass;
-    String Name, Email, Login, Pass;
-
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
