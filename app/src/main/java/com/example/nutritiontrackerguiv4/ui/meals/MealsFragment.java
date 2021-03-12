@@ -100,6 +100,7 @@ public class MealsFragment extends Fragment {
                 }
             }
         }
+        br2.close();
         for(int i=0; i<buttonNames.size(); i++){
             System.out.println(buttonNames.get(i));
             LinearLayout ll = (LinearLayout)root.findViewById(R.id.fragment_meals_linear_layout);
