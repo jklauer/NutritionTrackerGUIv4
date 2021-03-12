@@ -6,9 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.nutritiontrackerguiv4.R;
 
@@ -63,11 +68,86 @@ public class InputMealForm extends Activity {
             ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
             ((EditText)findViewById(R.id.vitaminA)).setText(vitaminA);
             ((EditText)findViewById(R.id.vitaminC)).setText(vitaminC);
+
+            Button deleteButton = new Button(this);
+            deleteButton.setText("Delete");
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deleteEntry(data);
+                }
+            });
+            ConstraintLayout ll = (ConstraintLayout) findViewById(R.id.input_meal_form_delete_button_layout);
+            LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+            ll.addView(deleteButton, lp);
+
+
         }
 
         dataEntryButton(data);
 
 
+    }
+
+    public void deleteEntry(ArrayList<String> data){
+        try{
+            if(data == null){
+                dataEntry();
+            }else{
+                try {
+                    dataUpdate(data);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            String date = data.get(0);
+            String time = data.get(1);
+            String name = data.get(2);
+            String calories = data.get(3);
+            String vitaminA = data.get(4);
+            String vitaminC = data.get(5);
+
+            ArrayList<String> firstLines = new ArrayList<String>();
+            BufferedReader br = new BufferedReader(new FileReader(new File(getFilesDir(), "userMealData.txt")));
+            String line = br.readLine();
+            while(line != null){
+                firstLines.add(line);
+                if(firstLines.size() >= 3 && firstLines.get(firstLines.size()-3).equals(date)){
+                    if(firstLines.get(firstLines.size()-2).equals(time)){
+                        if(firstLines.get(firstLines.size()-1).equals(name)){
+                            firstLines.remove(firstLines.size()-1);
+                            firstLines.remove(firstLines.size()-1);
+                            firstLines.remove(firstLines.size()-1);
+                            break;
+                        }
+                    }
+                }
+                line = br.readLine();
+            }
+            br.readLine();
+            br.readLine();
+            br.readLine();
+            line = br.readLine();
+            while(line != null){
+                firstLines.add(line);
+                line = br.readLine();
+            }
+            br.close();
+
+            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(getFilesDir(), "userMealData.txt")));
+            for(String s:firstLines){
+                System.out.println(s);
+                bw.write(s);
+                bw.newLine();
+            }
+            bw.close();
+            Intent loadApp = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(loadApp);
+        }catch(IOException e){
+
+        }
     }
 
     public void dataEntryButton(ArrayList<String> data){
