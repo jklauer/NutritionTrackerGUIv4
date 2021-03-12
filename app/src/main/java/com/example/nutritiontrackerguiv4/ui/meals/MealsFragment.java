@@ -75,26 +75,43 @@ public class MealsFragment extends Fragment {
     public void loadButtons(View root) throws IOException {
 
         ArrayList<String> buttonNames = new ArrayList<String>();
+        ArrayList<String> timeNames = new ArrayList<String>();
 
         BufferedReader br = new BufferedReader(new FileReader(new File(getActivity().getFilesDir(), "userMealData.txt")));
         int numOfNames = 0;
         String line = "";
         while(line != null){
-            for(int i=0; i<5; i++){
+            for(int i=0; i<6; i++){
                 line = br.readLine();
             }
             numOfNames++;
         }
+        br.close();
         System.out.println("Num of meals: " + numOfNames);
+        BufferedReader br2 = new BufferedReader(new FileReader(new File(getActivity().getFilesDir(), "userMealData.txt")));
+        for(int i=0; i<numOfNames-1; i++){
+            for(int j=0; j<6; j++){
+                line = br2.readLine();
+                if(j==2){
+                    buttonNames.add(line);
+                }
+                if(j==1){
+                    timeNames.add(line);
+                }
+            }
+        }
+        for(int i=0; i<buttonNames.size(); i++){
+            System.out.println(buttonNames.get(i));
+            LinearLayout ll = (LinearLayout)root.findViewById(R.id.fragment_meals_linear_layout);
+            Button btn = new Button(getContext());
+            btn.setText(buttonNames.get(i) + " : " + timeNames.get(i));
+            btn.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            ll.addView(btn);
+        }
 
 
 
 
 
-        LinearLayout ll = (LinearLayout)root.findViewById(R.id.fragment_meals_linear_layout);
-        Button btn = new Button(getContext());
-        btn.setText("Manual Add");
-        btn.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        ll.addView(btn);
     }
 }
