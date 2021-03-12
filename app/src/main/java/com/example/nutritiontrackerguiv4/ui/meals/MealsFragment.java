@@ -98,7 +98,7 @@ public class MealsFragment extends Fragment {
             //System.out.println(buttonNames.get(i));
             LinearLayout ll = (LinearLayout)root.findViewById(R.id.fragment_meals_linear_layout);
             Button btn = new Button(getContext());
-            btn.setText(buttonNames.get(i) + " - " + timeNames.get(i));
+            btn.setText(buttonNames.get(i) + " ___ " + timeNames.get(i));
             btn.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             btn.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
@@ -114,8 +114,8 @@ public class MealsFragment extends Fragment {
                 public void onClick(View v) {
 
                     String info = btn.getText().toString();
-                    String mealName = info.split(" - ")[0];
-                    String mealTime = info.split(" - ")[1];
+                    String mealName = info.split(" ___ ")[0];
+                    String mealTime = info.split(" ___ ")[1];
                     String mealDate = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
                     String mealCalories = "";
                     String mealVitaminA = "";

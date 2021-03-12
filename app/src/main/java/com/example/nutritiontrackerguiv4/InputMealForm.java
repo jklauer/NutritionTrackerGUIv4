@@ -86,6 +86,18 @@ public class InputMealForm extends Activity {
 
         dataEntryButton(data);
 
+        Button searchButton = (Button)findViewById(R.id.input_meal_form_search_button);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String result = SearchForFoodItemAPI.searchForFoodItem(((EditText)findViewById(R.id.mealName)).getText().toString());
+                String name = result.split("###")[0];
+                String calories = result.split("###")[1];
+                ((EditText)findViewById(R.id.mealName)).setText(name);
+                ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
+            }
+        });
+
 
     }
 
