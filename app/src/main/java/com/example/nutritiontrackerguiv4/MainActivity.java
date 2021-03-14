@@ -1,11 +1,13 @@
 package com.example.nutritiontrackerguiv4;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
             Intent loadStartPage = new Intent(getApplicationContext(), StartPage.class);
             startActivity(loadStartPage);
         }
+
 
     }
 

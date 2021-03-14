@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.3"
     defaultConfig {
         applicationId "com.example.nutritiontrackerguiv4"
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -52,4 +52,6 @@ dependencies {
     // Optional -- Mockito framework
     testImplementation 'org.mockito:mockito-core:1.10.19'
     androidTestImplementation 'androidx.test:rules:1.4.0-alpha04'
+
+    implementation 'com.google.android.gms:play-services-vision:11.0.2'
 }

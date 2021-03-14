@@ -63,6 +63,26 @@ public class InputMealForm extends Activity {
         ((EditText)findViewById(R.id.mealDate)).setText(date);
         ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
         ((EditText)findViewById(R.id.mealTime)).setText(time);
+
+        ArrayList<String> barcodeData = getIntent().getStringArrayListExtra("barcode");
+
+
+
+        if(barcodeData != null){
+            String bdate = barcodeData.get(0);
+            String btime = barcodeData.get(1);
+            String bname = barcodeData.get(2);
+            String bcalories = barcodeData.get(3);
+            String bvitaminA = barcodeData.get(4);
+            String bvitaminC = barcodeData.get(5);
+            ((EditText)findViewById(R.id.mealDate)).setText(bdate);
+            ((EditText)findViewById(R.id.mealTime)).setText(btime);
+            ((EditText)findViewById(R.id.mealName)).setText(bname);
+            ((EditText)findViewById(R.id.caloriesEntry)).setText(bcalories);
+            ((EditText)findViewById(R.id.vitaminA)).setText(bvitaminA);
+            ((EditText)findViewById(R.id.vitaminC)).setText(bvitaminC);
+        }
+
         if(data != null){
             ((EditText)findViewById(R.id.mealName)).setText(name);
             ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
@@ -82,6 +102,8 @@ public class InputMealForm extends Activity {
             ll.addView(deleteButton, lp);
 
 
+
+
         }
 
         dataEntryButton(data);
@@ -95,6 +117,15 @@ public class InputMealForm extends Activity {
                 String calories = result.split("###")[1];
                 ((EditText)findViewById(R.id.mealName)).setText(name);
                 ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
+            }
+        });
+
+        Button scan_barcode_button = (Button)findViewById(R.id.scan_barcode_button);
+        scan_barcode_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent loadBarcodeScanner = new Intent(getApplicationContext(), BarcodeScanner.class);
+                startActivity(loadBarcodeScanner);
             }
         });
 
