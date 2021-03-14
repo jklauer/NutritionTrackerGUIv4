@@ -41,11 +41,15 @@ import java.util.Objects;
 
 public class DashboardFragment extends Fragment {
 
+    public interface DashboardListener {
+        void onFileSent(File file);
+    }
+
     private DashboardViewModel dashboardViewModel;
     File mealsPage;
     FragmentActivity listener;
 
-    private class Tuple {
+    public class Tuple {
         public String name = "";
         public int value = 0;
         public Tuple(String name, int value) {
