@@ -1,5 +1,7 @@
 package com.example.nutritiontrackerguiv4.ui.dashboard;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,17 +18,32 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+
+import android.content.ContextWrapper;
 
 import com.example.nutritiontrackerguiv4.InputMealForm;
 import com.example.nutritiontrackerguiv4.R;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.LinkedList;
+import java.util.Objects;
+
 
 public class DashboardFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
+    File mealsPage;
+    FragmentActivity listener;
 
     private class Tuple {
         public String name = "";
@@ -34,6 +51,15 @@ public class DashboardFragment extends Fragment {
         public Tuple(String name, int value) {
             this.name = name;
             this.value = value;
+        }
+    }
+
+    @Override
+    public void onAttach(@NotNull Context context)
+    {
+        super.onAttach(context);
+        if (context instanceof Activity){
+            this.listener = (FragmentActivity) context;
         }
     }
 
@@ -70,5 +96,46 @@ public class DashboardFragment extends Fragment {
         }
 
         return root;
+    }
+
+    /*Helper method extractNums reads the number from a line that contains other text.
+     Argument: String s, the string that contains the number
+     Retuens the number as an integer.
+     */
+    public  int extractNums(String s) {
+        s = s.replaceAll("[^\\d]", " ");
+        s = s.trim();
+        return Integer.parseInt(s);
+    }
+
+    File getFilesDir()
+    {
+        return super.requireContext().getFilesDir();
+    }
+
+    //Prototype method for reading values from userMealData. Right now it only returns calories,
+    //but as we have a clearer idea of what is all being stored, the array size can be increased
+    //and the logic that extracts the numbers can be repeated.
+    //Returns an array of numbers that will be output onto the dashboard.
+    public  int[] readMeals(Context ctx) {
+        this.onAttach(ctx);
+        int calorie_count = 0;
+        int[] info = new int[1];
+        mealsPage = new File(getFilesDir(), "userMealData.txt");
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(mealsPage));
+            String line = br.readLine();
+            while (line != null){
+                if (line.contains("Meal Calories")) {
+                    calorie_count += extractNums(line);
+                    info[0] = calorie_count;
+                }
+                line = br.readLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return info;
     }
 }

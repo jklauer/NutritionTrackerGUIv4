@@ -19,6 +19,7 @@ public class ExampleUnitTest {
 
     MainActivity M = mock(MainActivity.class);
     File fileStartTest = mock(File.class);
+    StartPage S = mock(StartPage.class);
 
     @Test
     public void addition_isCorrect() {
