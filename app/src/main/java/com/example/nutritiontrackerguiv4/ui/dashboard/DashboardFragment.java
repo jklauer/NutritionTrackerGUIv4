@@ -67,38 +67,53 @@ public class DashboardFragment extends Fragment {
         }
     }
 
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
+        super.onCreateView(inflater, container, savedInstanceState);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-//        final TextView textView = root.findViewById(R.id.text_dashboard);
-//        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
+        // Other code to setup the activity...
 
-        LinkedList<Tuple> arr = new LinkedList<Tuple>();
 
-        //test items
-        arr.add(new Tuple("Calories", 1980));
-        arr.add(new Tuple("Vitamin A", 456));
-        arr.add(new Tuple("Protein", 154));
-
+        // Get the ViewModel.
+        dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+        //LinkedList<Tuple> arr = new LinkedList<Tuple>();
         LinearLayout l = (LinearLayout) root.findViewById(R.id.dashboardLinearLayout);
 
-        for(Tuple i : arr) {
-            String str = i.name + ": " + i.value;
-            TextView text = new TextView(getContext());
-            text.setText(str);
-            text.setGravity(Gravity.CENTER_HORIZONTAL);
-            text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f);
-            text.setTextColor(Color.BLACK);
-            l.addView(text);
-        }
+        // Create the observer which updates the UI.
+        final Observer<String> calObserver = new Observer<String>() {
+            @Override
+            public void onChanged(@Nullable final String newcal) {
+                // Update the UI, in this case, a TextView.
 
+
+                //test items
+                //arr.add(new Tuple("Calories", 1980));
+                //arr.add(new Tuple("Vitamin A", 456));
+                //arr.add(new Tuple("Protein", 154));
+
+                //for(Tuple i : arr) {
+                //    String str = i.name + ": " + i.value;
+                //    TextView text = new TextView(getContext());
+                //    text.setText(str);
+                //    text.setGravity(Gravity.CENTER_HORIZONTAL);
+                //    text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f);
+                //    text.setTextColor(Color.BLACK);
+                //    l.addView(text);
+                //}
+
+                String str = "Calories :" + newcal;
+                TextView text = new TextView(getContext());
+                text.setText(str);
+                text.setGravity(Gravity.CENTER_HORIZONTAL);
+                text.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24f);
+                text.setTextColor(Color.BLACK);
+                l.addView(text);
+            }
+        };
+
+        // Observe the LiveData, passing in this activity as the LifecycleOwner and the observer.
+        dashboardViewModel.getCal().observe(getViewLifecycleOwner(), calObserver);
         return root;
     }
 

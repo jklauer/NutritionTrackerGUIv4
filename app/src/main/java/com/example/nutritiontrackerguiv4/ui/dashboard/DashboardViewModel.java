@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 public class DashboardViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
+    private MutableLiveData<String> currCal;
 
     public DashboardViewModel() {
         mText = new MutableLiveData<>();
@@ -15,5 +16,12 @@ public class DashboardViewModel extends ViewModel {
 
     public LiveData<String> getText() {
         return mText;
+    }
+
+    public MutableLiveData<String> getCal() {
+        if (currCal == null) {
+            currCal = new MutableLiveData<String>();
+        }
+        return currCal;
     }
 }
