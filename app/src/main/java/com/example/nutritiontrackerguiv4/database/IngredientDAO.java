@@ -19,10 +19,10 @@ public interface IngredientDAO {
     void delete(Ingredient ingredient);
 
     @Query("SELECT * FROM Ingredients")
-    List<User> getAllIngredients();
+    List<Ingredient> getAllIngredients();
 
     @Query("SELECT * FROM Ingredients WHERE Ingredient_ID=:ingID")
-    List<User> findAllInfoForIngredients(final int ingID);
+    List<Ingredient> findAllInfoForIngredient(final int ingID);
 
 
 }

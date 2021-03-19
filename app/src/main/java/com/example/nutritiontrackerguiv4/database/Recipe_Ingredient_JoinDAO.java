@@ -9,10 +9,10 @@ import java.util.List;
 @Dao
 public interface Recipe_Ingredient_JoinDAO {
     @Insert
-    void insert(Meal_Recipe_Join meal_recipe_join);
+    void insert(Recipe_Ingredient_Join recipe_ingredient_join);
 
     @Query("SELECT * FROM Ingredients INNER JOIN Recipe_Ingredient_Join ON Ingredients.Ingredient_ID" +
             "=Recipe_Ingredient_Join.Ingredient_ID WHERE Recipe_Ingredient_Join.Recipe_ID=:recipeID")
-    List<User> getIngredientsForRecipe(final long recipeID);
+    List<Recipe_Ingredient_Join> getIngredientsForRecipe(final long recipeID);
 
 }

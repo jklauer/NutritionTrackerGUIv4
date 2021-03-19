@@ -19,10 +19,10 @@ public interface DayDAO {
     void delete(Day day);
 
     @Query("SELECT * FROM Days")
-    List<User> getAllDays();
+    List<Day> getAllDays();
 
     @Query("SELECT * FROM Days WHERE Day_ID=:dayId")
-    List<User> findAllInfoForDays(final int dayId);
+    List<Day> findAllInfoForDays(final int dayId);
 
 
 }

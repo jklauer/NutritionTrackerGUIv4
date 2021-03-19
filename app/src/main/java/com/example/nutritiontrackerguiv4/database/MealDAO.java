@@ -19,10 +19,10 @@ public interface MealDAO {
     void delete(Meal meal);
 
     @Query("SELECT * FROM Meals")
-    List<User> getAllRepos();
+    List<Meal> getAllMeals();
 
     @Query("SELECT * FROM Meals WHERE Meal_ID=:mealId")
-    List<User> findAllInfoForUser(final int mealId);
+    List<Meal> findAllInfoForMeal(final int mealId);
 
 
 }

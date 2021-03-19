@@ -19,13 +19,13 @@ public interface RecipeDAO {
     void delete(Recipe recipe);
 
     @Query("SELECT * FROM Recipes")
-    List<User> getAllRecipes();
+    List<Recipe> getAllRecipes();
 
     @Query("SELECT name FROM Recipes")
     List<String> getAllnames();
 
     @Query("SELECT * FROM Recipes WHERE Recipe_ID=:recipeID")
-    List<User> findAllInfoForRecipes(final int recipeID);
+    List<Recipe> findAllInfoForRecipes(final int recipeID);
 
 
 }
