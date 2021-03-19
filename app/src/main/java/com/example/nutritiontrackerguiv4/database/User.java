@@ -4,7 +4,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "Allergies", foreignKeys =
+@Entity(tableName = "Users", foreignKeys =
         {
          @ForeignKey(entity = Allergies.class,
          parentColumns = "Allergy_ID",
