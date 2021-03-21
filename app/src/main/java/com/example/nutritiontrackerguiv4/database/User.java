@@ -15,13 +15,39 @@ public class User {
     /*Primary keys should be random and completely independent of the semantics of the entity.
     so I set it to auto-generate */
     @PrimaryKey(autoGenerate = true)
-    private long User_id;
+    private long User_ID;
     private long Allergy_ID;
     private String name;
 
+    public User(){}
+
     public User(int id, long A, String n) {
-        this.User_id = id;
+        this.User_ID = id;
         this.Allergy_ID = A;
         this.name = n;
+    }
+
+    public long getUser_ID() {
+        return User_ID;
+    }
+
+    public void setUser_ID(long user_id) {
+        User_ID = user_id;
+    }
+
+    public long getAllergy_ID() {
+        return Allergy_ID;
+    }
+
+    public void setAllergy_ID(long allergy_ID) {
+        Allergy_ID = allergy_ID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

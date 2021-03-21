@@ -19,14 +19,38 @@ public class Day {
     @PrimaryKey(autoGenerate = true)
     private long Day_ID;
     private long User_ID;
-    private Date date;
+    private String date;
+
+    public Day(){}
 
     public Day(long id, long u, Date d)
     {
         Day_ID = id;
         User_ID = u;
-        date = d;
+        date = d.toString();
     }
 
+    public long getDay_ID() {
+        return Day_ID;
+    }
 
+    public long getUser_ID() {
+        return User_ID;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setDay_ID(long day_ID) {
+        Day_ID = day_ID;
+    }
+
+    public void setUser_ID(long user_ID) {
+        User_ID = user_ID;
+    }
 }

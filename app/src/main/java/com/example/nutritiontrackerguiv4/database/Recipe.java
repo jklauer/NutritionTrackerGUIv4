@@ -12,9 +12,27 @@ public class Recipe {
     private long Recipe_ID;
     private String name;
 
+    public Recipe(){
 
+    }
     public Recipe(int id, String n, int ing) {
         this.Recipe_ID = id;
         this.name = n;
+    }
+
+    public long getRecipe_ID() {
+        return Recipe_ID;
+    }
+
+    public void setRecipe_ID(long recipe_ID) {
+        Recipe_ID = recipe_ID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

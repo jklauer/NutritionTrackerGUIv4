@@ -18,15 +18,39 @@ public class Meal {
     so I set it to auto-generate */
     @PrimaryKey(autoGenerate = true)
     private long Meal_ID;
-    private long day_ID;
+    private long Day_ID;
     private int mealnum;
+
+    public Meal(){}
 
     public Meal(long id, long d, int num)
     {
         Meal_ID = id;
-        day_ID = d;
+        Day_ID = d;
         mealnum = num;
     }
 
+    public long getMeal_ID() {
+        return Meal_ID;
+    }
 
+    public void setMeal_ID(long meal_ID) {
+        Meal_ID = meal_ID;
+    }
+
+    public long getDay_ID() {
+        return Day_ID;
+    }
+
+    public void setDay_ID(long day_ID) {
+        this.Day_ID = day_ID;
+    }
+
+    public int getMealnum() {
+        return mealnum;
+    }
+
+    public void setMealnum(int mealnum) {
+        this.mealnum = mealnum;
+    }
 }
