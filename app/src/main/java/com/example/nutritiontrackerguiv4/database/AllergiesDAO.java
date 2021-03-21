@@ -1,4 +1,5 @@
 package com.example.nutritiontrackerguiv4.database;
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -19,10 +20,10 @@ public interface AllergiesDAO {
     void delete(Allergies allergies);
 
     @Query("SELECT * FROM Allergies")
-    List<Allergies> getAllAllergies();
+    LiveData<List<Allergies>> getAllAllergies();
 
     @Query("SELECT * FROM Allergies WHERE Allergy_ID=:allergyID")
-    List<Allergies> findAllInfoForAllergies(final int allergyID);
+    LiveData<List<Allergies>> findAllInfoForAllergies(final int allergyID);
 
 
 }

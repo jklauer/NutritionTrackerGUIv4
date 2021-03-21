@@ -1,4 +1,5 @@
 package com.example.nutritiontrackerguiv4.database;
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -19,10 +20,10 @@ public interface DayDAO {
     void delete(Day day);
 
     @Query("SELECT * FROM Days")
-    List<Day> getAllDays();
+    LiveData<List<Day>> getAllDays();
 
     @Query("SELECT * FROM Days WHERE Day_ID=:dayId")
-    List<Day> findAllInfoForDays(final int dayId);
+    LiveData<List<Day>> findAllInfoForDays(final int dayId);
 
 
 }

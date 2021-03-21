@@ -1,4 +1,5 @@
 package com.example.nutritiontrackerguiv4.database;
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -19,10 +20,10 @@ public interface IngredientDAO {
     void delete(Ingredient ingredient);
 
     @Query("SELECT * FROM Ingredients")
-    List<Ingredient> getAllIngredients();
+    LiveData<List<Ingredient>> getAllIngredients();
 
     @Query("SELECT * FROM Ingredients WHERE Ingredient_ID=:ingID")
-    List<Ingredient> findAllInfoForIngredient(final int ingID);
+    LiveData<List<Ingredient>> findAllInfoForIngredient(final int ingID);
 
 
 }

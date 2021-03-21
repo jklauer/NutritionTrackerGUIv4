@@ -1,4 +1,5 @@
 package com.example.nutritiontrackerguiv4.database;
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -19,10 +20,13 @@ public interface MealDAO {
     void delete(Meal meal);
 
     @Query("SELECT * FROM Meals")
-    List<Meal> getAllMeals();
+    LiveData<List<Meal>> getAllMeals();
 
     @Query("SELECT * FROM Meals WHERE Meal_ID=:mealId")
-    List<Meal> findAllInfoForMeal(final int mealId);
+    LiveData<List<Meal>> findAllInfoForMeal(final long mealId);
+
+    @Query("SELECT * FROM Meals WHERE Day_ID=:dayId")
+    LiveData<List<Meal>> findMealsForDay(final long dayId);
 
 
 }
