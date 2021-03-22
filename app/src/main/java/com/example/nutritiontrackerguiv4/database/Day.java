@@ -23,7 +23,7 @@ public class Day {
 
     public Day(){}
 
-    public Day(long id, long u, Date d)
+    public Day(long id, long u, String d)
     {
         Day_ID = id;
         User_ID = u;
