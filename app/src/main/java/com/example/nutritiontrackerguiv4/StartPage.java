@@ -2,12 +2,19 @@ package com.example.nutritiontrackerguiv4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+
+import com.example.nutritiontrackerguiv4.database.Allergies;
+import com.example.nutritiontrackerguiv4.database.Day;
+import com.example.nutritiontrackerguiv4.database.Meal;
+import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
+import com.example.nutritiontrackerguiv4.database.User;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,17 +23,29 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 
 public class StartPage extends AppCompatActivity {
 
+    @SuppressLint("WrongThread")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_page);
 
+        /*
+        testing the database
+
         loadInformation();
         handleContinueButton();
+        NutritionDatabase db = NutritionDatabase.getDatabase(getApplicationContext());
+        db.clearAllTables();
+        Allergies newAllergies = new Allergies(2, true, false);
+        db.getAllergiesDAO().insert(newAllergies);
+        User newUser = new User(1, newAllergies.getAllergy_ID(), "test");
+        db.getUserDAO().insert(newUser);
 
+         */
     }
 
     public void loadInformation(){

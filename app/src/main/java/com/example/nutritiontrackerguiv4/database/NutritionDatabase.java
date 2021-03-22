@@ -27,6 +27,7 @@ public abstract class NutritionDatabase extends RoomDatabase {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                             NutritionDatabase.class, "nutrition_database")
+                            .allowMainThreadQueries()
                             .build();
                 }
             }
