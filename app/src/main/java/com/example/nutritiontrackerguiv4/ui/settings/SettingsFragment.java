@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.nutritiontrackerguiv4.BarcodeScanner;
 import com.example.nutritiontrackerguiv4.InputMealForm;
 import com.example.nutritiontrackerguiv4.R;
 import com.example.nutritiontrackerguiv4.StartPage;
