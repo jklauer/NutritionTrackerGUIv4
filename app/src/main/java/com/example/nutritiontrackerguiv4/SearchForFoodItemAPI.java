@@ -40,7 +40,9 @@ public class SearchForFoodItemAPI {
         StrictMode.setThreadPolicy(policy);
         URL url = null;
         try {
-            url = new URL("https://api.nutritionix.com/v1_1/search/"+query+"?results=0:1&fields=item_name,brand_name,item_id,nf_calories&appId=e3c64a2d&appKey=8247cbcc6f4470b6b5aea7bb2b8e9a38");
+            String urlString = "https://api.nutritionix.com/v1_1/search/"+query+"?results=0:1&fields=item_name,brand_name,item_id,nf_calories&appId=e3c64a2d&appKey=8247cbcc6f4470b6b5aea7bb2b8e9a38";
+            url = new URL(urlString);
+            System.out.println("url: "+urlString);
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(
                             url.openStream()));

@@ -38,6 +38,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class InputMealForm extends Activity {
+
     private String date;
     private String time;
     private String name;
@@ -69,6 +70,8 @@ public class InputMealForm extends Activity {
         barcode = getIntent().getStringExtra("barcode");
         System.out.println("Barcode boolean value: "+barcode);
 
+
+        /*Search feature*/
         Button searchButton = (Button)findViewById(R.id.input_meal_form_search_button);
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,10 +79,15 @@ public class InputMealForm extends Activity {
                 String result = SearchForFoodItemAPI.searchForFoodItem(((EditText)findViewById(R.id.mealName)).getText().toString());
                 String name = result.split("###")[0];
                 String calories = result.split("###")[1];
+                if(calories.contains(".")){
+                    System.out.println("Calories: "+calories);
+                    calories = calories.split("\\.")[0];
+                }
                 ((EditText)findViewById(R.id.mealName)).setText(name);
                 ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
             }
         });
+        /*End of search feature*/
 
         if(barcode!=null){
             if(barcode.equals("true")){
@@ -137,10 +145,10 @@ public class InputMealForm extends Activity {
         }else{
             if(
                     time!=null
-                            &&name!=null
-                            &&calories!=null
-                            &&vitaminA!=null
-                            &&vitaminC!=null
+                    &&name!=null
+                    &&calories!=null
+                    &&vitaminA!=null
+                    &&vitaminC!=null
             ){
 
                 Button barcode_button = (Button)findViewById(R.id.scan_barcode_button);
