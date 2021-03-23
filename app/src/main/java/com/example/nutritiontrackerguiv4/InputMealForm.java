@@ -81,6 +81,7 @@ public class InputMealForm extends Activity {
             ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
 
             update();
+            delete();
         }else{
             System.out.println("Adding a meal...");
 
@@ -124,6 +125,23 @@ public class InputMealForm extends Activity {
             }
         });
 
+    }
+
+    public void delete(){
+        Button deleteButton = new Button(this);
+        deleteButton.setText("Delete");
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Ingredient ingr_delete = db.getIngredientDAO().findAllInfoForIngredient(Long.parseLong(ingr_id)).get(0);
+                db.getIngredientDAO().delete(ingr_delete);
+                Intent loadApp = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(loadApp);
+            }
+        });
+        ConstraintLayout ll = (ConstraintLayout) findViewById(R.id.input_meal_form_delete_button_layout);
+        LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+        ll.addView(deleteButton, lp);
     }
 
     public void add(){
