@@ -23,7 +23,7 @@ public interface IngredientDAO {
     List<Ingredient> getAllIngredients();
 
     @Query("SELECT * FROM Ingredients WHERE Ingredient_ID=:ingID")
-    List<Ingredient> findAllInfoForIngredient(final int ingID);
+    List<Ingredient> findAllInfoForIngredient(final long ingID);
 
 
 }

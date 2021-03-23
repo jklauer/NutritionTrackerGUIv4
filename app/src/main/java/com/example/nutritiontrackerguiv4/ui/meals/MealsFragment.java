@@ -1,5 +1,6 @@
 package com.example.nutritiontrackerguiv4.ui.meals;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +15,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nutritiontrackerguiv4.GlobalMethods;
 import com.example.nutritiontrackerguiv4.InputMealForm;
+import com.example.nutritiontrackerguiv4.MainActivity;
 import com.example.nutritiontrackerguiv4.R;
+import com.example.nutritiontrackerguiv4.database.Meal;
+import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -28,6 +32,9 @@ import java.util.Calendar;
 
 public class MealsFragment extends Fragment {
 
+    private long user_id;
+    private NutritionDatabase db;
+
     private MealsViewModel mealsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -35,144 +42,84 @@ public class MealsFragment extends Fragment {
         mealsViewModel =
                 new ViewModelProvider(this).get(MealsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_meals, container, false);
-//        final TextView textView = root.findViewById(R.id.text_home);
-//        mealsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
 
-        try {
-            loadButtons(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        db = NutritionDatabase.getDatabase(getContext());
 
+        loadUserID();
 
-        Button InputMealFormButton = (Button)root.findViewById(R.id.InputMealForm_button);
-        InputMealFormButton.setOnClickListener(new View.OnClickListener() {
+        loadButtons(root);
+
+        ((Button)(root.findViewById(R.id.InputMealForm_button))).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //loadButtons(root);
-
-                Intent loadInputMealForm = new Intent(getActivity(), InputMealForm.class);
+                Intent loadInputMealForm = new Intent(getContext(), InputMealForm.class);
                 startActivity(loadInputMealForm);
-
-
             }
         });
-
-
-
-
-
 
 
         return root;
     }
 
-    public void loadButtons(View root) throws IOException {
-
-        ArrayList<String> buttonNames = new ArrayList<String>();
-        ArrayList<String> timeNames = new ArrayList<String>();
-
-        String line = "";
-        int numOfNames = GlobalMethods.getNumberOfMeals(this);
-        System.out.println("Num of meals: " + numOfNames);
-        BufferedReader br2 = new BufferedReader(new FileReader(new File(getActivity().getFilesDir(), "userMealData.txt")));
-        for(int i=0; i<numOfNames-1; i++){
-            for(int j=0; j<6; j++){
-                line = br2.readLine();
-                if(j==2){
-                    buttonNames.add(line);
-                }
-                if(j==1){
-                    timeNames.add(line);
-                }
-            }
+    public void loadUserID(){
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(new File(getActivity().getFilesDir(),"User_ID.txt")));
+            this.user_id = Long.parseLong(br.readLine());
+            System.out.println("User loaded... user_id = "+user_id);
+            br.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        br2.close();
-        for(int i=0; i<buttonNames.size(); i++){
-            //System.out.println(buttonNames.get(i));
-            LinearLayout ll = (LinearLayout)root.findViewById(R.id.fragment_meals_linear_layout);
-            Button btn = new Button(getContext());
-            btn.setText(buttonNames.get(i) + " ___ " + timeNames.get(i));
-            btn.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            btn.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
+    }
 
+    public void loadButtons(View root){
 
-                    return true;
-                }
-            });
+        LinearLayout ll = (LinearLayout)root.findViewById(R.id.fragment_meals_linear_layout);
 
-            btn.setOnClickListener(new View.OnClickListener() {
+        int numOfButtons = db.getIngredientDAO().getAllIngredients().size();
+        for(int i=0; i<numOfButtons; i++){
+
+            Button newButton = new Button(getContext());
+
+            int finalI = i;
+            newButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-                    String info = btn.getText().toString();
-                    String mealName = info.split(" ___ ")[0];
-                    String mealTime = info.split(" ___ ")[1];
-                    String mealDate = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
-                    String mealCalories = "";
-                    String mealVitaminA = "";
-                    String mealVitaminC = "";
+                    Intent loadInputMealForm = new Intent(getContext(), InputMealForm.class);
 
+                    String ingr_name = db.getIngredientDAO().getAllIngredients().get(finalI).getName();
+                    String ingr_id = Long.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getIngredient_ID());
+                    String ingr_calories = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getCalories());
+                    String ingr_vita = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getVitaminA());
+                    String ingr_vitc = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getVitaminC());
+                    String ingr_time = db.getIngredientDAO().getAllIngredients().get(finalI).getTime();
 
+                    loadInputMealForm.putExtra("ingr_name", ingr_name);
+                    loadInputMealForm.putExtra("ingr_id", ingr_id);
+                    loadInputMealForm.putExtra("ingr_calories", ingr_calories);
+                    loadInputMealForm.putExtra("ingr_vita", ingr_vita);
+                    loadInputMealForm.putExtra("ingr_vitc", ingr_vitc);
+                    loadInputMealForm.putExtra("ingr_time", ingr_time);
 
-
-                    try {
-                        BufferedReader br = new BufferedReader(new FileReader(new File(getActivity().getFilesDir(), "userMealData.txt")));
-                        String line = br.readLine();
-                        while(line != null && !line.isEmpty()){
-                            if(line.equals(mealDate)){
-                                line = br.readLine();
-                                if(line.equals(mealTime)){
-                                    line = br.readLine();
-                                    if(line.equals(mealName)){
-                                        mealCalories = br.readLine();
-                                        mealVitaminA = br.readLine();
-                                        mealVitaminC = br.readLine();
-                                        break;
-                                    }
-                                }
-                            }
-                            line = br.readLine();
-                        }
-                        br.close();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    System.out.println("Meal name: "+mealName);
-                    System.out.println("Meal time: "+mealTime);
-                    System.out.println("Meal date: "+mealDate);
-                    System.out.println("Meal calories: "+mealCalories);
-                    System.out.println("Meal vit a: "+mealVitaminA);
-                    System.out.println("Meal Vit c: "+mealVitaminC);
-
-                    ArrayList<String> data = new ArrayList<String>();
-                    data.add(mealDate);
-                    data.add(mealTime);
-                    data.add(mealName);
-                    data.add(mealCalories);
-                    data.add(mealVitaminA);
-                    data.add(mealVitaminC);
-
-
-
-                    Intent loadInputMealForm = new Intent(getActivity(), InputMealForm.class);
-                    loadInputMealForm.putExtra("data", data);
                     startActivity(loadInputMealForm);
+
                 }
             });
-            ll.addView(btn);
+            newButton.setText(db.getIngredientDAO().getAllIngredients().get(finalI).getName()
+            + ": " + db.getIngredientDAO().getAllIngredients().get(finalI).getTime());
+
+
+            ll.addView(newButton);
+
         }
+
+
+
+
+
 
     }
 

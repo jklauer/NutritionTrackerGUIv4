@@ -29,7 +29,7 @@ public class IngredientRepository {
         return dao.getAllIngredients();
     }
 
-    public List<Ingredient> findAllInfoForIngredient(int id){
+    public List<Ingredient> findAllInfoForIngredient(long id){
         return dao.findAllInfoForIngredient(id);
     }
 }

@@ -49,19 +49,17 @@ public class StartPage extends AppCompatActivity {
         if(user_id_file.exists()){
             user_exists = true;
         }
-
+        System.out.println("User exists = "+user_exists);
         //If user exists, load the user id and allergies id of that user.
         if(user_exists){
             try {
                 BufferedReader br = new BufferedReader(new FileReader(user_id_file));
                 this.user_id = Long.parseLong(br.readLine());
                 this.allergies_id = db.getAllergiesDAO().findAllInfoForAllergies(user_id).get(0).getAllergy_ID();
-
-                System.out.println("User loaded... user_id = "+user_id);
-                System.out.println("Allergies loaded... allergies_id = "+allergies_id);
+                br.close();
                 loadInformation();
                 handleContinueButton();
-                br.close();
+
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -79,8 +77,8 @@ public class StartPage extends AppCompatActivity {
                         BufferedWriter bw = new BufferedWriter(new FileWriter(fileStartPage));
                         NutritionDatabase db = NutritionDatabase.getDatabase(getApplicationContext());
 
-                        boolean tree_nuts = ((CheckBox)findViewById(R.id.allergy_tree_nuts_start_page)).isSelected();
-                        boolean fish = ((CheckBox)findViewById(R.id.allergy_fish_start_page)).isSelected();
+                        boolean tree_nuts = ((CheckBox)findViewById(R.id.allergy_tree_nuts_start_page)).isChecked();
+                        boolean fish = ((CheckBox)findViewById(R.id.allergy_fish_start_page)).isChecked();
                         Allergies new_allergies = new Allergies(
                                 tree_nuts,
                                 fish
@@ -106,24 +104,17 @@ public class StartPage extends AppCompatActivity {
         }
 
 
-        /*
-        NutritionDatabase db = NutritionDatabase.getDatabase(getApplicationContext());
-        db.clearAllTables();
-        Allergies newAllergies = new Allergies(2, true, false);
-        db.getAllergiesDAO().insert(newAllergies);
-        User newUser = new User(newAllergies.getAllergy_ID(), "tesfewfewt");
-        db.getUserDAO().insert(newUser);
-
-         */
-
-
     }
 
     public void loadInformation(){
 
         Allergies load_allergies = db.getAllergiesDAO().findAllInfoForAllergies(allergies_id).get(0);
         boolean tree_nuts = load_allergies.getNuts();
+        System.out.println("User id: "+user_id);
+        System.out.println("Allergies id: "+allergies_id);
+        System.out.println("Tree nuts: "+tree_nuts);
         boolean fish = load_allergies.getSeafood();
+        System.out.println("Fish: "+fish);
         User load_user = db.getUserDAO().findAllInfoForUser(user_id).get(0);
         String user_name = load_user.getName();
 
@@ -139,31 +130,23 @@ public class StartPage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                File fileStartPage = new File(getFilesDir(), "fileStartPage.txt");
-                try {
-                    BufferedWriter bw = new BufferedWriter(new FileWriter(fileStartPage));
-                    NutritionDatabase db = NutritionDatabase.getDatabase(getApplicationContext());
+                NutritionDatabase db = NutritionDatabase.getDatabase(getApplicationContext());
 
-                    boolean tree_nuts = ((CheckBox)findViewById(R.id.allergy_tree_nuts_start_page)).isChecked();
-                    boolean fish = ((CheckBox)findViewById(R.id.allergy_fish_start_page)).isChecked();
+                boolean tree_nuts = ((CheckBox)findViewById(R.id.allergy_tree_nuts_start_page)).isChecked();
+                boolean fish = ((CheckBox)findViewById(R.id.allergy_fish_start_page)).isChecked();
 
-                    Allergies update_allergies = new Allergies(
-                            tree_nuts,
-                            fish
-                    );
-                    update_allergies.setAllergy_ID(allergies_id);
+                Allergies update_allergies = new Allergies(
+                        tree_nuts,
+                        fish
+                );
+                update_allergies.setAllergy_ID(allergies_id);
 
-                    User update_user = new User(allergies_id, ((EditText)findViewById(R.id.username_input_Start_Page)).getText().toString());
-                    update_user.setUser_ID(user_id);
+                User update_user = new User(allergies_id, ((EditText)findViewById(R.id.username_input_Start_Page)).getText().toString());
+                update_user.setUser_ID(user_id);
 
-                    db.getAllergiesDAO().update(update_allergies);
-                    db.getUserDAO().update(update_user);
+                db.getAllergiesDAO().update(update_allergies);
+                db.getUserDAO().update(update_user);
 
-
-                    bw.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
 
                 Intent loadApp = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(loadApp);

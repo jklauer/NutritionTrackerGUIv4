@@ -14,14 +14,16 @@ public class Ingredient {
     private int calories;
     private int vitaminA;
     private int vitaminC;
+    private String time;
 
     public Ingredient(){}
 
-    public Ingredient(String n, int cal, int A, int C) {
+    public Ingredient(String n, int cal, int A, int C, String t) {
         this.name = n;
         this.calories = cal;
         this.vitaminA = A;
         this.vitaminC = C;
+        this.time = t;
     }
 
     public long getIngredient_ID() {
@@ -62,5 +64,13 @@ public class Ingredient {
 
     public void setVitaminC(int vitaminC) {
         this.vitaminC = vitaminC;
+    }
+
+    public String getTime(){
+        return time;
+    }
+
+    public void setTime(String t){
+        this.time = t;
     }
 }

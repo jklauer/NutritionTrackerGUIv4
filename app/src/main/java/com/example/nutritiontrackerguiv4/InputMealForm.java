@@ -16,6 +16,8 @@ import android.widget.TextView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.nutritiontrackerguiv4.R;
+import com.example.nutritiontrackerguiv4.database.Ingredient;
+import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -36,6 +38,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class InputMealForm extends Activity {
+    private String date;
+    private String time;
+    private String name;
+    private String calories;
+    private String vitaminA;
+    private String vitaminC;
+    private String ingr_id;
+
+    private NutritionDatabase db;
 
     /** Called when the activity is first created. */
     @Override
@@ -43,298 +54,105 @@ public class InputMealForm extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_meal_form);
 
-        String date = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
-        String time = java.text.DateFormat.getTimeInstance().format(Calendar.getInstance().getTime());
-        String name = "";
-        String calories = "";
-        String vitaminA = "";
-        String vitaminC = "";
+        db = NutritionDatabase.getDatabase(getApplicationContext());
 
-        ArrayList<String> data = getIntent().getStringArrayListExtra("data");
-        if(data != null){
-            date = data.get(0);
-            time = data.get(1);
-            name = data.get(2);
-            calories = data.get(3);
-            vitaminA = data.get(4);
-            vitaminC = data.get(5);
-        }
+        date = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
+        time = getIntent().getStringExtra("ingr_time");
+        name = getIntent().getStringExtra("ingr_name");
+        calories = getIntent().getStringExtra("ingr_calories");
+        vitaminA = getIntent().getStringExtra("ingr_vita");
+        vitaminC = getIntent().getStringExtra("ingr_vitc");
+        ingr_id = getIntent().getStringExtra("ingr_id");
+        if(
+                time!=null
+                &&name!=null
+                &&calories!=null
+                &&vitaminA!=null
+                &&vitaminC!=null
+        ){
+            System.out.println("Updating a meal...");
 
-        ((EditText)findViewById(R.id.mealDate)).setText(date);
-        ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
-        ((EditText)findViewById(R.id.mealTime)).setText(time);
-
-        ArrayList<String> barcodeData = getIntent().getStringArrayListExtra("barcode");
-
-
-
-        if(barcodeData != null){
-            String bdate = barcodeData.get(0);
-            String btime = barcodeData.get(1);
-            String bname = barcodeData.get(2);
-            String bcalories = barcodeData.get(3);
-            String bvitaminA = barcodeData.get(4);
-            String bvitaminC = barcodeData.get(5);
-            ((EditText)findViewById(R.id.mealDate)).setText(bdate);
-            ((EditText)findViewById(R.id.mealTime)).setText(btime);
-            ((EditText)findViewById(R.id.mealName)).setText(bname);
-            ((EditText)findViewById(R.id.caloriesEntry)).setText(bcalories);
-            ((EditText)findViewById(R.id.vitaminA)).setText(bvitaminA);
-            ((EditText)findViewById(R.id.vitaminC)).setText(bvitaminC);
-        }
-
-        if(data != null){
+            ((EditText)findViewById(R.id.mealDate)).setText(date);
+            ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
+            ((EditText)findViewById(R.id.mealTime)).setText(time);
             ((EditText)findViewById(R.id.mealName)).setText(name);
-            ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
             ((EditText)findViewById(R.id.vitaminA)).setText(vitaminA);
             ((EditText)findViewById(R.id.vitaminC)).setText(vitaminC);
+            ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
 
-            Button deleteButton = new Button(this);
-            deleteButton.setText("Delete");
-            deleteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    deleteEntry(data);
-                }
-            });
-            ConstraintLayout ll = (ConstraintLayout) findViewById(R.id.input_meal_form_delete_button_layout);
-            LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-            ll.addView(deleteButton, lp);
-
-
-
-
-        }
-
-        dataEntryButton(data);
-
-        Button searchButton = (Button)findViewById(R.id.input_meal_form_search_button);
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String result = SearchForFoodItemAPI.searchForFoodItem(((EditText)findViewById(R.id.mealName)).getText().toString());
-                String name = result.split("###")[0];
-                String calories = result.split("###")[1];
-                ((EditText)findViewById(R.id.mealName)).setText(name);
-                ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
-            }
-        });
-
-        Button scan_barcode_button = (Button)findViewById(R.id.scan_barcode_button);
-        scan_barcode_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent loadBarcodeScanner = new Intent(getApplicationContext(), BarcodeScanner.class);
-                startActivity(loadBarcodeScanner);
-            }
-        });
-
-
-    }
-
-    public void deleteEntry(ArrayList<String> data){
-        try{
-            if(data == null){
-                dataEntry();
-            }else{
-                try {
-                    dataUpdate(data);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            String date = data.get(0);
-            String time = data.get(1);
-            String name = data.get(2);
-            String calories = data.get(3);
-            String vitaminA = data.get(4);
-            String vitaminC = data.get(5);
-
-            ArrayList<String> firstLines = new ArrayList<String>();
-            BufferedReader br = new BufferedReader(new FileReader(new File(getFilesDir(), "userMealData.txt")));
-            String line = br.readLine();
-            while(line != null){
-                firstLines.add(line);
-                if(firstLines.size() >= 3 && firstLines.get(firstLines.size()-3).equals(date)){
-                    if(firstLines.get(firstLines.size()-2).equals(time)){
-                        if(firstLines.get(firstLines.size()-1).equals(name)){
-                            firstLines.remove(firstLines.size()-1);
-                            firstLines.remove(firstLines.size()-1);
-                            firstLines.remove(firstLines.size()-1);
-                            break;
-                        }
-                    }
-                }
-                line = br.readLine();
-            }
-            br.readLine();
-            br.readLine();
-            br.readLine();
-            line = br.readLine();
-            while(line != null){
-                firstLines.add(line);
-                line = br.readLine();
-            }
-            br.close();
-
-            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(getFilesDir(), "userMealData.txt")));
-            for(String s:firstLines){
-                System.out.println(s);
-                bw.write(s);
-                bw.newLine();
-            }
-            bw.close();
-            Intent loadApp = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(loadApp);
-        }catch(IOException e){
-
-        }
-    }
-
-    public void dataEntryButton(ArrayList<String> data){
-
-        if(data == null){
-            dataEntry();
+            update();
         }else{
-            try {
-                dataUpdate(data);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            System.out.println("Adding a meal...");
+
+            ((EditText)findViewById(R.id.mealDate)).setText(date);
+            ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
+            ((EditText)findViewById(R.id.mealTime)).setText(
+                    java.text.DateFormat.getTimeInstance().format(Calendar.getInstance().getTime()));
+            ((EditText)findViewById(R.id.mealName)).setText("");
+            ((EditText)findViewById(R.id.vitaminA)).setText("");
+            ((EditText)findViewById(R.id.vitaminC)).setText("");
+            ((EditText)findViewById(R.id.caloriesEntry)).setText("");
+
+            add();
         }
 
     }
 
-    public void dataUpdate(ArrayList<String> data) throws IOException {
-        Button EntryButton = (Button) findViewById(R.id.enterMeal);
-        EntryButton.setOnClickListener(new View.OnClickListener() {
+    public void update(){
+
+        ((Button)findViewById(R.id.enterMeal)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 try{
-                    if(data == null){
-                        dataEntry();
-                    }else{
-                        try {
-                            dataUpdate(data);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    String date = data.get(0);
-                    String time = data.get(1);
-                    String name = data.get(2);
-                    String calories = data.get(3);
-                    String vitaminA = data.get(4);
-                    String vitaminC = data.get(5);
-
-                    ArrayList<String> firstLines = new ArrayList<String>();
-                    BufferedReader br = new BufferedReader(new FileReader(new File(getFilesDir(), "userMealData.txt")));
-                    String line = br.readLine();
-                    while(line != null){
-                        firstLines.add(line);
-                        if(firstLines.size() >= 3 && firstLines.get(firstLines.size()-3).equals(date)){
-                            if(firstLines.get(firstLines.size()-2).equals(time)){
-                                if(firstLines.get(firstLines.size()-1).equals(name)){
-                                    firstLines.set(firstLines.size()-3, ((EditText)findViewById(R.id.mealDate)).getText().toString());
-                                    firstLines.set(firstLines.size()-2, ((EditText)findViewById(R.id.mealTime)).getText().toString());
-                                    firstLines.set(firstLines.size()-1, ((EditText)findViewById(R.id.mealName)).getText().toString());
-                                    firstLines.add(((EditText)findViewById(R.id.caloriesEntry)).getText().toString());
-                                    firstLines.add(((EditText)findViewById(R.id.vitaminA)).getText().toString());
-                                    firstLines.add(((EditText)findViewById(R.id.vitaminC)).getText().toString());
-                                    break;
-                                }
-                            }
-                        }
-                        line = br.readLine();
-                    }
-                    br.readLine();
-                    br.readLine();
-                    br.readLine();
-                    line = br.readLine();
-                    while(line != null){
-                        firstLines.add(line);
-                        line = br.readLine();
-                    }
-                    br.close();
-
-                    BufferedWriter bw = new BufferedWriter(new FileWriter(new File(getFilesDir(), "userMealData.txt")));
-                    for(String s:firstLines){
-                        System.out.println(s);
-                        bw.write(s);
-                        bw.newLine();
-                    }
-                    bw.close();
+                    Ingredient update_ingr = db.getIngredientDAO().findAllInfoForIngredient(Long.parseLong(ingr_id)).get(0);
+                    update_ingr.setCalories(Integer.parseInt(((EditText)findViewById(R.id.caloriesEntry)).getText().toString()));
+                    update_ingr.setName(((EditText)findViewById(R.id.mealName)).getText().toString());
+                    update_ingr.setTime(((EditText)findViewById(R.id.mealTime)).getText().toString());
+                    update_ingr.setVitaminA(Integer.parseInt(((EditText)findViewById(R.id.vitaminA)).getText().toString()));
+                    update_ingr.setVitaminC(Integer.parseInt(((EditText)findViewById(R.id.vitaminC)).getText().toString()));
+                    db.getIngredientDAO().update(update_ingr);
                     Intent loadApp = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(loadApp);
-                }catch(IOException e){
-
+                }catch(NumberFormatException e){
+                    System.out.println("Invalid formatting...");
                 }
 
-            }
 
+
+
+            }
         });
 
     }
 
-    public void dataEntry(){
-        Button EntryButton = (Button) findViewById(R.id.enterMeal);
-        EntryButton.setOnClickListener(new View.OnClickListener() {
+    public void add(){
+
+        ((Button)findViewById(R.id.enterMeal)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                File mealsPage = new File(getFilesDir(), "userMealData.txt");
-                try {
-                    BufferedWriter bw = new BufferedWriter(new FileWriter(mealsPage, true));
-                    if( ((EditText)findViewById(R.id.mealDate)).getText().toString().isEmpty()){
-                        bw.write("Meal Date");
-                    }else{
-                        bw.write(((EditText)findViewById(R.id.mealDate)).getText().toString());
-                    }
-                    bw.newLine();
-                    //in this line
-                    if( ((EditText)findViewById(R.id.mealTime)).getText().toString().isEmpty()){
-                        bw.write("Meal Time");
-                    }else{
-                        bw.write(((EditText)findViewById(R.id.mealTime)).getText().toString());
-                    }
-                    bw.newLine();
-                    if( ((EditText)findViewById(R.id.mealName)).getText().toString().isEmpty()){
-                        bw.write("Meal Name");
-                    }else{
-                        bw.write(((EditText)findViewById(R.id.mealName)).getText().toString());
-                    }
-                    bw.newLine();
-                    if( ((EditText)findViewById(R.id.caloriesEntry)).getText().toString().isEmpty()){
-                        bw.write("Meal Calories");
-                    }else{
-                        bw.write(((EditText)findViewById(R.id.caloriesEntry)).getText().toString());
-                    }
-                    bw.newLine();
-                    if( ((EditText)findViewById(R.id.vitaminA)).getText().toString().isEmpty()){
-                        bw.write("Meal Vitamin A");
-                    }else{
-                        bw.write(((EditText)findViewById(R.id.vitaminA)).getText().toString());
-                    }
-                    bw.newLine();
-                    if( ((EditText)findViewById(R.id.vitaminC)).getText().toString().isEmpty()){
-                        bw.write("Meal Vitamin C");
-                    }else{
-                        bw.write(((EditText)findViewById(R.id.vitaminC)).getText().toString());
-                    }
-                    bw.newLine();
-                    bw.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                System.out.println("Button clicked!");
+                try{
+                    Ingredient add_ingr = new Ingredient(
+                            ((EditText)findViewById(R.id.mealName)).getText().toString(),
+                            Integer.parseInt(
+                                    ((EditText)findViewById(R.id.caloriesEntry)).getText().toString()),
+                            Integer.parseInt(
+                                    ((EditText)findViewById(R.id.vitaminA)).getText().toString()),
+                            Integer.parseInt(
+                                    ((EditText)findViewById(R.id.vitaminC)).getText().toString()),
+                            ((EditText)findViewById(R.id.mealTime)).getText().toString());
+                    db.getIngredientDAO().insert(add_ingr);
+                    Intent loadApp = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(loadApp);
+                }catch(NumberFormatException e){
+                    System.out.println("Invalid formatting...");
                 }
-                Intent loadApp = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(loadApp);
+
+
+
             }
         });
+
     }
 }
