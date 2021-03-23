@@ -23,9 +23,8 @@ public class Meal {
 
     public Meal(){}
 
-    public Meal(long id, long d, int num)
+    public Meal(long d, int num)
     {
-        Meal_ID = id;
         Day_ID = d;
         mealnum = num;
     }

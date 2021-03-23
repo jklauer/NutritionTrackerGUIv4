@@ -14,6 +14,6 @@ public interface Meal_Recipe_Join_DAO {
 
     @Query("SELECT * FROM Recipes INNER JOIN Meal_Recipe_Join ON Recipes.Recipe_ID" +
             "=Meal_Recipe_Join.Recipe_ID WHERE Meal_Recipe_Join.Meal_ID=:mealId")
-            LiveData<List<Recipe>> getRecipesForMeal(final long mealId);
+            List<Recipe> getRecipesForMeal(final long mealId);
 
 }

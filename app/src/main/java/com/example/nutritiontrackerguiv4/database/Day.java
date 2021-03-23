@@ -23,9 +23,8 @@ public class Day {
 
     public Day(){}
 
-    public Day(long id, long u, String d)
+    public Day(long u, String d)
     {
-        Day_ID = id;
         User_ID = u;
         date = d.toString();
     }

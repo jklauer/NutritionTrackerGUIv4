@@ -23,11 +23,11 @@ public class UserRepository {
         dao.delete(u);
     }
 
-    public LiveData<List<User>> getAllUsers(){
+    public List<User> getAllUsers(){
         return dao.getAllUsers();
     }
 
-    public LiveData<List<User>> findAllInfoForUser(long id){
+    public List<User> findAllInfoForUser(long id){
         return dao.findAllInfoForUser(id);
     }
 }

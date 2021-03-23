@@ -24,15 +24,15 @@ public class MealRepository {
         dao.delete(m);
     }
 
-    public LiveData<List<Meal>> getAllMeals(){
+    public List<Meal> getAllMeals(){
         return dao.getAllMeals();
     }
 
-    public LiveData<List<Meal>> findAllInfoForMeal(long id){
+    public List<Meal> findAllInfoForMeal(long id){
         return dao.findAllInfoForMeal(id);
     }
 
-    public LiveData<List<Meal>> findMealsForDay (long id){
+    public List<Meal> findMealsForDay (long id){
         return dao.findMealsForDay(id);
     }
 }

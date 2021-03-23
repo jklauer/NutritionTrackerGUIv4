@@ -20,10 +20,10 @@ public interface IngredientDAO {
     void delete(Ingredient ingredient);
 
     @Query("SELECT * FROM Ingredients")
-    LiveData<List<Ingredient>> getAllIngredients();
+    List<Ingredient> getAllIngredients();
 
     @Query("SELECT * FROM Ingredients WHERE Ingredient_ID=:ingID")
-    LiveData<List<Ingredient>> findAllInfoForIngredient(final int ingID);
+    List<Ingredient> findAllInfoForIngredient(final int ingID);
 
 
 }

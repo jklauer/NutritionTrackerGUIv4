@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean handleStartPage(){
 
-        File fileStartPage = new File(getFilesDir(), "fileStartPage.txt");
+        File fileStartPage = new File(getFilesDir(), "User_ID.txt");
         if(fileStartPage.exists()){
             return false;
         }else{

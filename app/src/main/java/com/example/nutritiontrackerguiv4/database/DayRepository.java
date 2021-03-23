@@ -24,11 +24,11 @@ public class DayRepository {
         dao.delete(d);
     }
 
-    public LiveData<List<Day>> getAllDays(){
+    public List<Day> getAllDays(){
         return dao.getAllDays();
     }
 
-    public LiveData<List<Day>> findAllInfoForDays(int id){
+    public List<Day> findAllInfoForDays(int id){
         return dao.findAllInfoForDays(id);
     }
 }

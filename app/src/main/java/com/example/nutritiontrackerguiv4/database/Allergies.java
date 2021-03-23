@@ -16,8 +16,7 @@ public class Allergies {
 
     }
 
-    public Allergies(int id, Boolean nuts, Boolean Seafood) {
-        this.Allergy_ID = id;
+    public Allergies(Boolean nuts, Boolean Seafood) {
         this.nuts = nuts;
         this.Seafood = Seafood;
     }

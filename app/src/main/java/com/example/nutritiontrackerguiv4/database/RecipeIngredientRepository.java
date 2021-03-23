@@ -11,7 +11,7 @@ public class RecipeIngredientRepository {
         dao = r;
     }
 
-    public LiveData<List<Ingredient>> getIngredientsForRecipe(long id){
+    public List<Ingredient> getIngredientsForRecipe(long id){
         return dao.getIngredientsForRecipe(id);
     }
 }

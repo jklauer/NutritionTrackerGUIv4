@@ -23,13 +23,13 @@ public class RecipeRepository {
         dao.delete(m);
     }
 
-    public LiveData<List<Recipe>> getAllRecipe(){
+    public List<Recipe> getAllRecipe(){
         return dao.getAllRecipes();
     }
 
-    public LiveData<List<String>> getAllNames(){ return dao.getAllnames();}
+    public List<String> getAllNames(){ return dao.getAllnames();}
 
-    public LiveData<List<Recipe>> findAllInfoForRecipe(long id){
+    public List<Recipe> findAllInfoForRecipe(long id){
         return dao.findAllInfoForRecipes(id);
     }
 

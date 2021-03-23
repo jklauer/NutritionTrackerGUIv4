@@ -21,8 +21,7 @@ public class User {
 
     public User(){}
 
-    public User(int id, long A, String n) {
-        this.User_ID = id;
+    public User(long A, String n) {
         this.Allergy_ID = A;
         this.name = n;
     }

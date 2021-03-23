@@ -20,10 +20,10 @@ public interface UserDAO {
     void delete(User user);
 
     @Query("SELECT * FROM Users")
-    LiveData<List<User>> getAllUsers();
+    List<User> getAllUsers();
 
     @Query("SELECT * FROM Users WHERE User_id=:userId")
-    LiveData<List<User>> findAllInfoForUser(final long userId);
+    List<User> findAllInfoForUser(final long userId);
 
 
 }

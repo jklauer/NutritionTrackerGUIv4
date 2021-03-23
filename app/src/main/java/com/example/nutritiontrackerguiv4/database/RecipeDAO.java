@@ -20,13 +20,13 @@ public interface RecipeDAO {
     void delete(Recipe recipe);
 
     @Query("SELECT * FROM Recipes")
-    LiveData<List<Recipe>> getAllRecipes();
+    List<Recipe> getAllRecipes();
 
     @Query("SELECT name FROM Recipes")
-    LiveData<List<String>> getAllnames();
+    List<String> getAllnames();
 
     @Query("SELECT * FROM Recipes WHERE Recipe_ID=:recipeID")
-    LiveData<List<Recipe>> findAllInfoForRecipes(final long recipeID);
+    List<Recipe> findAllInfoForRecipes(final long recipeID);
 
 
 }

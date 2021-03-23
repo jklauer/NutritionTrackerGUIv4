@@ -22,12 +22,12 @@ class AllergiesRepository {
         dao.delete(a);
     }
 
-    public LiveData<List<Allergies>> getAllAllergies(){
+    public List<Allergies> getAllAllergies(){
         return dao.getAllAllergies();
     }
 
     //If you're looking for info on one user's allergies, use this method
-    public LiveData<List<Allergies>> findAllInfoForAllergies(int id){
+    public List<Allergies> findAllInfoForAllergies(int id){
         return dao.findAllInfoForAllergies(id);
     }
 

@@ -25,11 +25,11 @@ public class IngredientRepository {
         dao.delete(i);
     }
 
-    public LiveData<List<Ingredient>> getAllIngredient(){
+    public List<Ingredient> getAllIngredient(){
         return dao.getAllIngredients();
     }
 
-    public LiveData<List<Ingredient>> findAllInfoForIngredient(int id){
+    public List<Ingredient> findAllInfoForIngredient(int id){
         return dao.findAllInfoForIngredient(id);
     }
 }

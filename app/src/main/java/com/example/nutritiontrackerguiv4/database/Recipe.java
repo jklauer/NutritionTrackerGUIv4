@@ -15,8 +15,7 @@ public class Recipe {
     public Recipe(){
 
     }
-    public Recipe(int id, String n, int ing) {
-        this.Recipe_ID = id;
+    public Recipe(String n) {
         this.name = n;
     }
 

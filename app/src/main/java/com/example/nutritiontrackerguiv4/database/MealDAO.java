@@ -20,13 +20,13 @@ public interface MealDAO {
     void delete(Meal meal);
 
     @Query("SELECT * FROM Meals")
-    LiveData<List<Meal>> getAllMeals();
+    List<Meal> getAllMeals();
 
     @Query("SELECT * FROM Meals WHERE Meal_ID=:mealId")
-    LiveData<List<Meal>> findAllInfoForMeal(final long mealId);
+    List<Meal> findAllInfoForMeal(final long mealId);
 
     @Query("SELECT * FROM Meals WHERE Day_ID=:dayId")
-    LiveData<List<Meal>> findMealsForDay(final long dayId);
+    List<Meal> findMealsForDay(final long dayId);
 
 
 }

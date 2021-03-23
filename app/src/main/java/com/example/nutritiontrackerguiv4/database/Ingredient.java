@@ -17,8 +17,7 @@ public class Ingredient {
 
     public Ingredient(){}
 
-    public Ingredient(int id, String n, int cal, int A, int C) {
-        this.Ingredient_ID = id;
+    public Ingredient(String n, int cal, int A, int C) {
         this.name = n;
         this.calories = cal;
         this.vitaminA = A;

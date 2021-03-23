@@ -12,7 +12,7 @@ public class MealRecipeRepository {
         dao = d;
     }
 
-    public LiveData<List<Recipe>> getRecipesForMeal(int id){
+    public List<Recipe> getRecipesForMeal(int id){
         return dao.getRecipesForMeal(id);
     }
 }

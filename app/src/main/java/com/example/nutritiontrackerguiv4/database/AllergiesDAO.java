@@ -20,10 +20,10 @@ public interface AllergiesDAO {
     void delete(Allergies allergies);
 
     @Query("SELECT * FROM Allergies")
-    LiveData<List<Allergies>> getAllAllergies();
+    List<Allergies> getAllAllergies();
 
     @Query("SELECT * FROM Allergies WHERE Allergy_ID=:allergyID")
-    LiveData<List<Allergies>> findAllInfoForAllergies(final int allergyID);
+    List<Allergies> findAllInfoForAllergies(final long allergyID);
 
 
 }
