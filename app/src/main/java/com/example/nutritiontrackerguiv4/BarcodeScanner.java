@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.nutritiontrackerguiv4.database.Ingredient;
+import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -27,11 +29,26 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public class BarcodeScanner extends AppCompatActivity{
+    private NutritionDatabase db;
+    private Ingredient ingr;
+    String barcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode_scanner);
+
+        String ingr_id = getIntent().getStringExtra("ingr_id");
+        barcode = getIntent().getStringExtra("barcode");
+
+
+        db = NutritionDatabase.getDatabase(getApplicationContext());
+        try{
+            ingr = db.getIngredientDAO().findAllInfoForIngredient(Long.parseLong(ingr_id)).get(0);
+        }catch(NumberFormatException e){
+            ingr = new Ingredient("", 0, 0, 0, java.text.DateFormat.getTimeInstance().format(Calendar.getInstance().getTime()));
+        }
+
         initialiseDetectorsAndSources();
     }
 
@@ -89,24 +106,25 @@ public class BarcodeScanner extends AppCompatActivity{
 
                     if (barcodes.valueAt(0).rawValue != null) {
                         System.out.println(barcodes.valueAt(0).rawValue);
-                        ArrayList<String> data = new ArrayList<String>();
-                        String result = SearchForFoodItemAPI.searchForFoodItemUPC(barcodes.valueAt(0).rawValue);
-                        String name = result.split("###")[0];
-                        String calories = result.split("###")[1];
-                        String date = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
-                        String time = java.text.DateFormat.getTimeInstance().format(Calendar.getInstance().getTime());
-                        String vitA = "";
-                        String vitC = "";
 
-                        data.add(date);
-                        data.add(time);
-                        data.add(name);
-                        data.add(calories);
-                        data.add(vitA);
-                        data.add(vitC);
+                        String result = SearchForFoodItemAPI.searchForFoodItemUPC(barcodes.valueAt(0).rawValue);
+
+
+                        String ingr_name = result.split("###")[0];
+                        String ingr_id = Long.toString(ingr.getIngredient_ID());
+                        String ingr_calories = result.split("###")[1];
+                        String ingr_vita = Integer.toString(ingr.getVitaminA());
+                        String ingr_vitc = Integer.toString(ingr.getVitaminC());
+                        String ingr_time = ingr.getTime();
 
                         Intent loadInputMealForm = new Intent(getApplicationContext(), InputMealForm.class);
-                        loadInputMealForm.putExtra("barcode", data);
+                        loadInputMealForm.putExtra("ingr_name", ingr_name);
+                        loadInputMealForm.putExtra("ingr_id", ingr_id);
+                        loadInputMealForm.putExtra("ingr_calories", ingr_calories);
+                        loadInputMealForm.putExtra("ingr_vita", ingr_vita);
+                        loadInputMealForm.putExtra("ingr_vitc", ingr_vitc);
+                        loadInputMealForm.putExtra("ingr_time", ingr_time);
+                        loadInputMealForm.putExtra("barcode", barcode);
                         startActivity(loadInputMealForm);
                     }
 

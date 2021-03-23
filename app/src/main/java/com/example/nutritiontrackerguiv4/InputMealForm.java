@@ -46,6 +46,8 @@ public class InputMealForm extends Activity {
     private String vitaminC;
     private String ingr_id;
 
+    private String barcode;
+
     private NutritionDatabase db;
 
     /** Called when the activity is first created. */
@@ -63,39 +65,142 @@ public class InputMealForm extends Activity {
         vitaminA = getIntent().getStringExtra("ingr_vita");
         vitaminC = getIntent().getStringExtra("ingr_vitc");
         ingr_id = getIntent().getStringExtra("ingr_id");
-        if(
-                time!=null
-                &&name!=null
-                &&calories!=null
-                &&vitaminA!=null
-                &&vitaminC!=null
-        ){
-            System.out.println("Updating a meal...");
 
-            ((EditText)findViewById(R.id.mealDate)).setText(date);
-            ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
-            ((EditText)findViewById(R.id.mealTime)).setText(time);
-            ((EditText)findViewById(R.id.mealName)).setText(name);
-            ((EditText)findViewById(R.id.vitaminA)).setText(vitaminA);
-            ((EditText)findViewById(R.id.vitaminC)).setText(vitaminC);
-            ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
+        barcode = getIntent().getStringExtra("barcode");
+        System.out.println("Barcode boolean value: "+barcode);
 
-            update();
-            delete();
+        Button searchButton = (Button)findViewById(R.id.input_meal_form_search_button);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String result = SearchForFoodItemAPI.searchForFoodItem(((EditText)findViewById(R.id.mealName)).getText().toString());
+                String name = result.split("###")[0];
+                String calories = result.split("###")[1];
+                ((EditText)findViewById(R.id.mealName)).setText(name);
+                ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
+            }
+        });
+
+        if(barcode!=null){
+            if(barcode.equals("true")){
+                Button barcode_button = (Button)findViewById(R.id.scan_barcode_button);
+                barcode_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent loadBarcodeScanner = new Intent(getApplicationContext(), BarcodeScanner.class);
+
+                        loadBarcodeScanner.putExtra("ingr_id", ingr_id);
+                        loadBarcodeScanner.putExtra("barcode", "true");
+
+                        startActivity(loadBarcodeScanner);
+                    }
+                });
+
+                System.out.println("Updating a meal...");
+
+                ((EditText)findViewById(R.id.mealDate)).setText(date);
+                ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
+                ((EditText)findViewById(R.id.mealTime)).setText(time);
+                ((EditText)findViewById(R.id.mealName)).setText(name);
+                ((EditText)findViewById(R.id.vitaminA)).setText(vitaminA);
+                ((EditText)findViewById(R.id.vitaminC)).setText(vitaminC);
+                ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
+
+                update();
+                delete();
+            }else{
+                Button barcode_button = (Button)findViewById(R.id.scan_barcode_button);
+                barcode_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent loadBarcodeScanner = new Intent(getApplicationContext(), BarcodeScanner.class);
+
+                        loadBarcodeScanner.putExtra("ingr_id", ingr_id);
+                        loadBarcodeScanner.putExtra("barcode", "false");
+
+                        startActivity(loadBarcodeScanner);
+                    }
+                });
+
+                System.out.println("Adding a meal...");
+
+                ((EditText)findViewById(R.id.mealDate)).setText(date);
+                ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
+                ((EditText)findViewById(R.id.mealTime)).setText(time);
+                ((EditText)findViewById(R.id.mealName)).setText(name);
+                ((EditText)findViewById(R.id.vitaminA)).setText(vitaminA);
+                ((EditText)findViewById(R.id.vitaminC)).setText(vitaminC);
+                ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
+
+                add();
+            }
         }else{
-            System.out.println("Adding a meal...");
+            if(
+                    time!=null
+                            &&name!=null
+                            &&calories!=null
+                            &&vitaminA!=null
+                            &&vitaminC!=null
+            ){
 
-            ((EditText)findViewById(R.id.mealDate)).setText(date);
-            ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
-            ((EditText)findViewById(R.id.mealTime)).setText(
-                    java.text.DateFormat.getTimeInstance().format(Calendar.getInstance().getTime()));
-            ((EditText)findViewById(R.id.mealName)).setText("");
-            ((EditText)findViewById(R.id.vitaminA)).setText("");
-            ((EditText)findViewById(R.id.vitaminC)).setText("");
-            ((EditText)findViewById(R.id.caloriesEntry)).setText("");
+                Button barcode_button = (Button)findViewById(R.id.scan_barcode_button);
+                barcode_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent loadBarcodeScanner = new Intent(getApplicationContext(), BarcodeScanner.class);
 
-            add();
+                        loadBarcodeScanner.putExtra("ingr_id", ingr_id);
+                        loadBarcodeScanner.putExtra("barcode", "true");
+
+                        startActivity(loadBarcodeScanner);
+                    }
+                });
+
+                System.out.println("Updating a meal...");
+
+                ((EditText)findViewById(R.id.mealDate)).setText(date);
+                ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
+                ((EditText)findViewById(R.id.mealTime)).setText(time);
+                ((EditText)findViewById(R.id.mealName)).setText(name);
+                ((EditText)findViewById(R.id.vitaminA)).setText(vitaminA);
+                ((EditText)findViewById(R.id.vitaminC)).setText(vitaminC);
+                ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
+
+                update();
+                delete();
+            }else{
+
+                Button barcode_button = (Button)findViewById(R.id.scan_barcode_button);
+                barcode_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent loadBarcodeScanner = new Intent(getApplicationContext(), BarcodeScanner.class);
+
+                        loadBarcodeScanner.putExtra("ingr_id", ingr_id);
+                        loadBarcodeScanner.putExtra("barcode", "false");
+
+                        startActivity(loadBarcodeScanner);
+                    }
+                });
+
+                System.out.println("Adding a meal...");
+
+                ((EditText)findViewById(R.id.mealDate)).setText(date);
+                ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
+                ((EditText)findViewById(R.id.mealTime)).setText(
+                        java.text.DateFormat.getTimeInstance().format(Calendar.getInstance().getTime()));
+                ((EditText)findViewById(R.id.mealName)).setText("");
+                ((EditText)findViewById(R.id.vitaminA)).setText("");
+                ((EditText)findViewById(R.id.vitaminC)).setText("");
+                ((EditText)findViewById(R.id.caloriesEntry)).setText("");
+
+                add();
+            }
         }
+
+
+
+
 
     }
 
