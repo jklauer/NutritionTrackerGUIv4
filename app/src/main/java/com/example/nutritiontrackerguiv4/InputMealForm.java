@@ -79,7 +79,7 @@ public class InputMealForm extends Activity {
                 String result = SearchForFoodItemAPI.searchForFoodItem(((EditText)findViewById(R.id.mealName)).getText().toString());
                 String name = result.split("###")[0];
                 String calories = result.split("###")[1];
-                if(calories.contains(".")){
+                if(calories.contains("\\.")){
                     System.out.println("Calories: "+calories);
                     calories = calories.split("\\.")[0];
                 }
