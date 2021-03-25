@@ -103,7 +103,7 @@ public class BarcodeScanner extends AppCompatActivity{
                 // Toast.makeText(getApplicationContext(), "To prevent memory leaks barcode scanner has been stopped", Toast.LENGTH_SHORT).show();
             }
 
-            //when a barcode is red, this function is ran
+            //when a barcode is read, this function is ran
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
