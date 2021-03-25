@@ -31,27 +31,31 @@ import java.util.Calendar;
 public class BarcodeScanner extends AppCompatActivity{
     private NutritionDatabase db;
     private Ingredient ingr;
-    String barcode;
+    String barcode; //barcode == true; means updating a meal
+                    //barcode == false; means adding a meal
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barcode_scanner);
 
-        String ingr_id = getIntent().getStringExtra("ingr_id");
-        barcode = getIntent().getStringExtra("barcode");
-
+        String ingr_id = getIntent().getStringExtra("ingr_id"); //pass in an ingredient
+        barcode = getIntent().getStringExtra("barcode"); //pass in barcode == true or false
 
         db = NutritionDatabase.getDatabase(getApplicationContext());
+
+        //try to get the ingredient object from the given ingr_id
         try{
             ingr = db.getIngredientDAO().findAllInfoForIngredient(Long.parseLong(ingr_id)).get(0);
         }catch(NumberFormatException e){
             ingr = new Ingredient("", 0, 0, 0, java.text.DateFormat.getTimeInstance().format(Calendar.getInstance().getTime()));
         }
 
+        //set up barcode scanner
         initialiseDetectorsAndSources();
     }
 
+    //sets up the barcod scanner
     private void initialiseDetectorsAndSources() {
 
         //Toast.makeText(getApplicationContext(), "Barcode scanner started", Toast.LENGTH_SHORT).show();
@@ -99,17 +103,21 @@ public class BarcodeScanner extends AppCompatActivity{
                 // Toast.makeText(getApplicationContext(), "To prevent memory leaks barcode scanner has been stopped", Toast.LENGTH_SHORT).show();
             }
 
+            //when a barcode is red, this function is ran
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
-                if (barcodes.size() != 0) {
 
+                //if there is a barcode...
+                if (barcodes.size() != 0) {
+                    //and the barcode is not null
                     if (barcodes.valueAt(0).rawValue != null) {
                         System.out.println(barcodes.valueAt(0).rawValue);
 
+                        //get the string result from the scanned upc
                         String result = SearchForFoodItemAPI.searchForFoodItemUPC(barcodes.valueAt(0).rawValue);
 
-
+                        //get the name and calories into variables of the string result
                         String ingr_name = result.split("###")[0];
                         String ingr_id = Long.toString(ingr.getIngredient_ID());
                         String ingr_calories = result.split("###")[1];
@@ -117,6 +125,8 @@ public class BarcodeScanner extends AppCompatActivity{
                         String ingr_vitc = Integer.toString(ingr.getVitaminC());
                         String ingr_time = ingr.getTime();
 
+                        //load input meal form with the scanned information and old other information
+                        //  and the barcode == true or false value loaded in on activity startup
                         Intent loadInputMealForm = new Intent(getApplicationContext(), InputMealForm.class);
                         loadInputMealForm.putExtra("ingr_name", ingr_name);
                         loadInputMealForm.putExtra("ingr_id", ingr_id);

@@ -39,6 +39,7 @@ import java.util.Date;
 
 public class InputMealForm extends Activity {
 
+    //Holds the variables of the Ingredient object
     private String date;
     private String time;
     private String name;
@@ -47,6 +48,10 @@ public class InputMealForm extends Activity {
     private String vitaminC;
     private String ingr_id;
 
+    //Passed in from the BarcodeScanner activity...
+    // barcode == true; means it came from BarcodeScanner and it's updating
+    // barcode == false; means it came from BarcodeScanner and it's adding
+    // barcode = null means it came from MealsFragment
     private String barcode;
 
     private NutritionDatabase db;
@@ -59,6 +64,7 @@ public class InputMealForm extends Activity {
 
         db = NutritionDatabase.getDatabase(getApplicationContext());
 
+        //Get the passed in data if it came from another activity
         date = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
         time = getIntent().getStringExtra("ingr_time");
         name = getIntent().getStringExtra("ingr_name");
@@ -68,7 +74,7 @@ public class InputMealForm extends Activity {
         ingr_id = getIntent().getStringExtra("ingr_id");
 
         barcode = getIntent().getStringExtra("barcode");
-        System.out.println("Barcode boolean value: "+barcode);
+        //System.out.println("Barcode boolean value: "+barcode);
 
 
         /*Search feature*/
@@ -79,7 +85,7 @@ public class InputMealForm extends Activity {
                 String result = SearchForFoodItemAPI.searchForFoodItem(((EditText)findViewById(R.id.mealName)).getText().toString());
                 String name = result.split("###")[0];
                 String calories = result.split("###")[1];
-                if(calories.contains("\\.")){
+                if(calories.contains(".")){
                     System.out.println("Calories: "+calories);
                     calories = calories.split("\\.")[0];
                 }
@@ -89,8 +95,13 @@ public class InputMealForm extends Activity {
         });
         /*End of search feature*/
 
+        //If it came in from the BarcodeScanner activity...
         if(barcode!=null){
+
+            //And if it is updating a meal
             if(barcode.equals("true")){
+
+                //Set up barcode scanner button
                 Button barcode_button = (Button)findViewById(R.id.scan_barcode_button);
                 barcode_button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -103,9 +114,12 @@ public class InputMealForm extends Activity {
                         startActivity(loadBarcodeScanner);
                     }
                 });
+                //End setting up barcode scanner button
 
-                System.out.println("Updating a meal...");
+                //System.out.println("Updating a meal...");
 
+
+                //Set the input meal form UI to the current data
                 ((EditText)findViewById(R.id.mealDate)).setText(date);
                 ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
                 ((EditText)findViewById(R.id.mealTime)).setText(time);
@@ -114,9 +128,13 @@ public class InputMealForm extends Activity {
                 ((EditText)findViewById(R.id.vitaminC)).setText(vitaminC);
                 ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
 
-                update();
-                delete();
-            }else{
+                update(); //handle if the meal is updated
+                delete(); //handle if the meal is deleted
+            }else
+                //If it is adding a meal
+                {
+
+                //Setup the barcode scanner button
                 Button barcode_button = (Button)findViewById(R.id.scan_barcode_button);
                 barcode_button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -129,9 +147,11 @@ public class InputMealForm extends Activity {
                         startActivity(loadBarcodeScanner);
                     }
                 });
+                //end setting up the barcode scanner button
 
-                System.out.println("Adding a meal...");
+                //System.out.println("Adding a meal...");
 
+                // Set the input meal form UI to the current data
                 ((EditText)findViewById(R.id.mealDate)).setText(date);
                 ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
                 ((EditText)findViewById(R.id.mealTime)).setText(time);
@@ -140,9 +160,13 @@ public class InputMealForm extends Activity {
                 ((EditText)findViewById(R.id.vitaminC)).setText(vitaminC);
                 ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
 
-                add();
+                add(); //handle adding a meal
             }
-        }else{
+        }else
+            //If it came in from the meals fragment
+            {
+
+            // and if it is updating a meal
             if(
                     time!=null
                     &&name!=null
@@ -151,6 +175,7 @@ public class InputMealForm extends Activity {
                     &&vitaminC!=null
             ){
 
+                //set up barcode scanner button
                 Button barcode_button = (Button)findViewById(R.id.scan_barcode_button);
                 barcode_button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -163,9 +188,11 @@ public class InputMealForm extends Activity {
                         startActivity(loadBarcodeScanner);
                     }
                 });
+                //end setting up barcode scanner button
 
-                System.out.println("Updating a meal...");
+                //System.out.println("Updating a meal...");
 
+                //Set the input meal form UI to the current data
                 ((EditText)findViewById(R.id.mealDate)).setText(date);
                 ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
                 ((EditText)findViewById(R.id.mealTime)).setText(time);
@@ -174,10 +201,13 @@ public class InputMealForm extends Activity {
                 ((EditText)findViewById(R.id.vitaminC)).setText(vitaminC);
                 ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
 
-                update();
-                delete();
-            }else{
+                update(); //handle updating meal
+                delete(); //handle deleting meal
+            }else
+                //if it is adding a meal
+                {
 
+                //set up barcode scanner button
                 Button barcode_button = (Button)findViewById(R.id.scan_barcode_button);
                 barcode_button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -190,9 +220,11 @@ public class InputMealForm extends Activity {
                         startActivity(loadBarcodeScanner);
                     }
                 });
+                //end setting up barcode scanner button
 
-                System.out.println("Adding a meal...");
+                //System.out.println("Adding a meal...");
 
+                //Set the input meal form UI to the current data
                 ((EditText)findViewById(R.id.mealDate)).setText(date);
                 ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
                 ((EditText)findViewById(R.id.mealTime)).setText(
@@ -202,33 +234,36 @@ public class InputMealForm extends Activity {
                 ((EditText)findViewById(R.id.vitaminC)).setText("");
                 ((EditText)findViewById(R.id.caloriesEntry)).setText("");
 
-                add();
+                add(); //handle adding a meal
             }
         }
 
 
-
-
-
     }
 
+    //updates a meal
     public void update(){
 
+        //listener for "Enter meal Data" button
         ((Button)findViewById(R.id.enterMeal)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 try{
+                    //try to create a new ingredient with the same ingr_id, and update it in the database
                     Ingredient update_ingr = db.getIngredientDAO().findAllInfoForIngredient(Long.parseLong(ingr_id)).get(0);
                     update_ingr.setCalories(Integer.parseInt(((EditText)findViewById(R.id.caloriesEntry)).getText().toString()));
                     update_ingr.setName(((EditText)findViewById(R.id.mealName)).getText().toString());
                     update_ingr.setTime(((EditText)findViewById(R.id.mealTime)).getText().toString());
                     update_ingr.setVitaminA(Integer.parseInt(((EditText)findViewById(R.id.vitaminA)).getText().toString()));
                     update_ingr.setVitaminC(Integer.parseInt(((EditText)findViewById(R.id.vitaminC)).getText().toString()));
-                    db.getIngredientDAO().update(update_ingr);
+                    db.getIngredientDAO().update(update_ingr); //update in database
+
+                    //load main activity
                     Intent loadApp = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(loadApp);
                 }catch(NumberFormatException e){
+                    //if there was a problem in the formatting on the input meal form
                     System.out.println("Invalid formatting...");
                 }
 
@@ -240,30 +275,38 @@ public class InputMealForm extends Activity {
 
     }
 
+    //deletes a meal
     public void delete(){
+
+        //listener for delete button
         Button deleteButton = new Button(this);
         deleteButton.setText("Delete");
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //delete the meal with the given ingr_id
                 Ingredient ingr_delete = db.getIngredientDAO().findAllInfoForIngredient(Long.parseLong(ingr_id)).get(0);
                 db.getIngredientDAO().delete(ingr_delete);
                 Intent loadApp = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(loadApp);
             }
         });
+        //dynamically add the delete button to the layout if it is updating a meal
         ConstraintLayout ll = (ConstraintLayout) findViewById(R.id.input_meal_form_delete_button_layout);
         LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
         ll.addView(deleteButton, lp);
     }
 
+    //adds a meal
     public void add(){
 
+        //on click listener for the add meal button
         ((Button)findViewById(R.id.enterMeal)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("Button clicked!");
+                //System.out.println("Button clicked!");
                 try{
+                    //try to create a new ingredient and add it to the database
                     Ingredient add_ingr = new Ingredient(
                             ((EditText)findViewById(R.id.mealName)).getText().toString(),
                             Integer.parseInt(
@@ -273,10 +316,13 @@ public class InputMealForm extends Activity {
                             Integer.parseInt(
                                     ((EditText)findViewById(R.id.vitaminC)).getText().toString()),
                             ((EditText)findViewById(R.id.mealTime)).getText().toString());
-                    db.getIngredientDAO().insert(add_ingr);
+                    db.getIngredientDAO().insert(add_ingr); //add the ingredient to the database
+
+                    //load the main activity
                     Intent loadApp = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(loadApp);
                 }catch(NumberFormatException e){
+                    //if there was invalid formatting on the input meal form
                     System.out.println("Invalid formatting...");
                 }
 

@@ -71,6 +71,12 @@ public class SearchForFoodItemAPI {
         }
         return "Error";
     }
+
+
+    //This function takes in a upc for a food
+    //  and returns a string with the item name and number of calories
+    //  in the food item searched for by upc.
+    //  returned string format: NAME###CALORIES
     public static String searchForFoodItemUPC(String upc_code){
 
         String app_id = "9e484caf";
