@@ -6,16 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.nutritiontrackerguiv4.BarcodeScanner;
-import com.example.nutritiontrackerguiv4.InputMealForm;
+import com.example.nutritiontrackerguiv4.Notifications.CreateNotification;
 import com.example.nutritiontrackerguiv4.R;
 import com.example.nutritiontrackerguiv4.StartPage;
 
@@ -45,7 +41,21 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        Button notifications_button = (Button)root.findViewById(R.id.notifications_button);
+        notifications_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreateNotification.CreateNotification(getContext(), "the title", "the body", 3000);
+            }
+        });
+
+
+
 
         return root;
     }
+
+
+
+
 }
