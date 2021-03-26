@@ -45,7 +45,7 @@ public class SettingsFragment extends Fragment {
         notifications_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CreateNotification.CreateNotificationAtTime(getContext(), "the title", "the body", 22, 33, 0);
+                CreateNotification.CreateNotificationWithDelay(getContext(), "the title", "the body", 5000);
             }
         });
 
