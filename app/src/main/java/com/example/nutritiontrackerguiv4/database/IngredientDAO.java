@@ -25,5 +25,14 @@ public interface IngredientDAO {
     @Query("SELECT * FROM Ingredients WHERE Ingredient_ID=:ingID")
     List<Ingredient> findAllInfoForIngredient(final long ingID);
 
+    @Query("SELECT SUM(Calories) FROM Ingredients WHERE Date=:d")
+    List<Integer> findCaloriesOnDay(final String d);
+
+    @Query("SELECT SUM(vitaminA) FROM Ingredients WHERE Date=:d")
+    List<Integer> findVitAOnDay(final String d);
+
+    @Query("SELECT SUM(vitaminC) FROM Ingredients WHERE Date=:d")
+    List<Integer> findVitCOnDay(final String d);
+
 
 }

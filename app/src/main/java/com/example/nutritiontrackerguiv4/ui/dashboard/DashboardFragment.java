@@ -16,10 +16,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nutritiontrackerguiv4.InputMealForm;
 import com.example.nutritiontrackerguiv4.R;
+import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
+
+import java.util.Calendar;
 
 public class DashboardFragment extends Fragment {
 
     private DashboardViewModel dashboardViewModel;
+    private NutritionDatabase db;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -33,6 +37,21 @@ public class DashboardFragment extends Fragment {
 //                textView.setText(s);
 //            }
 //        });
+
+        db = NutritionDatabase.getDatabase(getContext());
+        TextView calView = root.findViewById(R.id.CalorieView);
+        TextView vitAView = root.findViewById(R.id.VitaminAView);
+        TextView vitCView = root.findViewById(R.id.VitaminCView);
+
+        String date = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
+
+        Integer calories = db.getIngredientDAO().findCaloriesOnDay(date).get(0);
+        Integer vitA = db.getIngredientDAO().findVitAOnDay(date).get(0);
+        Integer vitC = db.getIngredientDAO().findVitCOnDay(date).get(0);
+
+        calView.setText("Calories: " + calories);
+        vitAView.setText("Vitamin A: " + vitA);
+        vitCView.setText("Vitamin C: " + vitC);
 
         return root;
     }
