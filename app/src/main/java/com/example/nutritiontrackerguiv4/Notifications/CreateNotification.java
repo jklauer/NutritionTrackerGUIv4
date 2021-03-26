@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+import java.util.Calendar;
+
 import static android.content.Context.ALARM_SERVICE;
 
 public class CreateNotification {
@@ -15,7 +17,7 @@ public class CreateNotification {
     public static String title = "";
     public static String body = "";
 
-    public static void CreateNotification(Context context, String title, String body, int delayMillis){
+    public static void CreateNotificationWithDelay(Context context, String title, String body, int delayMillis){
         createNotificationChannel(context, title, body);
 
         CreateNotification.title = title;
@@ -28,6 +30,26 @@ public class CreateNotification {
         alarmManager.set(AlarmManager.RTC_WAKEUP,
                 timeAtButtonClick + delayMillis,
                 pendingIntent);
+    }
+
+    public static void CreateNotificationAtTime(Context context, String title, String body, int HOUR_OF_DAY, int MINUTES, int SECONDS){
+        createNotificationChannel(context, title, body);
+
+        CreateNotification.title = title;
+        CreateNotification.body = body;
+
+        Intent intent = new Intent(context, ReminderBroadcast.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, intent,0);
+        AlarmManager alarmManager = (AlarmManager) context.getApplicationContext().getSystemService(ALARM_SERVICE);
+
+        Calendar timeOff9 = Calendar.getInstance();
+        timeOff9.set(Calendar.HOUR_OF_DAY, HOUR_OF_DAY);
+        timeOff9.set(Calendar.MINUTE, MINUTES);
+        timeOff9.set(Calendar.SECOND, SECONDS);
+
+        //set that timer as a RTC Wakeup to alarm manager object
+        alarmManager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent);
+
     }
 
     //This must be called before making a notification
