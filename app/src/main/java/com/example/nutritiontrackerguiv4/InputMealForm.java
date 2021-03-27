@@ -94,30 +94,25 @@ public class InputMealForm extends Activity {
 
                 try {
                     String input = ((EditText)findViewById(R.id.mealName)).getText().toString().toUpperCase();
-                    InputStream fin;
                     AssetManager assetManager = getAssets();
-                    fin = assetManager.open("FOOD.xls");
+                    InputStream fin = assetManager.open("FOOD.xls");
                     POIFSFileSystem myFileSystem = new POIFSFileSystem(fin);
                     HSSFWorkbook myWorkBook = new HSSFWorkbook(myFileSystem);
-                    HSSFSheet mySheet = myWorkBook.getSheetAt(0);
-                    Iterator<Row> rowIter = mySheet.rowIterator();
-                    String[] tokInput = input.split(" ");
-                    boolean found = false;
-                    Row item = null;
-                    while (rowIter.hasNext() && !found) {
-                        item = rowIter.next();
-                        for(String i:tokInput) {
-                            if(!item.getCell(1).toString().contains(input)) {
-                                found = false;
-                                break;
-                            }
-                            else {
-//                                System.out.println(i + " found in string: " + item.getCell(1).toString());
-                                found = true;
-                            }
+//                    int upperBound = 'A' - 1;
+//                    int inChar = input.charAt(0);
+//                    int sheetNum = inChar-upperBound;
+                    int sheetNum = 0;
+                    //System.out.println("Input Char: " + input.charAt(0) + " = " + inChar + "\tUpper Bound: " + upperBound + "\tSheet Number: " + sheetNum);
+                    Row item = searchSheet(myWorkBook.getSheetAt(sheetNum), input);
+                    int[] eTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminA};
+                    for(int i = 0; i < eTexts.length; ++i) {
+                        if(i == 0) {
+                            ((EditText)findViewById(eTexts[i])).setText("");
                         }
+                        else ((EditText)findViewById(eTexts[i])).setText("");
                     }
-                    if(found) {
+                    if(item != null) {
+                        System.out.println("found on first search");
                         //1:description 3:calories 4:protein 5:total fat 7:carbohydrates 15:sodium 20:vitamin c, 32:vitamin a 44:saturated fat 47:cholesterol
                         int[] colNums= {1,3, /*4,5,7,15,*/20, 32/*,44,47*/};
                         int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminA};
@@ -126,16 +121,29 @@ public class InputMealForm extends Activity {
                         }
                     }
                     else {
-                        String result = SearchForFoodItemAPI.searchForFoodItem(((EditText)findViewById(R.id.mealName)).getText().toString());
-                        String name = result.split("###")[0];
-                        String calories = result.split("###")[1];
-                        if(calories.contains(".")){
-                            System.out.println("Calories: "+calories);
-                            calories = calories.split("\\.")[0];
+                        item = searchSheet(myWorkBook.getSheetAt(0), input);
+                        if(item != null) {
+                            System.out.println("found on second search");
+                            //1:description 3:calories 4:protein 5:total fat 7:carbohydrates 15:sodium 20:vitamin c, 32:vitamin a 44:saturated fat 47:cholesterol
+                            int[] colNums= {1,3, /*4,5,7,15,*/20, 32/*,44,47*/};
+                            int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminA};
+                            for(int i=0; i<colNums.length; ++i) {
+                                ((EditText)findViewById(editTexts[i])).setText(item.getCell(colNums[i]).toString());
+                            }
                         }
-                        ((EditText)findViewById(R.id.mealName)).setText(name);
-                        ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
+                        else {
+                            String result = SearchForFoodItemAPI.searchForFoodItem(((EditText) findViewById(R.id.mealName)).getText().toString());
+                            String name = result.split("###")[0];
+                            String calories = result.split("###")[1];
+                            if (calories.contains(".")) {
+                                System.out.println("Calories: " + calories);
+                                calories = calories.split("\\.")[0];
+                            }
+                            ((EditText) findViewById(R.id.mealName)).setText(name);
+                            ((EditText) findViewById(R.id.caloriesEntry)).setText(calories);
+                        }
                     }
+                    fin.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -379,5 +387,36 @@ public class InputMealForm extends Activity {
             }
         });
 
+    }
+
+    public Row searchSheet(HSSFSheet mySheet, String input) throws IOException {
+        Iterator<Row> rowIter = mySheet.rowIterator();
+        String[] tokInput = input.split("[\\p{Punct}\\s]+");;
+        boolean found = false;
+        Row item = null;
+        Row best = null;
+        int bestCount = 0;
+        int currentCount = 0;
+        while (rowIter.hasNext() && !found) {
+            currentCount = 0;
+            item = rowIter.next();
+            String[] currentDescription = item.getCell(1).toString().split("[\\p{Punct}\\s]+");
+            String description = item.getCell(1).toString();
+            for(String i:tokInput) {
+                if(!description.contains(input)) {
+                    found = false;
+                    break;
+                }
+                else {
+                    found = true;
+                    ++currentCount;
+                }
+            }
+            if(currentCount > bestCount) {
+                bestCount = currentCount;
+                best = item;
+            }
+        }
+        return best;
     }
 }
