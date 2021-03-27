@@ -3,6 +3,7 @@ package com.example.nutritiontrackerguiv4;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -19,6 +20,12 @@ import com.example.nutritiontrackerguiv4.R;
 import com.example.nutritiontrackerguiv4.database.Ingredient;
 import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
 
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,6 +33,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
@@ -36,6 +44,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 
 public class InputMealForm extends Activity {
 
@@ -82,15 +91,54 @@ public class InputMealForm extends Activity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String result = SearchForFoodItemAPI.searchForFoodItem(((EditText)findViewById(R.id.mealName)).getText().toString());
-                String name = result.split("###")[0];
-                String calories = result.split("###")[1];
-                if(calories.contains(".")){
-                    System.out.println("Calories: "+calories);
-                    calories = calories.split("\\.")[0];
+
+                try {
+                    String input = ((EditText)findViewById(R.id.mealName)).getText().toString().toUpperCase();
+                    InputStream fin;
+                    AssetManager assetManager = getAssets();
+                    fin = assetManager.open("FOOD.xls");
+                    POIFSFileSystem myFileSystem = new POIFSFileSystem(fin);
+                    HSSFWorkbook myWorkBook = new HSSFWorkbook(myFileSystem);
+                    HSSFSheet mySheet = myWorkBook.getSheetAt(0);
+                    Iterator<Row> rowIter = mySheet.rowIterator();
+                    String[] tokInput = input.split(" ");
+                    boolean found = false;
+                    Row item = null;
+                    while (rowIter.hasNext() && !found) {
+                        item = rowIter.next();
+                        for(String i:tokInput) {
+                            if(!item.getCell(1).toString().contains(input)) {
+                                found = false;
+                                break;
+                            }
+                            else {
+//                                System.out.println(i + " found in string: " + item.getCell(1).toString());
+                                found = true;
+                            }
+                        }
+                    }
+                    if(found) {
+                        //1:description 3:calories 4:protein 5:total fat 7:carbohydrates 15:sodium 20:vitamin c, 32:vitamin a 44:saturated fat 47:cholesterol
+                        int[] colNums= {1,3, /*4,5,7,15,*/20, 32/*,44,47*/};
+                        int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminA};
+                        for(int i=0; i<colNums.length; ++i) {
+                            ((EditText)findViewById(editTexts[i])).setText(item.getCell(colNums[i]).toString());
+                        }
+                    }
+                    else {
+                        String result = SearchForFoodItemAPI.searchForFoodItem(((EditText)findViewById(R.id.mealName)).getText().toString());
+                        String name = result.split("###")[0];
+                        String calories = result.split("###")[1];
+                        if(calories.contains(".")){
+                            System.out.println("Calories: "+calories);
+                            calories = calories.split("\\.")[0];
+                        }
+                        ((EditText)findViewById(R.id.mealName)).setText(name);
+                        ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                ((EditText)findViewById(R.id.mealName)).setText(name);
-                ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
             }
         });
         /*End of search feature*/
