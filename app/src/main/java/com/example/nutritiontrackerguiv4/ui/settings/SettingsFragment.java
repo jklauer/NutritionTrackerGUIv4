@@ -71,7 +71,7 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-
+        /*
         try{InputStream myInput;
             // initialize asset manager
             AssetManager assetManager = getActivity().getAssets();
@@ -115,7 +115,7 @@ public class SettingsFragment extends Fragment {
         } catch (Exception e) {
             //Log.e(TAG, "error "+ e.toString());
             System.out.println(e);
-        }
+        }*/
 
         return root;
     }
