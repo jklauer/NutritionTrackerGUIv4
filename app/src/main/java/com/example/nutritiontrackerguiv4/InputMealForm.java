@@ -121,17 +121,17 @@ public class InputMealForm extends Activity {
                         }
                     }
                     else {
-                        item = searchSheet(myWorkBook.getSheetAt(0), input);
-                        if(item != null) {
-                            System.out.println("found on second search");
-                            //1:description 3:calories 4:protein 5:total fat 7:carbohydrates 15:sodium 20:vitamin c, 32:vitamin a 44:saturated fat 47:cholesterol
-                            int[] colNums= {1,3, /*4,5,7,15,*/20, 32/*,44,47*/};
-                            int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminA};
-                            for(int i=0; i<colNums.length; ++i) {
-                                ((EditText)findViewById(editTexts[i])).setText(item.getCell(colNums[i]).toString());
-                            }
-                        }
-                        else {
+//                        item = searchSheet(myWorkBook.getSheetAt(0), input);
+//                        if(item != null) {
+//                            System.out.println("found on second search");
+//                            //1:description 3:calories 4:protein 5:total fat 7:carbohydrates 15:sodium 20:vitamin c, 32:vitamin a 44:saturated fat 47:cholesterol
+//                            int[] colNums= {1,3, /*4,5,7,15,*/20, 32/*,44,47*/};
+//                            int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminA};
+//                            for(int i=0; i<colNums.length; ++i) {
+//                                ((EditText)findViewById(editTexts[i])).setText(item.getCell(colNums[i]).toString());
+//                            }
+//                        }
+//                        else {
                             String result = SearchForFoodItemAPI.searchForFoodItem(((EditText) findViewById(R.id.mealName)).getText().toString());
                             String name = result.split("###")[0];
                             String calories = result.split("###")[1];
@@ -142,7 +142,7 @@ public class InputMealForm extends Activity {
                             ((EditText) findViewById(R.id.mealName)).setText(name);
                             ((EditText) findViewById(R.id.caloriesEntry)).setText(calories);
                         }
-                    }
+//                    }
                     fin.close();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -403,11 +403,14 @@ public class InputMealForm extends Activity {
             String[] currentDescription = item.getCell(1).toString().split("[\\p{Punct}\\s]+");
             String description = item.getCell(1).toString();
             for(String i:tokInput) {
-                if(!description.contains(input)) {
+                if(!description.contains(i)) {
                     found = false;
                     break;
                 }
                 else {
+                    if(description.equals(i)) {
+                        currentCount += 5;
+                    }
                     found = true;
                     ++currentCount;
                 }
