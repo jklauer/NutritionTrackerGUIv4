@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.nutritiontrackerguiv4.InputMealForm;
 import com.example.nutritiontrackerguiv4.R;
 import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
+import com.example.nutritiontrackerguiv4.ui.Tracking.TrackingActivity;
 
 import java.util.Calendar;
 
@@ -45,6 +46,12 @@ public class DashboardFragment extends Fragment {
         calView.setText("Calories: " + calories);
         vitAView.setText("Vitamin A: " + vitA);
         vitCView.setText("Vitamin C: " + vitC);
+
+        Button goToGraphBtn = root.findViewById(R.id.goToGraphBtn);
+        goToGraphBtn.setOnClickListener(v -> {
+            Intent startIntent = new Intent(getContext(), TrackingActivity.class);
+            startActivity(startIntent);
+        });
 
         return root;
     }

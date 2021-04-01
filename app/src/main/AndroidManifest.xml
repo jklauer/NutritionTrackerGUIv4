@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.nutritiontrackerguiv4">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -11,14 +11,13 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
-
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NutritionTrackerGUIv4">
+        <activity android:name=".ui.Tracking.TrackingActivity"></activity>
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
@@ -38,15 +37,13 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <receiver android:name=".Notifications.ReminderBroadcast" />
 
         <uses-library
             android:name="org.apache.http.legacy"
-            android:required="false"/>
-
+            android:required="false" />
     </application>
 
 </manifest>

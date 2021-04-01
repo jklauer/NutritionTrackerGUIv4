@@ -36,5 +36,11 @@
             android:text="TextView"
             android:textAlignment="center"
             android:textSize="36sp" />
+
+        <Button
+            android:id="@+id/goToGraphBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Go to weekly analysis" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
