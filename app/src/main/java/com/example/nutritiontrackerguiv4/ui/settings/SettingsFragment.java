@@ -10,10 +10,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.nutritiontrackerguiv4.InputMealForm;
+import com.example.nutritiontrackerguiv4.NotificationSettingsActivity;
 import com.example.nutritiontrackerguiv4.Notifications.CreateNotification;
 import com.example.nutritiontrackerguiv4.R;
 import com.example.nutritiontrackerguiv4.StartPage;
@@ -67,7 +71,11 @@ public class SettingsFragment extends Fragment {
         notifications_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                CreateNotification.CreateNotificationWithDelay(getContext(), "the title", "the body", 5000);
+
+                Intent notificationSettings = new Intent(getActivity(), NotificationSettingsActivity.class);
+                startActivity(notificationSettings);
+                //CreateNotification.CreateNotificationAtTime(getContext(), "the title", "the body", 13,2,30);
+                //CreateNotification.CreateNotificationWithDelay(getContext(), "the title", "the body", 5000);
             }
         });
 
