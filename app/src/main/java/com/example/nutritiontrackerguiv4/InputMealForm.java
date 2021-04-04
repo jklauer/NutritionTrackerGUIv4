@@ -117,7 +117,7 @@ public class InputMealForm extends Activity {
                         int[] colNums= {1,3, /*4,5,7,15,*/20, 32/*,44,47*/};
                         int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminA};
                         for(int i=0; i<colNums.length; ++i) {
-                            ((EditText)findViewById(editTexts[i])).setText(item.getCell(colNums[i]).toString());
+                            ((EditText)findViewById(editTexts[i])).setText((item.getCell(colNums[i]).toString()).split("\\.")[0]);
                         }
                     }
                     else {
