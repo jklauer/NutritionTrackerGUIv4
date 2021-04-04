@@ -1,10 +1,24 @@
 package com.example.nutritiontrackerguiv4;
+import android.content.Context;
+
+import androidx.room.Room;
+import androidx.test.core.app.ApplicationProvider;
+
+import com.example.nutritiontrackerguiv4.database.Allergies;
+import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
+import com.example.nutritiontrackerguiv4.database.User;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.List;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import org.mockito.*;
@@ -32,6 +46,8 @@ public class ExampleUnitTest {
         boolean created = M.handleStartPage();
         assertFalse(created);
     }
+
+
 
 
 }
