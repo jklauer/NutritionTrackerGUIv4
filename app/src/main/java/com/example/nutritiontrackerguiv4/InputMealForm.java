@@ -371,7 +371,9 @@ public class InputMealForm extends Activity {
                                     ((EditText)findViewById(R.id.vitaminA)).getText().toString()),
                             Integer.parseInt(
                                     ((EditText)findViewById(R.id.vitaminC)).getText().toString()),
-                            ((EditText)findViewById(R.id.mealTime)).getText().toString());
+                            ((EditText)findViewById(R.id.mealTime)).getText().toString(),
+                            ((EditText)findViewById(R.id.mealDate)).getText().toString()
+                            );
                     db.getIngredientDAO().insert(add_ingr); //add the ingredient to the database
 
                     //load the main activity

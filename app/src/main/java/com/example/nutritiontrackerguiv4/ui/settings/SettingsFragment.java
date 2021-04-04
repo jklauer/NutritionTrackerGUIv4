@@ -21,6 +21,7 @@ import com.example.nutritiontrackerguiv4.NotificationSettingsActivity;
 import com.example.nutritiontrackerguiv4.Notifications.CreateNotification;
 import com.example.nutritiontrackerguiv4.R;
 import com.example.nutritiontrackerguiv4.StartPage;
+import com.google.android.gms.vision.text.Text;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;

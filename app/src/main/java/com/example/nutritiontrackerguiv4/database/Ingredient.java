@@ -20,13 +20,13 @@ public class Ingredient {
 
     public Ingredient(){}
 
-    public Ingredient(String n, int cal, int A, int C, String t) {
+    public Ingredient(String n, int cal, int A, int C, String t, String d) {
         this.name = n;
         this.calories = cal;
         this.vitaminA = A;
         this.vitaminC = C;
         this.time = t;
-        this.date = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
+        this.date = d;
     }
 
     public long getIngredient_ID() {
