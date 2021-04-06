@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textAlignment="textStart"
-            android:textSize="36sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/averageVitA"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textAlignment="textStart"
-            android:textSize="36sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/averageVitC"
@@ -47,6 +47,6 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textAlignment="textStart"
-            android:textSize="36sp" />
+            android:textSize="24sp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
