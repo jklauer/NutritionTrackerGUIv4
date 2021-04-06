@@ -17,7 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NutritionTrackerGUIv4">
-        <activity android:name=".NotificationSettingsActivity"></activity>
+        <activity android:name=".ui.Tracking.TrackingActivity"></activity>
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
@@ -43,8 +43,7 @@
 
         <uses-library
             android:name="org.apache.http.legacy"
-            android:required="false"/>
-
+            android:required="false" />
     </application>
 
 </manifest>
