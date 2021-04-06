@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NutritionTrackerGUIv4">
         <activity android:name=".ui.Tracking.TrackingActivity"></activity>
-
+        <activity android:name=".NotificationSettingsActivity"></activity>
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />

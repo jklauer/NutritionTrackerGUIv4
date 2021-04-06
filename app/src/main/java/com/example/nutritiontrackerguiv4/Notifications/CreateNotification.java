@@ -27,8 +27,8 @@ public class CreateNotification {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, intent,0);
         AlarmManager alarmManager = (AlarmManager) context.getApplicationContext().getSystemService(ALARM_SERVICE);
         long timeAtButtonClick = System.currentTimeMillis();
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
-                timeAtButtonClick + delayMillis, AlarmManager.INTERVAL_DAY,
+        alarmManager.set(AlarmManager.RTC_WAKEUP,
+                timeAtButtonClick + delayMillis,
                 pendingIntent);
     }
 
@@ -48,7 +48,7 @@ public class CreateNotification {
         timeOff9.set(Calendar.SECOND, SECONDS);
 
         //set that timer as a RTC Wakeup to alarm manager object
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent);
 
     }
 
