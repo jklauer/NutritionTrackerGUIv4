@@ -48,7 +48,7 @@ public class BarcodeScanner extends AppCompatActivity{
         try{
             ingr = db.getIngredientDAO().findAllInfoForIngredient(Long.parseLong(ingr_id)).get(0);
         }catch(NumberFormatException e){
-            ingr = new Ingredient("", 0, 0, 0, java.text.DateFormat.getTimeInstance().format(Calendar.getInstance().getTime()));
+            ingr = new Ingredient("", 0, 0, 0, java.text.DateFormat.getTimeInstance().format(Calendar.getInstance().getTime()),java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime()));
         }
 
         //set up barcode scanner

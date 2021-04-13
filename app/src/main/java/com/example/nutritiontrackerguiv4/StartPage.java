@@ -59,7 +59,7 @@ public class StartPage extends AppCompatActivity {
                 //read in the user id from the User_ID.txt file
                 BufferedReader br = new BufferedReader(new FileReader(user_id_file));
                 this.user_id = Long.parseLong(br.readLine()); //get the user's id
-                this.allergies_id = db.getAllergiesDAO().findAllInfoForAllergies(user_id).get(0).getAllergy_ID(); //get the user's allergies
+                this.allergies_id = db.getUserDAO().findAllInfoForUser(user_id).get(0).getAllergy_ID(); //get the user's allergies
                 br.close();
 
                 loadInformation(); //load the information of the user and their allergies on the startpage form

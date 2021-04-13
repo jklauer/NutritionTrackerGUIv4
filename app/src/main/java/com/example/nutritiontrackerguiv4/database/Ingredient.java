@@ -3,6 +3,7 @@ package com.example.nutritiontrackerguiv4.database;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import java.util.Calendar;
 
 @Entity(tableName = "Ingredients")
 public class Ingredient {
@@ -15,15 +16,17 @@ public class Ingredient {
     private int vitaminA;
     private int vitaminC;
     private String time;
+    private String date;
 
     public Ingredient(){}
 
-    public Ingredient(String n, int cal, int A, int C, String t) {
+    public Ingredient(String n, int cal, int A, int C, String t, String d) {
         this.name = n;
         this.calories = cal;
         this.vitaminA = A;
         this.vitaminC = C;
         this.time = t;
+        this.date = d;
     }
 
     public long getIngredient_ID() {
@@ -73,4 +76,8 @@ public class Ingredient {
     public void setTime(String t){
         this.time = t;
     }
+
+    public String getDate() {return date;}
+    
+    public void setDate(String d) {this.date = d;}
 }

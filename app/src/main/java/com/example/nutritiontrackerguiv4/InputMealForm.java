@@ -3,6 +3,7 @@ package com.example.nutritiontrackerguiv4;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
@@ -19,6 +20,12 @@ import com.example.nutritiontrackerguiv4.R;
 import com.example.nutritiontrackerguiv4.database.Ingredient;
 import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
 
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -26,6 +33,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
@@ -36,6 +44,7 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 
 public class InputMealForm extends Activity {
 
@@ -82,15 +91,62 @@ public class InputMealForm extends Activity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String result = SearchForFoodItemAPI.searchForFoodItem(((EditText)findViewById(R.id.mealName)).getText().toString());
-                String name = result.split("###")[0];
-                String calories = result.split("###")[1];
-                if(calories.contains(".")){
-                    System.out.println("Calories: "+calories);
-                    calories = calories.split("\\.")[0];
+
+                try {
+                    String input = ((EditText)findViewById(R.id.mealName)).getText().toString().toUpperCase();
+                    AssetManager assetManager = getAssets();
+                    InputStream fin = assetManager.open("FOOD.xls");
+                    POIFSFileSystem myFileSystem = new POIFSFileSystem(fin);
+                    HSSFWorkbook myWorkBook = new HSSFWorkbook(myFileSystem);
+//                    int upperBound = 'A' - 1;
+//                    int inChar = input.charAt(0);
+//                    int sheetNum = inChar-upperBound;
+                    int sheetNum = 0;
+                    //System.out.println("Input Char: " + input.charAt(0) + " = " + inChar + "\tUpper Bound: " + upperBound + "\tSheet Number: " + sheetNum);
+                    Row item = searchSheet(myWorkBook.getSheetAt(sheetNum), input);
+                    int[] eTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminA};
+                    for(int i = 0; i < eTexts.length; ++i) {
+                        if(i == 0) {
+                            ((EditText)findViewById(eTexts[i])).setText("");
+                        }
+                        else ((EditText)findViewById(eTexts[i])).setText("");
+                    }
+                    if(item != null) {
+                        System.out.println("found on first search");
+                        //1:description 3:calories 4:protein 5:total fat 7:carbohydrates 15:sodium 20:vitamin c, 32:vitamin a 44:saturated fat 47:cholesterol
+                        int[] colNums= {1,3, /*4,5,7,15,*/20, 32/*,44,47*/};
+                        int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminA};
+                        for(int i=0; i<colNums.length; ++i) {
+                            ((EditText)findViewById(editTexts[i])).setText((item.getCell(colNums[i]).toString()).split("\\.")[0]);
+                        }
+                    }
+                    else {
+//                        item = searchSheet(myWorkBook.getSheetAt(0), input);
+//                        if(item != null) {
+//                            System.out.println("found on second search");
+//                            //1:description 3:calories 4:protein 5:total fat 7:carbohydrates 15:sodium 20:vitamin c, 32:vitamin a 44:saturated fat 47:cholesterol
+//                            int[] colNums= {1,3, /*4,5,7,15,*/20, 32/*,44,47*/};
+//                            int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminA};
+//                            for(int i=0; i<colNums.length; ++i) {
+//                                ((EditText)findViewById(editTexts[i])).setText(item.getCell(colNums[i]).toString());
+//                            }
+//                        }
+//                        else {
+                            String result = SearchForFoodItemAPI.searchForFoodItem(((EditText) findViewById(R.id.mealName)).getText().toString());
+                            String name = result.split("###")[0];
+                            String calories = result.split("###")[1];
+                            if (calories.contains(".")) {
+                                System.out.println("Calories: " + calories);
+                                calories = calories.split("\\.")[0];
+                            }
+                            ((EditText) findViewById(R.id.mealName)).setText(name);
+                            ((EditText) findViewById(R.id.caloriesEntry)).setText(calories);
+                        }
+//                    }
+                    fin.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-                ((EditText)findViewById(R.id.mealName)).setText(name);
-                ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
             }
         });
         /*End of search feature*/
@@ -315,7 +371,9 @@ public class InputMealForm extends Activity {
                                     ((EditText)findViewById(R.id.vitaminA)).getText().toString()),
                             Integer.parseInt(
                                     ((EditText)findViewById(R.id.vitaminC)).getText().toString()),
-                            ((EditText)findViewById(R.id.mealTime)).getText().toString());
+                            ((EditText)findViewById(R.id.mealTime)).getText().toString(),
+                            ((EditText)findViewById(R.id.mealDate)).getText().toString()
+                            );
                     db.getIngredientDAO().insert(add_ingr); //add the ingredient to the database
 
                     //load the main activity
@@ -331,5 +389,39 @@ public class InputMealForm extends Activity {
             }
         });
 
+    }
+
+    public Row searchSheet(HSSFSheet mySheet, String input) throws IOException {
+        Iterator<Row> rowIter = mySheet.rowIterator();
+        String[] tokInput = input.split("[\\p{Punct}\\s]+");;
+        boolean found = false;
+        Row item = null;
+        Row best = null;
+        int bestCount = 0;
+        int currentCount = 0;
+        while (rowIter.hasNext() && !found) {
+            currentCount = 0;
+            item = rowIter.next();
+            String[] currentDescription = item.getCell(1).toString().split("[\\p{Punct}\\s]+");
+            String description = item.getCell(1).toString();
+            for(String i:tokInput) {
+                if(!description.contains(i)) {
+                    found = false;
+                    break;
+                }
+                else {
+                    if(description.equals(i)) {
+                        currentCount += 5;
+                    }
+                    found = true;
+                    ++currentCount;
+                }
+            }
+            if(currentCount > bestCount) {
+                bestCount = currentCount;
+                best = item;
+            }
+        }
+        return best;
     }
 }

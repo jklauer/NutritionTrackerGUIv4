@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Calendar;
 
 public class MealsFragment extends Fragment {
 
@@ -84,6 +85,10 @@ public class MealsFragment extends Fragment {
             Button newButton = new Button(getContext()); //create a new button
 
             int finalI = i;
+
+            String ingr_id = Long.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getIngredient_ID());
+
+
             newButton.setOnClickListener(new View.OnClickListener() {
 
 
@@ -122,7 +127,14 @@ public class MealsFragment extends Fragment {
 
 
             //add the button to the layout
-            ll.addView(newButton);
+            String date = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
+            if(date.equals(
+                    ((db.getIngredientDAO().findAllInfoForIngredient(Long.parseLong(ingr_id))).get(0).getDate())
+            )){
+                ll.addView(newButton);
+            }
+
+
 
         }
 
