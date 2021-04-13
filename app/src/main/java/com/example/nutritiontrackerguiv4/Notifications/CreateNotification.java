@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+import com.example.nutritiontrackerguiv4.GlobalVars;
+
 import java.util.Calendar;
 
 import static android.content.Context.ALARM_SERVICE;
@@ -24,7 +26,7 @@ public class CreateNotification {
         CreateNotification.body = body;
 
         Intent intent = new Intent(context, ReminderBroadcast.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, intent,0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), GlobalVars.cID, intent,0);
         AlarmManager alarmManager = (AlarmManager) context.getApplicationContext().getSystemService(ALARM_SERVICE);
         long timeAtButtonClick = System.currentTimeMillis();
         alarmManager.set(AlarmManager.RTC_WAKEUP,
@@ -39,7 +41,7 @@ public class CreateNotification {
         CreateNotification.body = body;
 
         Intent intent = new Intent(context, ReminderBroadcast.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, intent,0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), GlobalVars.cID, intent,0);
         AlarmManager alarmManager = (AlarmManager) context.getApplicationContext().getSystemService(ALARM_SERVICE);
 
         Calendar timeOff9 = Calendar.getInstance();
@@ -55,20 +57,22 @@ public class CreateNotification {
     //This must be called before making a notification
     private static void createNotificationChannel(Context context, String title, String body){
 
+        GlobalVars.cID = (int)System.currentTimeMillis();
+
         Intent intent = new Intent(context, ReminderBroadcast.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), 0, intent,0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), GlobalVars.cID, intent,0);
         AlarmManager alarmManager = (AlarmManager) context.getApplicationContext().getSystemService(ALARM_SERVICE);
-        long timeAtButtonClick = System.currentTimeMillis();
-        alarmManager.set(AlarmManager.RTC_WAKEUP,
-                timeAtButtonClick + 5000,
-                pendingIntent);
+        //long timeAtButtonClick = System.currentTimeMillis();
+        //alarmManager.set(AlarmManager.RTC_WAKEUP,
+        //        timeAtButtonClick + 5000,
+        //        pendingIntent);
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
 
             CharSequence name = "channel";
             String description = "channel description";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel("123", name, importance);
+            NotificationChannel channel = new NotificationChannel(Integer.toString(GlobalVars.cID), name, importance);
             channel.setDescription(description);
 
             NotificationManager notificationManager = context.getApplicationContext().getSystemService(NotificationManager.class);

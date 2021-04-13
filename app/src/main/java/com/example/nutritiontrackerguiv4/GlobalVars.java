@@ -12,4 +12,6 @@ public class GlobalVars extends Application {
     public void setChannelID(String in) {
         this.channelID = in;
     }
+
+    public static int cID = 0;
 }
