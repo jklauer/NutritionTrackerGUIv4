@@ -17,8 +17,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NutritionTrackerGUIv4">
-        <activity android:name=".ui.Tracking.TrackingActivity"></activity>
-        <activity android:name=".NotificationSettingsActivity"></activity>
+        <activity android:name=".ui.dashboard.recap"></activity>
+        <activity android:name=".ui.Tracking.TrackingActivity" />
+        <activity android:name=".NotificationSettingsActivity" />
+
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
