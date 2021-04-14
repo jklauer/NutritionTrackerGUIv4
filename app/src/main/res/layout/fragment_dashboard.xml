@@ -41,7 +41,7 @@
             android:id="@+id/goToGraphBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Go To This Teek's Analysis" />
+            android:text="Go To This Week's Analysis" />
 
         <Button
             android:id="@+id/goToRecapBtn"
