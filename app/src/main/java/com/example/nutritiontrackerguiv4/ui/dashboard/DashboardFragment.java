@@ -53,6 +53,12 @@ public class DashboardFragment extends Fragment {
             startActivity(startIntent);
         });
 
+        Button goToRecapBtn = root.findViewById(R.id.goToRecapBtn);
+        goToRecapBtn.setOnClickListener(v -> {
+            Intent startIntent = new Intent(getContext(), recap.class);
+            startActivity(startIntent);
+        });
+
         return root;
     }
 }
