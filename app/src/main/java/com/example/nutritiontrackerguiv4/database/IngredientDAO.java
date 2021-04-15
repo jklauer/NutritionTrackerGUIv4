@@ -34,5 +34,6 @@ public interface IngredientDAO {
     @Query("SELECT SUM(vitaminC) FROM Ingredients WHERE Date=:d")
     List<Integer> findVitCOnDay(final String d);
 
-
+    @Query("SELECT * FROM Ingredients WHERE Date=:d")
+    List<Ingredient> getNumOfMeals(final String d);
 }

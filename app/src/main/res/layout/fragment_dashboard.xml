@@ -48,5 +48,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="See Last Week's Recap" />
+
+        <TextView
+            android:id="@+id/RecommendationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

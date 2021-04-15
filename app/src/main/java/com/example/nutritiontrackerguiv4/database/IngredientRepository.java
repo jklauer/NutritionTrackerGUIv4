@@ -38,4 +38,8 @@ public class IngredientRepository {
 
    public List<Integer> findVitCOnDay(String d){return dao.findVitCOnDay(d);}
 
+   public List<Ingredient> getNumOfMeals(String d){
+        return dao.getNumOfMeals(d);
+    }
+
 }

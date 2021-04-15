@@ -26,6 +26,10 @@ public class DashboardFragment extends Fragment {
     private DashboardViewModel dashboardViewModel;
     private NutritionDatabase db;
 
+    private Integer calories;
+    private Integer vitA;
+    private Integer vitC;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         dashboardViewModel =
@@ -39,9 +43,9 @@ public class DashboardFragment extends Fragment {
 
         String date = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
 
-        Integer calories = db.getIngredientDAO().findCaloriesOnDay(date).get(0);
-        Integer vitA = db.getIngredientDAO().findVitAOnDay(date).get(0);
-        Integer vitC = db.getIngredientDAO().findVitCOnDay(date).get(0);
+        calories = db.getIngredientDAO().findCaloriesOnDay(date).get(0);
+        vitA = db.getIngredientDAO().findVitAOnDay(date).get(0);
+        vitC = db.getIngredientDAO().findVitCOnDay(date).get(0);
 
         calView.setText("Calories: " + calories);
         vitAView.setText("Vitamin A: " + vitA);
@@ -59,6 +63,52 @@ public class DashboardFragment extends Fragment {
             startActivity(startIntent);
         });
 
+        nutrientsRecommended(root);
+
         return root;
     }
+
+
+    public void nutrientsRecommended(View root){
+        System.out.println("Calories today: "+calories);
+        System.out.println("a today: "+vitA);
+        System.out.println("c today: "+vitC);
+
+
+        String date = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
+
+        Integer numOfMeals = db.getIngredientDAO().getNumOfMeals(date).size();
+
+        System.out.println("Num of meals: "+numOfMeals);
+
+        String recommendationString = "";
+
+        if(numOfMeals < 2){
+            System.out.println("Not enough meals to give feedback.");
+            recommendationString += "Not enough meals to give feedback.";
+        }else{
+
+            if(calories > 2000){
+                System.out.println("You've gone over the daily limit for calories.");
+                recommendationString += "You've gone over the daily limit for calories.\n";
+            }
+            if(vitA*1000 < 900){
+                System.out.println("Try eating a meal with more Vitamin A.");
+                recommendationString += "Try eating a meal with more Vitamin A.\n";
+            }
+            if(vitC < 90){
+                System.out.println("Try eating a meal with more Vitamin C.");
+                recommendationString += "Try eating a meal with more Vitamin C.\n";
+            }
+
+
+        }
+
+        ((TextView)root.findViewById(R.id.RecommendationView)).setText(recommendationString);
+
+
+    }
+
+
+
 }
