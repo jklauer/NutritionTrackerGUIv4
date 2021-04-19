@@ -28,6 +28,9 @@ public class User {
     private Double fiber = 28.0;
     private Double sugar = 50.0;
     private Double protein = 50.0;
+    private Double calories  = 2000.0;
+    private Double vitA = 400.0;
+    private Double vitC = 90.0;
 
 
     public User(){}
@@ -71,6 +74,9 @@ public class User {
         fiber = 28.0;
         sugar = 50.0;
         protein = 50.0;
+        calories = 2000.0;
+        vitA = 400.0;
+        vitC = 90.0;
     }
 
     public Double getTotalFat() {
@@ -143,5 +149,29 @@ public class User {
 
     public void setProtein(Double protein) {
         this.protein = protein;
+    }
+
+    public Double getCalories() {
+        return calories;
+    }
+
+    public void setCalories(Double cal) {
+        this.calories = cal;
+    }
+
+    public Double getVitA() {
+        return vitA;
+    }
+
+    public void setVitA(Double vitA) {
+        this.vitA = vitA;
+    }
+
+    public Double getVitC() {
+        return vitC;
+    }
+
+    public void setVitC(Double vitC) {
+        this.vitC = vitC;
     }
 }
