@@ -11,7 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="96dp"
-        android:layout_marginRight="96dp"
         android:ems="10"
         android:hint="Meal Name"
         android:inputType="textPersonName"
@@ -20,6 +19,119 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.110000014" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/scan_barcode_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mealName"
+        android:stretchColumns="*"
+        android:padding="3dp">
+
+        <TableRow>
+            <EditText
+                android:id="@+id/caloriesEntry"
+                android:layout_width="0dp"
+                android:hint="# of Calories"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/totalFat"
+                android:layout_width="0dp"
+                android:hint="g of Total Fat"
+                android:inputType="number" />
+        </TableRow>
+
+        <TableRow>
+
+            <EditText
+                android:id="@+id/satFat"
+                android:layout_width="0dp"
+                android:hint="g of Saturated Fat"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/tranFat"
+                android:layout_width="0dp"
+                android:hint="mg of Cholesterol"
+                android:inputType="number" />
+        </TableRow>
+
+        <TableRow>
+
+            <EditText
+                android:id="@+id/cholesterol"
+                android:layout_width="0dp"
+                android:hint="mg of Cholesterol"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/sodium"
+                android:layout_width="0dp"
+                android:hint="mg of Sodium"
+                android:inputType="number" />
+        </TableRow>
+
+        <TableRow>
+
+            <EditText
+                android:id="@+id/totalCarbs"
+                android:layout_width="0dp"
+                android:hint="g of Carbohydrates"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/fiber"
+                android:layout_width="0dp"
+                android:hint="g of Fiber"
+                android:inputType="number" />
+        </TableRow>
+
+        <TableRow>
+
+            <EditText
+                android:id="@+id/sugar"
+                android:layout_width="0dp"
+                android:hint="g of Sugar"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/protein"
+                android:layout_width="0dp"
+                android:hint="g of Protein"
+                android:inputType="number" />
+        </TableRow>
+
+        <TableRow>
+            <EditText
+                android:id="@+id/calcium"
+                android:layout_width="0dp"
+                android:hint="mg of Calcium"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/potassium"
+                android:layout_width="0dp"
+                android:hint="mg of Potassium"
+                android:inputType="number" />
+        </TableRow>
+
+        <TableRow>
+            <EditText
+                android:id="@+id/vitaminC"
+                android:layout_width="0dp"
+                android:hint="mg of Vitamin C"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/vitaminB6"
+                android:layout_width="0dp"
+                android:hint="mg of Vitamin B6"
+                android:inputType="number" />
+        </TableRow>
+    </TableLayout>
 
     <TextView
         android:id="@+id/textView2"
@@ -39,9 +151,10 @@
         android:text="Enter Meal Data"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.93" />
+        app:layout_constraintVertical_bias="0.976" />
 
     <EditText
         android:id="@+id/mealDate"
@@ -52,10 +165,10 @@
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.826" />
+        app:layout_constraintVertical_bias="0.906" />
 
     <EditText
         android:id="@+id/mealTime"
@@ -66,48 +179,16 @@
         android:inputType="time"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.74" />
+        app:layout_constraintVertical_bias="0.841" />
 
-    <EditText
-        android:id="@+id/vitaminC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="mg of Vitamin C"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.36" />
 
-    <EditText
-        android:id="@+id/vitaminA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="mg of Vitamin A"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26999998" />
 
-    <EditText
-        android:id="@+id/caloriesEntry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="# of Calories"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19" />
+
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/input_meal_form_delete_button_layout"
@@ -144,5 +225,8 @@
         app:layout_constraintBottom_toTopOf="@+id/mealTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vitaminC" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.943" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

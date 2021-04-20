@@ -103,7 +103,7 @@ public class MealsFragment extends Fragment {
                     String ingr_name = db.getIngredientDAO().getAllIngredients().get(finalI).getName();
                     String ingr_id = Long.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getIngredient_ID());
                     String ingr_calories = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getCalories());
-                    String ingr_vita = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getVitaminA());
+                    String ingr_vitb6 = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getVitaminA());
                     String ingr_vitc = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getVitaminC());
                     String ingr_time = db.getIngredientDAO().getAllIngredients().get(finalI).getTime();
 
@@ -111,7 +111,7 @@ public class MealsFragment extends Fragment {
                     loadInputMealForm.putExtra("ingr_name", ingr_name);
                     loadInputMealForm.putExtra("ingr_id", ingr_id);
                     loadInputMealForm.putExtra("ingr_calories", ingr_calories);
-                    loadInputMealForm.putExtra("ingr_vita", ingr_vita);
+                    loadInputMealForm.putExtra("ingr_vitb6", ingr_vitb6);
                     loadInputMealForm.putExtra("ingr_vitc", ingr_vitc);
                     loadInputMealForm.putExtra("ingr_time", ingr_time);
 

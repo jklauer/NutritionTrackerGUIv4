@@ -23,16 +23,29 @@ public class Ingredient {
     private long fiber;
     private long sugar;
     private long protein;
+    private long calcium;
+    private long potassium;
     private String time;
     private String date;
 
     public Ingredient(){}
 
-    public Ingredient(String n, int cal, int A, int C, String t, String d) {
+    public Ingredient(String n, int cal, int toF, int sF, int trF, int cho, int car, int fib, int sug, int pro, int calc, int pot, int B6, int C, String t, String d) {
         this.name = n;
         this.calories = cal;
-        this.vitaminA = A;
+        this.vitaminA = B6;
         this.vitaminC = C;
+        this.totalFat = toF;
+        this.satFat = sF;
+        this.transFat = trF;
+        this.cholesterol = cho;
+        this.totalCarbs = car;
+        this.fiber = fib;
+        this.sugar = sug;
+        this.protein = pro;
+        this.calcium = calc;
+        this.potassium = pot;
+
         this.time = t;
         this.date = d;
     }
@@ -132,6 +145,10 @@ public class Ingredient {
         return protein;
     }
 
+    public long getCalcium() { return calcium; }
+
+    public long getPotassium() {return potassium; }
+
     public void setSatFat(long satFat) {
         this.satFat = satFat;
     }
@@ -163,4 +180,9 @@ public class Ingredient {
     public void setProtein(long protein) {
         this.protein = protein;
     }
+
+    public void setCalcium(long calcium) { this.calcium = calcium; }
+
+    public void setPotassium(long potassium) { this.potassium = potassium; }
+
 }
