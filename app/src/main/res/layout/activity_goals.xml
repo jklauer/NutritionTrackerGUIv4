@@ -6,40 +6,280 @@
     android:layout_height="match_parent"
     tools:context=".Goals">
 
-    <LinearLayout
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/CaloriesGoal"
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Calories"
-            android:textSize="30sp" />
+            android:layout_height="match_parent" >
 
-        <EditText
-            android:id="@+id/calEditText"
+            <TextView
+                android:id="@+id/CaloriesGoal"
+                android:layout_width="169dp"
+                android:layout_height="wrap_content"
+                android:text="Calories"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/calEditText"
+                android:layout_width="196dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Default: 2000 cal"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Default: 2000" />
+            android:layout_height="match_parent" >
 
-        <TextView
-            android:id="@+id/VitAGoal"
+            <TextView
+                android:id="@+id/VitAGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vitamin A"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/VitAEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Default: 900 mcg"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Vitamin A"
-            android:textSize="30sp" />
+            android:layout_height="match_parent" >
 
-        <EditText
-            android:id="@+id/VitAEditText"
+            <TextView
+                android:id="@+id/VitCGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Vitamin C"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/vitCEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Default: 90 mg"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Default: 2000" />
+            android:layout_height="match_parent" >
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/totalFatGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Fat"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/totalFatEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Default: 78 grams"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/satFatGoal"
+                android:layout_width="194dp"
+                android:layout_height="wrap_content"
+                android:text="Saturated Fat"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/satFatEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Default: 20 grams"
+                android:textSize="20sp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/transFatGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Trans fats"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/transFatEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Default: 0 grams"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/CholesterolGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cholesterol"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/cholesterolEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Default: 300 mgrams"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/SodiumGoal"
+                android:layout_width="185dp"
+                android:layout_height="wrap_content"
+                android:text="Sodium"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/sodiumEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Default: 2300 mgrams"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/totalCarbsGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Total Carbs"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/totalCarbsEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Default: 275 grams"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/fiberGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fiber"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/fiberEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Default: 28 grams"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/sugarGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sugar"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/sugarEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Default: 50 grams"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/proteinGoal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Protein"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/proteinEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:text="Default: 50 grams"
+                android:textSize="20sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/revertGoalsBtn"
+                android:layout_width="162dp"
+                android:layout_height="wrap_content"
+                android:text="Revert to Default" />
+
+            <Button
+                android:id="@+id/confirmGoalsBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirm Custom Goals" />
+        </TableRow>
+
+    </TableLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

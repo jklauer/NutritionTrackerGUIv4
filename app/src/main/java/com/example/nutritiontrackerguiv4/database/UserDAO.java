@@ -29,71 +29,71 @@ public interface UserDAO {
     List<Double> getTotalFatGoal(final long userId);
 
     @Query("UPDATE Users SET totalFat=:tFat WHERE User_ID=:userID")
-    List<Double> setTotalFatGoal(final Double tFat, final long userID);
+    void setTotalFatGoal(final Double tFat, final long userID);
 
     @Query("SELECT totalCarbs FROM Users WHERE User_id=:userId")
     List<Double> getTotalCarbsGoal(final long userId);
 
     @Query("UPDATE Users SET totalCarbs=:tCarbs WHERE User_ID=:userID")
-    List<Double> setTotalCarbsGoal(final Double tCarbs, final long userID);
+    void setTotalCarbsGoal(final Double tCarbs, final long userID);
 
     @Query("SELECT satFat FROM Users WHERE User_id=:userId")
     List<Double> getSatFatGoal(final long userId);
 
     @Query("UPDATE Users SET satFat=:sFat WHERE User_ID=:userID")
-    List<Double> setSatFatGoal(final Double sFat, final long userID);
+    void setSatFatGoal(final Double sFat, final long userID);
 
     @Query("SELECT transFat FROM Users WHERE User_id=:userId")
     List<Double> getTransFatGoal(final long userId);
 
     @Query("UPDATE Users SET transFat=:tFat WHERE User_ID=:userID")
-    List<Double> setTransFatGoal(final Double tFat, final long userID);
+    void setTransFatGoal(final Double tFat, final long userID);
 
     @Query("SELECT cholesterol FROM Users WHERE User_id=:userId")
     List<Double> getCholesterolGoal(final long userId);
 
     @Query("UPDATE Users SET cholesterol=:chol WHERE User_ID=:userID")
-    List<Double> setCholesterolGoal(final Double chol, final long userID);
+    void setCholesterolGoal(final Double chol, final long userID);
 
     @Query("SELECT sodium FROM Users WHERE User_id=:userId")
     List<Double> getSodiumGoal(final long userId);
 
     @Query("UPDATE Users SET sodium=:sod WHERE User_ID=:userID")
-    List<Double> setSodiumGoal(final Double sod, final long userID);
+    void setSodiumGoal(final Double sod, final long userID);
 
     @Query("SELECT fiber FROM Users WHERE User_id=:userId")
     List<Double> getFiberGoal(final long userId);
 
     @Query("UPDATE Users SET fiber=:fiber WHERE User_ID=:userID")
-    List<Double> setFiberGoal(final Double fiber, final long userID);
+    void setFiberGoal(final Double fiber, final long userID);
 
     @Query("SELECT sugar FROM Users WHERE User_id=:userId")
     List<Double> getSugarGoal(final long userId);
 
     @Query("UPDATE Users SET sugar=:sugar WHERE User_ID=:userID")
-    List<Double> setSugarGoal(final Double sugar, final long userID);
+    void setSugarGoal(final Double sugar, final long userID);
 
     @Query("SELECT protein FROM Users WHERE User_id=:userId")
     List<Double> getProteinGoal(final long userId);
 
     @Query("UPDATE Users SET protein=:pro WHERE User_ID=:userID")
-    List<Double> setProteinGoal(final Double pro, final long userID);
+    void setProteinGoal(final Double pro, final long userID);
 
     @Query("SELECT calories FROM Users WHERE User_id=:userId")
     List<Double> getCalorieGoal(final long userId);
 
     @Query("UPDATE Users SET calories=:cal WHERE User_ID=:userID")
-    List<Double> setCalorieGoal(final Double cal, final long userID);
+    void setCalorieGoal(final Double cal, final long userID);
 
     @Query("SELECT vitA FROM Users WHERE User_id=:userId")
     List<Double> getVitAGoal(final long userId);
 
     @Query("UPDATE Users SET vitA=:A WHERE User_ID=:userID")
-    List<Double> setVitAGoal(final Double A, final long userID);
+    void setVitAGoal(final Double A, final long userID);
 
     @Query("SELECT vitC FROM Users WHERE User_id=:userId")
     List<Double> getVitCGoal(final long userId);
 
     @Query("UPDATE Users SET vitC=:C WHERE User_ID=:userID")
-    List<Double> setVitCGoal(final Double C, final long userID);
+    void setVitCGoal(final Double C, final long userID);
 }
