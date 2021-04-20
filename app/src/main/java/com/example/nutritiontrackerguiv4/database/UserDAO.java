@@ -25,5 +25,32 @@ public interface UserDAO {
     @Query("SELECT * FROM Users WHERE User_id=:userId")
     List<User> findAllInfoForUser(final long userId);
 
+    @Query("SELECT totalFat FROM Users WHERE User_id=:userId")
+    List<Double> getTotalFatGoal(final long userId);
+
+    @Query("SELECT totalCarbs FROM Users WHERE User_id=:userId")
+    List<Double> getTotalCarbsGoal(final long userId);
+
+    @Query("SELECT satFat FROM Users WHERE User_id=:userId")
+    List<Double> getSatFatGoal(final long userId);
+
+    @Query("SELECT transFat FROM Users WHERE User_id=:userId")
+    List<Double> getTransFatGoal(final long userId);
+
+    @Query("SELECT cholesterol FROM Users WHERE User_id=:userId")
+    List<Double> getCholesterolGoal(final long userId);
+
+    @Query("SELECT sodium FROM Users WHERE User_id=:userId")
+    List<Double> getSodiumGoal(final long userId);
+
+    @Query("SELECT fiber FROM Users WHERE User_id=:userId")
+    List<Double> getFiberGoal(final long userId);
+
+    @Query("SELECT sugar FROM Users WHERE User_id=:userId")
+    List<Double> getSugarGoal(final long userId);
+
+    @Query("SELECT protein FROM Users WHERE User_id=:userId")
+    List<Double> getProteinGoal(final long userId);
+
 
 }
