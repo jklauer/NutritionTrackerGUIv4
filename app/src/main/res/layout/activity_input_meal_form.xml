@@ -55,7 +55,7 @@
             <EditText
                 android:id="@+id/tranFat"
                 android:layout_width="0dp"
-                android:hint="mg of Cholesterol"
+                android:hint="g of Trans Fat"
                 android:inputType="number" />
         </TableRow>
 
@@ -131,6 +131,20 @@
                 android:hint="mg of Vitamin B6"
                 android:inputType="number" />
         </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/servingSize"
+                android:layout_width="0dp"
+                android:hint="Serving Size"
+                android:layout_gravity="center"/>
+            <EditText
+                android:id="@+id/numOfServings"
+                android:layout_width="0dp"
+                android:hint="# of servings"
+                android:inputType="number" />
+        </TableRow>
+
     </TableLayout>
 
     <TextView
@@ -226,7 +240,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.943" />
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
