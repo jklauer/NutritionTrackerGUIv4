@@ -35,6 +35,7 @@ public class InputMealForm extends Activity {
     private String satFat;
     private String tranFat;
     private String cholesterol;
+    private String sodium;
     private String totalCarbs;
     private String fiber;
     private String sugar;
@@ -70,6 +71,7 @@ public class InputMealForm extends Activity {
         satFat = getIntent().getStringExtra("ingr_sfat");
         tranFat = getIntent().getStringExtra("ingr_trfat");
         cholesterol = getIntent().getStringExtra("ingr_chol");
+        sodium = getIntent().getStringExtra("ingr_sod");
         totalCarbs = getIntent().getStringExtra("ingr_carb");
         fiber = getIntent().getStringExtra("ingr_fiber");
         sugar = getIntent().getStringExtra("ingr_sugar");
@@ -258,6 +260,7 @@ public class InputMealForm extends Activity {
                 ((EditText)findViewById(R.id.satFat)).setText(satFat);
                 ((EditText)findViewById(R.id.tranFat)).setText(tranFat);
                 ((EditText)findViewById(R.id.cholesterol)).setText(cholesterol);
+                ((EditText)findViewById(R.id.sodium)).setText(sodium);
                 ((EditText)findViewById(R.id.totalCarbs)).setText(totalCarbs);
                 ((EditText)findViewById(R.id.fiber)).setText(fiber);
                 ((EditText)findViewById(R.id.sugar)).setText(sugar);
@@ -302,6 +305,7 @@ public class InputMealForm extends Activity {
                 ((EditText)findViewById(R.id.satFat)).setText("");
                 ((EditText)findViewById(R.id.tranFat)).setText("");
                 ((EditText)findViewById(R.id.cholesterol)).setText("");
+                ((EditText)findViewById(R.id.sodium)).setText("");
                 ((EditText)findViewById(R.id.totalCarbs)).setText("");
                 ((EditText)findViewById(R.id.fiber)).setText("");
                 ((EditText)findViewById(R.id.sugar)).setText("");
@@ -334,6 +338,7 @@ public class InputMealForm extends Activity {
                     update_ingr.setSatFat(Integer.parseInt(((EditText)findViewById(R.id.satFat)).getText().toString()));
                     update_ingr.setTransFat(Integer.parseInt(((EditText)findViewById(R.id.tranFat)).getText().toString()));
                     update_ingr.setCholesterol(Integer.parseInt(((EditText)findViewById(R.id.cholesterol)).getText().toString()));
+                    update_ingr.setSodium(Integer.parseInt(((EditText)findViewById(R.id.sodium)).getText().toString()));
                     update_ingr.setTotalCarbs(Integer.parseInt(((EditText)findViewById(R.id.totalCarbs)).getText().toString()));
                     update_ingr.setFiber(Integer.parseInt(((EditText)findViewById(R.id.fiber)).getText().toString()));
                     update_ingr.setSugar(Integer.parseInt(((EditText)findViewById(R.id.sugar)).getText().toString()));
@@ -404,6 +409,8 @@ public class InputMealForm extends Activity {
                                     ((EditText)findViewById(R.id.tranFat)).getText().toString()),
                             Integer.parseInt(
                                     ((EditText)findViewById(R.id.cholesterol)).getText().toString()),
+                            Integer.parseInt(
+                                    ((EditText)findViewById(R.id.sodium)).getText().toString()),
                             Integer.parseInt(
                                     ((EditText)findViewById(R.id.totalCarbs)).getText().toString()),
                             Integer.parseInt(
