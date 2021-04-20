@@ -18,6 +18,8 @@ import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 
 import java.io.IOException;
@@ -93,12 +95,17 @@ public class InputMealForm extends Activity {
                     if(item != null) {
                         System.out.println("found on first search");
                         //1:description 3:calories 4:protein 5:total fat 7:carbohydrates 8:fiber 9:sugar 10:calcium 14:potassium 15:sodium 20:vitamin c, 25:vitamin b6 44:saturated fat 47:cholesterol 51:serving size
-                        int[] colNums= {1,3,4,5,7,8,9,10,14,15,20,25,44};
+                        int[] colNums= {1,3,4,5,7,8,9,10,14,15,20,25,44,47};
                         int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.protein, R.id.totalFat, R.id.totalCarbs, R.id.fiber, R.id.sugar, R.id.calcium, R.id.potassium, R.id.sodium, R.id.vitaminC, R.id.vitaminB6, R.id.satFat, R.id.cholesterol};
-                        for(int i=0; i<colNums.length; ++i) {
-                            ((EditText)findViewById(editTexts[i])).setText((item.getCell(colNums[i]).toString()).split("\\.")[0]);
+                        for(int i=0; i<Math.min(colNums.length, editTexts.length); ++i) {
+                            Cell thisCell = item.getCell(colNums[i]);
+                            if(thisCell.getCellType() == CellType.BLANK) {
+                                ((EditText)findViewById(editTexts[i])).setText("0");
+                            }
+                            else ((EditText)findViewById(editTexts[i])).setText((item.getCell(colNums[i]).toString()).split("\\.")[0]);
                         }
                         ((TextView)findViewById(R.id.servingSize)).setText((item.getCell(51).toString()).split("\\.")[0]);
+                        ((EditText)findViewById(R.id.tranFat)).setText("0");
                     }
                     else {
 //                        item = searchSheet(myWorkBook.getSheetAt(0), input);
