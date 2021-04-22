@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.nutritiontrackerguiv4.Goals;
 import com.example.nutritiontrackerguiv4.InputMealForm;
 import com.example.nutritiontrackerguiv4.NotificationSettingsActivity;
 import com.example.nutritiontrackerguiv4.Notifications.CreateNotification;
@@ -77,6 +78,16 @@ public class SettingsFragment extends Fragment {
                 startActivity(notificationSettings);
                 //CreateNotification.CreateNotificationAtTime(getContext(), "the title", "the body", 13,2,30);
                 //CreateNotification.CreateNotificationWithDelay(getContext(), "the title", "the body", 5000);
+            }
+        });
+
+        Button goToGoalsBtn = (Button)root.findViewById(R.id.goToGoals);
+        goToGoalsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent loadGoalsPage = new Intent(getActivity(), Goals.class);
+                startActivity(loadGoalsPage);
             }
         });
 

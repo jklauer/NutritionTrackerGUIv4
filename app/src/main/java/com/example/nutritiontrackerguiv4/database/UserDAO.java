@@ -22,6 +22,23 @@ public interface UserDAO {
     @Query("SELECT * FROM Users")
     List<User> getAllUsers();
 
+    @Query("UPDATE Users SET " +
+            "totalFat=78.0," +
+            "satFat = 20.0," +
+            "transFat = 0.0," +
+            "cholesterol = 300.0," +
+            "sodium = 2300.0," +
+            "totalCarbs = 275.0," +
+            "fiber = 28.0," +
+            "sugar = 50.0," +
+            "protein = 50.0," +
+            "calories = 2000.0," +
+            "vitA = 400.0," +
+            "vitC = 90.0" +
+            " WHERE User_ID=:userId")
+     void resetDefaultGoals(final long userId);
+
+
     @Query("SELECT * FROM Users WHERE User_id=:userId")
     List<User> findAllInfoForUser(final long userId);
 
