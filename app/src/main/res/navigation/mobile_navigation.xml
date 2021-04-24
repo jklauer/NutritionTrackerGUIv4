@@ -17,7 +17,7 @@
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
-    <fragment
+    <activity
         android:id="@+id/navigation_recipes"
         android:name="com.example.nutritiontrackerguiv4.RecipePage"
         android:label="@string/title_recipes"
