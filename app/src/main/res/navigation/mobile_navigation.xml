@@ -18,6 +18,13 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
+        android:id="@+id/navigation_recipes"
+        android:name="com.example.nutritiontrackerguiv4.RecipePage"
+        android:label="@string/title_recipes"
+        tools:layout="@layout/activity_recipe_page"
+        />
+
+    <fragment
         android:id="@+id/navigation_settings"
         android:name="com.example.nutritiontrackerguiv4.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
