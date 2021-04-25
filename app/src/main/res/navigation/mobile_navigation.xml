@@ -17,11 +17,11 @@
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
-    <activity
+    <fragment
         android:id="@+id/navigation_recipes"
-        android:name="com.example.nutritiontrackerguiv4.RecipePage"
+        android:name="com.example.nutritiontrackerguiv4.ui.recipes.RecipesFragment"
         android:label="@string/title_recipes"
-        tools:layout="@layout/activity_recipe_page"
+        tools:layout="@layout/recipes_fragment"
         />
 
     <fragment
