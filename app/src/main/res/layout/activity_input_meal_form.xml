@@ -55,7 +55,7 @@
             <EditText
                 android:id="@+id/tranFat"
                 android:layout_width="0dp"
-                android:hint="mg of Cholesterol"
+                android:hint="g of Trans Fat"
                 android:inputType="number" />
         </TableRow>
 
@@ -148,12 +148,13 @@
         android:id="@+id/enterMeal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="Enter Meal Data"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mealDate"
         app:layout_constraintVertical_bias="0.976" />
 
     <EditText
@@ -185,24 +186,6 @@
         app:layout_constraintVertical_bias="0.841" />
 
 
-
-
-
-
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/input_meal_form_delete_button_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterMeal">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <Button
         android:id="@+id/input_meal_form_search_button"
         android:layout_width="wrap_content"
@@ -227,6 +210,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.943" />
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:enabled="false"
+        android:text="Delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/enterMeal"
+        app:layout_constraintTop_toBottomOf="@+id/mealDate" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

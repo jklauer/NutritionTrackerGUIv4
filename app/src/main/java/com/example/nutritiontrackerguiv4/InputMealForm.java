@@ -114,11 +114,20 @@ public class InputMealForm extends Activity {
                     }
                     if(item != null) {
                         System.out.println("found on first search");
-                        //1:description 3:calories 4:protein 5:total fat 7:carbohydrates 15:sodium 20:vitamin c, 32:vitamin a 44:saturated fat 47:cholesterol
-                        int[] colNums= {1,3, /*4,5,7,15,*/20, 32/*,44,47*/};
-                        int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminB6};
+                        //1:description 3:calories 4:protein 5:total fat 7:carbohydrates 8:fiber, 9:sugar, 10:calcium, 14:potassium, 15:sodium 20:vitamin c, 25:vitamin b6, 32:vitamin a 44:saturated fat 47:cholesterol
+                        int[] colNums= {1,3,5,44,47,7,8,9,4,10,14,25,20,15};
+                        int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.totalFat, R.id.satFat, R.id.cholesterol, R.id.totalCarbs, R.id.fiber, R.id.sugar, R.id.protein, R.id.calcium, R.id.potassium, R.id.vitaminB6, R.id.vitaminC, R.id.sodium};
                         for(int i=0; i<colNums.length; ++i) {
-                            ((EditText)findViewById(editTexts[i])).setText((item.getCell(colNums[i]).toString()).split("\\.")[0]);
+
+                            String result = (item.getCell(colNums[i]).toString()).split("\\.")[0];
+                            if(result.isEmpty() || result == null){
+                                ((EditText)findViewById(editTexts[i])).setText("0");
+                            }else{
+                                ((EditText)findViewById(editTexts[i])).setText(result);
+                            }
+
+
+
                         }
                     }
                     else {
@@ -370,7 +379,8 @@ public class InputMealForm extends Activity {
     public void delete(){
 
         //listener for delete button
-        Button deleteButton = new Button(this);
+        Button deleteButton = findViewById(R.id.delete_button);
+        deleteButton.setEnabled(true);
         deleteButton.setText("Delete");
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -382,10 +392,7 @@ public class InputMealForm extends Activity {
                 startActivity(loadApp);
             }
         });
-        //dynamically add the delete button to the layout if it is updating a meal
-        ConstraintLayout ll = (ConstraintLayout) findViewById(R.id.input_meal_form_delete_button_layout);
-        LayoutParams lp = new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-        ll.addView(deleteButton, lp);
+
     }
 
     //adds a meal
