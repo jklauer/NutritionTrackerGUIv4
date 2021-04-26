@@ -57,6 +57,7 @@ public class InputMealForm extends Activity {
     private String vitaminC;
     private String ingr_id;
 
+
     //Passed in from the BarcodeScanner activity...
     // barcode == true; means it came from BarcodeScanner and it's updating
     // barcode == false; means it came from BarcodeScanner and it's adding
