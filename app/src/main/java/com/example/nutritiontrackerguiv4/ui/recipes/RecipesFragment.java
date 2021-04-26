@@ -13,15 +13,25 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 
 import java.net.*;
+import java.util.List;
 
 import com.example.nutritiontrackerguiv4.R;
+import com.example.nutritiontrackerguiv4.database.Allergies;
+import com.example.nutritiontrackerguiv4.database.AllergiesDAO;
+import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
+
+import org.apache.poi.ss.usermodel.Table;
 
 public class RecipesFragment extends Fragment {
 
     private RecipesViewModel mViewModel;
     View root;
+    private NutritionDatabase db;
 
     public static RecipesFragment newInstance() {
         return new RecipesFragment();
@@ -52,6 +62,33 @@ public class RecipesFragment extends Fragment {
         root.findViewById(R.id.lowCostButton).setOnClickListener(view -> clicked_btn("https://www.budgetbytes.com/"));
 
         root.findViewById(R.id.lowEffortButton).setOnClickListener(view -> clicked_btn("https://www.taste.com.au/quick-easy/galleries/low-cook-dinners-busy-weeknights/hyu3sf13"));
+
+        TableLayout linkTable = (TableLayout) root.findViewById(R.id.linkTable);
+
+        db = NutritionDatabase.getDatabase(getContext());
+        Allergies allergies = db.getAllergiesDAO().getAllAllergies().get(0);
+
+        if (allergies.getNuts() || allergies.getSeafood())
+        {
+            TableRow tr = new TableRow(getContext());
+            tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            if (allergies.getNuts()){
+                Button b = new Button(getContext());
+                b.setText("Nuts");
+                b.setOnClickListener(view -> clicked_btn("https://www.eatingwell.com/recipes/18051/dietary-restrictions/nut-free/"));
+                b.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+                tr.addView(b);
+            }
+            if (allergies.getSeafood()){
+                Button b = new Button(getContext());
+                b.setText("Seafood");
+                b.setOnClickListener(view -> clicked_btn("https://www.spokin.com/allergy-friendly-recipes/tag/Shellfish+Free"));
+                b.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+                tr.addView(b);
+            }
+            linkTable.addView(tr, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+        }
 
 
         return root;

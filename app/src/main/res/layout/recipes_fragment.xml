@@ -10,6 +10,7 @@
             android:layout_height="match_parent">
 
             <TableLayout
+                android:id="@+id/linkTable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:shrinkColumns="*"
@@ -130,9 +131,12 @@
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/_00_easyicon" />
+                        android:src="@drawable/_00_easyicon" /><![CDATA[
+
                     />
+                ]]>
                 </TableRow>
+
             </TableLayout>
         </ScrollView>
 </FrameLayout>
