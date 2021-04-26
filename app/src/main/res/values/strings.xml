@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NutritionTrackerGUIv4</string>
+    <string name="app_name">Nutrition Tracker</string>
     <string name="title_meals">Meals</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_settings">Settings</string>

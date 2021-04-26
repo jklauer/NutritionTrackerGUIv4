@@ -15,24 +15,39 @@ public class Ingredient {
     private int calories;
     private int vitaminA;
     private int vitaminC;
-    private long satFat;
-    private long transFat;
-    private long cholesterol;
-    private long sodium;
-    private long totalCarbs;
-    private long fiber;
-    private long sugar;
-    private long protein;
+    private int totalFat;
+    private int satFat;
+    private int transFat;
+    private int cholesterol;
+    private int sodium;
+    private int totalCarbs;
+    private int fiber;
+    private int sugar;
+    private int protein;
+    private int calcium;
+    private int potassium;
     private String time;
     private String date;
 
     public Ingredient(){}
 
-    public Ingredient(String n, int cal, int A, int C, String t, String d) {
+    public Ingredient(String n, int cal, int toF, int sF, int trF, int cho, int sod, int car, int fib, int sug, int pro, int calc, int pot, int B6, int C, String t, String d) {
         this.name = n;
         this.calories = cal;
-        this.vitaminA = A;
+        this.vitaminA = B6;
         this.vitaminC = C;
+        this.totalFat = toF;
+        this.satFat = sF;
+        this.transFat = trF;
+        this.cholesterol = cho;
+        this.sodium = sod;
+        this.totalCarbs = car;
+        this.fiber = fib;
+        this.sugar = sug;
+        this.protein = pro;
+        this.calcium = calc;
+        this.potassium = pot;
+
         this.time = t;
         this.date = d;
     }
@@ -90,77 +105,84 @@ public class Ingredient {
     public void setDate(String d) {this.date = d;}
 
 
-    public long getTotalFat() {
+    public int getTotalFat() {
         return totalFat;
     }
 
-    public void setTotalFat(long totalFat) {
+    public void setTotalFat(int totalFat) {
         this.totalFat = totalFat;
     }
 
-    private long totalFat;
-
-    public long getSatFat() {
+    public int getSatFat() {
         return satFat;
     }
 
-    public long getTransFat() {
+    public int getTransFat() {
         return transFat;
     }
 
-    public long getCholesterol() {
+    public int getCholesterol() {
         return cholesterol;
     }
 
-    public long getSodium() {
+    public int getSodium() {
         return sodium;
     }
 
-    public long getTotalCarbs() {
+    public int getTotalCarbs() {
         return totalCarbs;
     }
 
-    public long getFiber() {
+    public int getFiber() {
         return fiber;
     }
 
-    public long getSugar() {
+    public int getSugar() {
         return sugar;
     }
 
-    public long getProtein() {
+    public int getProtein() {
         return protein;
     }
 
-    public void setSatFat(long satFat) {
+    public int getCalcium() { return calcium; }
+
+    public int getPotassium() {return potassium; }
+
+    public void setSatFat(int satFat) {
         this.satFat = satFat;
     }
 
-    public void setTransFat(long transFat) {
+    public void setTransFat(int transFat) {
         this.transFat = transFat;
     }
 
-    public void setCholesterol(long cholesterol) {
+    public void setCholesterol(int cholesterol) {
         this.cholesterol = cholesterol;
     }
 
-    public void setSodium(long sodium) {
+    public void setSodium(int sodium) {
         this.sodium = sodium;
     }
 
-    public void setTotalCarbs(long totalCarbs) {
+    public void setTotalCarbs(int totalCarbs) {
         this.totalCarbs = totalCarbs;
     }
 
-    public void setFiber(long fiber) {
+    public void setFiber(int fiber) {
         this.fiber = fiber;
     }
 
-    public void setSugar(long sugar) {
+    public void setSugar(int sugar) {
         this.sugar = sugar;
     }
 
-    public void setProtein(long protein) {
+    public void setProtein(int protein) {
         this.protein = protein;
     }
+
+    public void setCalcium(int calcium) { this.calcium = calcium; }
+
+    public void setPotassium(int potassium) { this.potassium = potassium; }
+
 }

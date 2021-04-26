@@ -1,49 +1,27 @@
 package com.example.nutritiontrackerguiv4;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import com.example.nutritiontrackerguiv4.R;
 import com.example.nutritiontrackerguiv4.database.Ingredient;
 import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
 
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Iterator;
 
 public class InputMealForm extends Activity {
@@ -53,7 +31,18 @@ public class InputMealForm extends Activity {
     private String time;
     private String name;
     private String calories;
-    private String vitaminA;
+    private String totalFat;
+    private String satFat;
+    private String tranFat;
+    private String cholesterol;
+    private String sodium;
+    private String totalCarbs;
+    private String fiber;
+    private String sugar;
+    private String protein;
+    private String calcium;
+    private String potassium;
+    private String vitaminB6;
     private String vitaminC;
     private String ingr_id;
 
@@ -79,7 +68,18 @@ public class InputMealForm extends Activity {
         time = getIntent().getStringExtra("ingr_time");
         name = getIntent().getStringExtra("ingr_name");
         calories = getIntent().getStringExtra("ingr_calories");
-        vitaminA = getIntent().getStringExtra("ingr_vita");
+        totalFat = getIntent().getStringExtra("ingr_tofat");
+        satFat = getIntent().getStringExtra("ingr_sfat");
+        tranFat = getIntent().getStringExtra("ingr_trfat");
+        cholesterol = getIntent().getStringExtra("ingr_chol");
+        sodium = getIntent().getStringExtra("ingr_sod");
+        totalCarbs = getIntent().getStringExtra("ingr_carb");
+        fiber = getIntent().getStringExtra("ingr_fiber");
+        sugar = getIntent().getStringExtra("ingr_sugar");
+        protein = getIntent().getStringExtra("ingr_prot");
+        calcium = getIntent().getStringExtra("ingr_calc");
+        potassium = getIntent().getStringExtra("ingr_potas");
+        vitaminB6 = getIntent().getStringExtra("ingr_vitb6");
         vitaminC = getIntent().getStringExtra("ingr_vitc");
         ingr_id = getIntent().getStringExtra("ingr_id");
 
@@ -105,7 +105,7 @@ public class InputMealForm extends Activity {
                     int sheetNum = 0;
                     //System.out.println("Input Char: " + input.charAt(0) + " = " + inChar + "\tUpper Bound: " + upperBound + "\tSheet Number: " + sheetNum);
                     Row item = searchSheet(myWorkBook.getSheetAt(sheetNum), input);
-                    int[] eTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminA};
+                    int[] eTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminB6};
                     for(int i = 0; i < eTexts.length; ++i) {
                         if(i == 0) {
                             ((EditText)findViewById(eTexts[i])).setText("");
@@ -116,7 +116,7 @@ public class InputMealForm extends Activity {
                         System.out.println("found on first search");
                         //1:description 3:calories 4:protein 5:total fat 7:carbohydrates 15:sodium 20:vitamin c, 32:vitamin a 44:saturated fat 47:cholesterol
                         int[] colNums= {1,3, /*4,5,7,15,*/20, 32/*,44,47*/};
-                        int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminA};
+                        int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminB6};
                         for(int i=0; i<colNums.length; ++i) {
                             ((EditText)findViewById(editTexts[i])).setText((item.getCell(colNums[i]).toString()).split("\\.")[0]);
                         }
@@ -127,7 +127,7 @@ public class InputMealForm extends Activity {
 //                            System.out.println("found on second search");
 //                            //1:description 3:calories 4:protein 5:total fat 7:carbohydrates 15:sodium 20:vitamin c, 32:vitamin a 44:saturated fat 47:cholesterol
 //                            int[] colNums= {1,3, /*4,5,7,15,*/20, 32/*,44,47*/};
-//                            int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminA};
+//                            int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminB6};
 //                            for(int i=0; i<colNums.length; ++i) {
 //                                ((EditText)findViewById(editTexts[i])).setText(item.getCell(colNums[i]).toString());
 //                            }
@@ -181,7 +181,7 @@ public class InputMealForm extends Activity {
                 ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
                 ((EditText)findViewById(R.id.mealTime)).setText(time);
                 ((EditText)findViewById(R.id.mealName)).setText(name);
-                ((EditText)findViewById(R.id.vitaminA)).setText(vitaminA);
+                ((EditText)findViewById(R.id.vitaminB6)).setText(vitaminB6);
                 ((EditText)findViewById(R.id.vitaminC)).setText(vitaminC);
                 ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
 
@@ -213,7 +213,7 @@ public class InputMealForm extends Activity {
                 ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
                 ((EditText)findViewById(R.id.mealTime)).setText(time);
                 ((EditText)findViewById(R.id.mealName)).setText(name);
-                ((EditText)findViewById(R.id.vitaminA)).setText(vitaminA);
+                ((EditText)findViewById(R.id.vitaminB6)).setText(vitaminB6);
                 ((EditText)findViewById(R.id.vitaminC)).setText(vitaminC);
                 ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
 
@@ -228,7 +228,7 @@ public class InputMealForm extends Activity {
                     time!=null
                     &&name!=null
                     &&calories!=null
-                    &&vitaminA!=null
+                    &&vitaminB6!=null
                     &&vitaminC!=null
             ){
 
@@ -254,9 +254,21 @@ public class InputMealForm extends Activity {
                 ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
                 ((EditText)findViewById(R.id.mealTime)).setText(time);
                 ((EditText)findViewById(R.id.mealName)).setText(name);
-                ((EditText)findViewById(R.id.vitaminA)).setText(vitaminA);
+                ((EditText)findViewById(R.id.vitaminB6)).setText(vitaminB6);
                 ((EditText)findViewById(R.id.vitaminC)).setText(vitaminC);
                 ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
+                ((EditText)findViewById(R.id.totalFat)).setText(totalFat);
+                ((EditText)findViewById(R.id.satFat)).setText(satFat);
+                ((EditText)findViewById(R.id.tranFat)).setText(tranFat);
+                ((EditText)findViewById(R.id.cholesterol)).setText(cholesterol);
+                ((EditText)findViewById(R.id.sodium)).setText(sodium);
+                ((EditText)findViewById(R.id.totalCarbs)).setText(totalCarbs);
+                ((EditText)findViewById(R.id.fiber)).setText(fiber);
+                ((EditText)findViewById(R.id.sugar)).setText(sugar);
+                ((EditText)findViewById(R.id.protein)).setText(protein);
+                ((EditText)findViewById(R.id.calcium)).setText(calcium);
+                ((EditText)findViewById(R.id.potassium)).setText(potassium);
+
 
                 update(); //handle updating meal
                 delete(); //handle deleting meal
@@ -287,9 +299,20 @@ public class InputMealForm extends Activity {
                 ((EditText)findViewById(R.id.mealTime)).setText(
                         java.text.DateFormat.getTimeInstance().format(Calendar.getInstance().getTime()));
                 ((EditText)findViewById(R.id.mealName)).setText("");
-                ((EditText)findViewById(R.id.vitaminA)).setText("");
+                ((EditText)findViewById(R.id.vitaminB6)).setText("");
                 ((EditText)findViewById(R.id.vitaminC)).setText("");
                 ((EditText)findViewById(R.id.caloriesEntry)).setText("");
+                ((EditText)findViewById(R.id.totalFat)).setText("");
+                ((EditText)findViewById(R.id.satFat)).setText("");
+                ((EditText)findViewById(R.id.tranFat)).setText("");
+                ((EditText)findViewById(R.id.cholesterol)).setText("");
+                ((EditText)findViewById(R.id.sodium)).setText("");
+                ((EditText)findViewById(R.id.totalCarbs)).setText("");
+                ((EditText)findViewById(R.id.fiber)).setText("");
+                ((EditText)findViewById(R.id.sugar)).setText("");
+                ((EditText)findViewById(R.id.protein)).setText("");
+                ((EditText)findViewById(R.id.calcium)).setText("");
+                ((EditText)findViewById(R.id.potassium)).setText("");
 
                 add(); //handle adding a meal
             }
@@ -312,7 +335,18 @@ public class InputMealForm extends Activity {
                     update_ingr.setCalories(Integer.parseInt(((EditText)findViewById(R.id.caloriesEntry)).getText().toString()));
                     update_ingr.setName(((EditText)findViewById(R.id.mealName)).getText().toString());
                     update_ingr.setTime(((EditText)findViewById(R.id.mealTime)).getText().toString());
-                    update_ingr.setVitaminA(Integer.parseInt(((EditText)findViewById(R.id.vitaminA)).getText().toString()));
+                    update_ingr.setTotalFat(Integer.parseInt(((EditText)findViewById(R.id.totalFat)).getText().toString()));
+                    update_ingr.setSatFat(Integer.parseInt(((EditText)findViewById(R.id.satFat)).getText().toString()));
+                    update_ingr.setTransFat(Integer.parseInt(((EditText)findViewById(R.id.tranFat)).getText().toString()));
+                    update_ingr.setCholesterol(Integer.parseInt(((EditText)findViewById(R.id.cholesterol)).getText().toString()));
+                    update_ingr.setSodium(Integer.parseInt(((EditText)findViewById(R.id.sodium)).getText().toString()));
+                    update_ingr.setTotalCarbs(Integer.parseInt(((EditText)findViewById(R.id.totalCarbs)).getText().toString()));
+                    update_ingr.setFiber(Integer.parseInt(((EditText)findViewById(R.id.fiber)).getText().toString()));
+                    update_ingr.setSugar(Integer.parseInt(((EditText)findViewById(R.id.sugar)).getText().toString()));
+                    update_ingr.setProtein(Integer.parseInt(((EditText)findViewById(R.id.protein)).getText().toString()));
+                    update_ingr.setCalcium(Integer.parseInt(((EditText)findViewById(R.id.calcium)).getText().toString()));
+                    update_ingr.setPotassium(Integer.parseInt(((EditText)findViewById(R.id.potassium)).getText().toString()));
+                    update_ingr.setVitaminA(Integer.parseInt(((EditText)findViewById(R.id.vitaminB6)).getText().toString()));
                     update_ingr.setVitaminC(Integer.parseInt(((EditText)findViewById(R.id.vitaminC)).getText().toString()));
                     db.getIngredientDAO().update(update_ingr); //update in database
 
@@ -369,7 +403,29 @@ public class InputMealForm extends Activity {
                             Integer.parseInt(
                                     ((EditText)findViewById(R.id.caloriesEntry)).getText().toString()),
                             Integer.parseInt(
-                                    ((EditText)findViewById(R.id.vitaminA)).getText().toString()),
+                                    ((EditText)findViewById(R.id.totalFat)).getText().toString()),
+                            Integer.parseInt(
+                                    ((EditText)findViewById(R.id.satFat)).getText().toString()),
+                            Integer.parseInt(
+                                    ((EditText)findViewById(R.id.tranFat)).getText().toString()),
+                            Integer.parseInt(
+                                    ((EditText)findViewById(R.id.cholesterol)).getText().toString()),
+                            Integer.parseInt(
+                                    ((EditText)findViewById(R.id.sodium)).getText().toString()),
+                            Integer.parseInt(
+                                    ((EditText)findViewById(R.id.totalCarbs)).getText().toString()),
+                            Integer.parseInt(
+                                    ((EditText)findViewById(R.id.fiber)).getText().toString()),
+                            Integer.parseInt(
+                                    ((EditText)findViewById(R.id.sugar)).getText().toString()),
+                            Integer.parseInt(
+                                    ((EditText)findViewById(R.id.protein)).getText().toString()),
+                            Integer.parseInt(
+                                    ((EditText)findViewById(R.id.calcium)).getText().toString()),
+                            Integer.parseInt(
+                                    ((EditText)findViewById(R.id.potassium)).getText().toString()),
+                            Integer.parseInt(
+                                    ((EditText)findViewById(R.id.vitaminB6)).getText().toString()),
                             Integer.parseInt(
                                     ((EditText)findViewById(R.id.vitaminC)).getText().toString()),
                             ((EditText)findViewById(R.id.mealTime)).getText().toString(),
