@@ -1,106 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<FrameLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.recipes.RecipesFragment">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.recipes.RecipesFragment"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TableRow
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
-            <ImageButton
-                android:id="@+id/vegetarianButton"
-                android:layout_width="wrap_content"
+            <TableLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_alert" />
+                android:shrinkColumns="*"
+                android:stretchColumns="*">
 
-            <ImageButton
-                android:id="@+id/veganButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_alert" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:weightSum="3">
 
-            <ImageButton
-                android:id="@+id/ketoButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_alert" />
-        </TableRow>
+                    <ImageButton
+                        android:id="@+id/vegetarianButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/_5_350615_vegetarian_icon_symbol_logo_vector_transparent_circle_hd" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+                    <ImageButton
+                        android:id="@+id/veganButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/what_is_the_future_of_vegan_food_culinary_comfort_and_honesty_on_health_wrbm_large" />
 
-            <ImageButton
-                android:id="@+id/glutenFreeButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_alert" />
+                    <ImageButton
+                        android:id="@+id/ketoButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/keto_icon_badge_logo_ketogenic_diet_stamp_vector_25366817" />
+                </TableRow>
 
-            <ImageButton
-                android:id="@+id/lowFatButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_alert" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:weightSum="3">
 
-            <ImageButton
-                android:id="@+id/highProteinButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_alert" />
-        </TableRow>
+                    <ImageButton
+                        android:id="@+id/glutenFreeButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/_cd68cf6c9d17c683178342fedf5dd0e" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+                    <ImageButton
+                        android:id="@+id/lowFatButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/low_fat_stamp_on_white_vector_21623971" />
 
-            <ImageButton
-                android:id="@+id/mindButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_alert" />
+                    <ImageButton
+                        android:id="@+id/highProteinButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/_60_f_364970708_idj1olrqkafnc2bggtu0kss8kwciguip" />
+                </TableRow>
 
-            <ImageButton
-                android:id="@+id/highFiberButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_alert" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:weightSum="3">
 
-            <ImageButton
-                android:id="@+id/lowCostButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_alert" />
-        </TableRow>
+                    <ImageButton
+                        android:id="@+id/mindButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/healthy_brain_mind_diet_nutrition_vector_25231644" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+                    <ImageButton
+                        android:id="@+id/highFiberButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/vector_black_tag_sticker_label_260nw_157932791" />
 
-            <ImageButton
-                android:id="@+id/lowEffortButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_alert" />
+                    <ImageButton
+                        android:id="@+id/lowCostButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/low_cost_blue_grunge_stamp_vector_16186628" />
+                </TableRow>
 
-            <ImageButton
-                android:id="@+id/imageButton14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_alert" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:weightSum="3">
 
-            <ImageButton
-                android:id="@+id/imageButton15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_dialog_alert" />
-        </TableRow>
-    </TableLayout>
-
+                    <ImageButton
+                        android:id="@+id/lowEffortButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/_00_easyicon" />
+                    />
+                </TableRow>
+            </TableLayout>
+        </ScrollView>
 </FrameLayout>
