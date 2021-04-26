@@ -21,19 +21,16 @@
         app:layout_constraintVertical_bias="0.110000014" />
 
     <TableLayout
-        android:id="@+id/tableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="225dp"
-        android:padding="3dp"
-        android:stretchColumns="*"
-        app:layout_constraintBottom_toBottomOf="@+id/input_meal_form_delete_button_layout"
+        app:layout_constraintBottom_toTopOf="@+id/scan_barcode_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mealName">
+        app:layout_constraintTop_toBottomOf="@+id/mealName"
+        android:stretchColumns="*"
+        android:padding="3dp">
 
         <TableRow>
-
             <EditText
                 android:id="@+id/caloriesEntry"
                 android:layout_width="0dp"
@@ -108,7 +105,6 @@
         </TableRow>
 
         <TableRow>
-
             <EditText
                 android:id="@+id/calcium"
                 android:layout_width="0dp"
@@ -123,7 +119,6 @@
         </TableRow>
 
         <TableRow>
-
             <EditText
                 android:id="@+id/vitaminC"
                 android:layout_width="0dp"
@@ -136,22 +131,6 @@
                 android:hint="mg of Vitamin B6"
                 android:inputType="number" />
         </TableRow>
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/servingSize"
-                android:layout_width="0dp"
-                android:layout_gravity="center"
-                android:hint="Serving Size" />
-
-            <EditText
-                android:id="@+id/numOfServings"
-                android:layout_width="0dp"
-                android:hint="# of servings"
-                android:inputType="number" />
-        </TableRow>
-
     </TableLayout>
 
     <TextView
@@ -165,18 +144,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.050000012" />
 
-
     <Button
         android:id="@+id/enterMeal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:text="Enter Meal Data"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.925" />
+        app:layout_constraintTop_toBottomOf="@+id/mealDate"
+        app:layout_constraintVertical_bias="0.976" />
 
     <EditText
         android:id="@+id/mealDate"
@@ -187,10 +166,10 @@
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.855" />
+        app:layout_constraintVertical_bias="0.906" />
 
     <EditText
         android:id="@+id/mealTime"
@@ -204,20 +183,8 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.79" />
+        app:layout_constraintVertical_bias="0.841" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/input_meal_form_delete_button_layout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterMeal">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/input_meal_form_search_button"
@@ -241,8 +208,20 @@
         app:layout_constraintBottom_toTopOf="@+id/mealTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-        app:layout_constraintVertical_bias="0.243" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.943" />
+
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:enabled="false"
+        android:text="Delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/enterMeal"
+        app:layout_constraintTop_toBottomOf="@+id/mealDate" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

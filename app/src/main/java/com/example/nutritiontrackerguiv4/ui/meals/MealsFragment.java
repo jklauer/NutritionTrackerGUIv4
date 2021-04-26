@@ -103,15 +103,39 @@ public class MealsFragment extends Fragment {
                     String ingr_name = db.getIngredientDAO().getAllIngredients().get(finalI).getName();
                     String ingr_id = Long.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getIngredient_ID());
                     String ingr_calories = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getCalories());
-                    String ingr_vita = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getVitaminA());
+                    String ingr_vitb6 = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getVitaminA());
                     String ingr_vitc = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getVitaminC());
+                    String ingr_tofat = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getTotalFat());
+                    String ingr_sfat = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getSatFat());
+                    String ingr_trfat = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getTransFat());
+                    String ingr_chol = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getCholesterol());
+                    String ingr_sod = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getSodium());
+                    String ingr_carb = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getTotalCarbs());
+                    String ingr_fiber = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getFiber());
+                    String ingr_sugar = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getSugar());
+                    String ingr_prot = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getProtein());
+                    String ingr_calc = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getCalcium());
+                    String ingr_potas = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getPotassium());
+
                     String ingr_time = db.getIngredientDAO().getAllIngredients().get(finalI).getTime();
 
                     //pass in the information to the input meal form
                     loadInputMealForm.putExtra("ingr_name", ingr_name);
                     loadInputMealForm.putExtra("ingr_id", ingr_id);
                     loadInputMealForm.putExtra("ingr_calories", ingr_calories);
-                    loadInputMealForm.putExtra("ingr_vita", ingr_vita);
+                    loadInputMealForm.putExtra("ingr_vitb6", ingr_vitb6);
+                    loadInputMealForm.putExtra("ingr_tofat", ingr_tofat);
+                    loadInputMealForm.putExtra("ingr_sfat", ingr_sfat);
+                    loadInputMealForm.putExtra("ingr_trfat", ingr_trfat);
+                    loadInputMealForm.putExtra("ingr_chol", ingr_chol);
+                    loadInputMealForm.putExtra("ingr_carb", ingr_carb);
+                    loadInputMealForm.putExtra("ingr_sod", ingr_sod);
+                    loadInputMealForm.putExtra("ingr_fiber", ingr_fiber);
+                    loadInputMealForm.putExtra("ingr_sugar", ingr_sugar);
+                    loadInputMealForm.putExtra("ingr_prot", ingr_prot);
+                    loadInputMealForm.putExtra("ingr_calc", ingr_calc);
+                    loadInputMealForm.putExtra("ingr_potas", ingr_potas);
+                    loadInputMealForm.putExtra("ingr_vitb6", ingr_vitb6);
                     loadInputMealForm.putExtra("ingr_vitc", ingr_vitc);
                     loadInputMealForm.putExtra("ingr_time", ingr_time);
 
