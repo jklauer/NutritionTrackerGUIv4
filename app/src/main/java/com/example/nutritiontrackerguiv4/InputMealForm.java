@@ -61,6 +61,20 @@ public class InputMealForm extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_input_meal_form);
 
+        if(
+                ((EditText)findViewById(R.id.serving_size_edit)).getText().toString().isEmpty() ||
+                        ((EditText)findViewById(R.id.serving_size_edit)).getText().toString()  == null
+        ){
+            ((EditText)findViewById(R.id.serving_size_edit)).setText("1");
+        }
+
+        if(
+                ((EditText)findViewById(R.id.qty_edit)).getText().toString().isEmpty() ||
+                        ((EditText)findViewById(R.id.qty_edit)).getText().toString()  == null
+        ){
+            ((EditText)findViewById(R.id.qty_edit)).setText("1");
+        }
+
         db = NutritionDatabase.getDatabase(getApplicationContext());
 
         //Get the passed in data if it came from another activity
@@ -115,13 +129,16 @@ public class InputMealForm extends Activity {
                     if(item != null) {
                         System.out.println("found on first search");
                         //1:description 3:calories 4:protein 5:total fat 7:carbohydrates 8:fiber, 9:sugar, 10:calcium, 14:potassium, 15:sodium 20:vitamin c, 25:vitamin b6, 32:vitamin a 44:saturated fat 47:cholesterol
-                        int[] colNums= {1,3,5,44,47,7,8,9,4,10,14,25,20,15};
-                        int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.totalFat, R.id.satFat, R.id.cholesterol, R.id.totalCarbs, R.id.fiber, R.id.sugar, R.id.protein, R.id.calcium, R.id.potassium, R.id.vitaminB6, R.id.vitaminC, R.id.sodium};
+                        int[] colNums= {1,3,5,44,47,7,8,9,4,10,14,25,20,15,51};
+                        int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.totalFat, R.id.satFat, R.id.cholesterol, R.id.totalCarbs, R.id.fiber, R.id.sugar, R.id.protein, R.id.calcium, R.id.potassium, R.id.vitaminB6, R.id.vitaminC, R.id.sodium, R.id.serving_size_edit};
                         for(int i=0; i<colNums.length; ++i) {
 
                             String result = (item.getCell(colNums[i]).toString()).split("\\.")[0];
                             if(result.isEmpty() || result == null){
                                 ((EditText)findViewById(editTexts[i])).setText("0");
+                                if(colNums[i] == 51){
+                                    ((EditText)findViewById(editTexts[i])).setText((item.getCell(49).toString()).split("\\.")[0]);
+                                }
                             }else{
                                 ((EditText)findViewById(editTexts[i])).setText(result);
                             }
@@ -129,6 +146,8 @@ public class InputMealForm extends Activity {
 
 
                         }
+                        ((EditText)findViewById(R.id.tranFat)).setText("0");
+                        ((EditText)findViewById(R.id.qty_edit)).setText("1");
                     }
                     else {
 //                        item = searchSheet(myWorkBook.getSheetAt(0), input);
@@ -333,10 +352,14 @@ public class InputMealForm extends Activity {
     //updates a meal
     public void update(){
 
+
+
         //listener for "Enter meal Data" button
         ((Button)findViewById(R.id.enterMeal)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                convertValues();
 
                 try{
                     //try to create a new ingredient with the same ingr_id, and update it in the database
@@ -398,10 +421,15 @@ public class InputMealForm extends Activity {
     //adds a meal
     public void add(){
 
+
+
         //on click listener for the add meal button
         ((Button)findViewById(R.id.enterMeal)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                convertValues();
+
                 //System.out.println("Button clicked!");
                 try{
                     //try to create a new ingredient and add it to the database
@@ -488,4 +516,99 @@ public class InputMealForm extends Activity {
         }
         return best;
     }
+
+    public void convertValues(){
+
+        double qty = Double.parseDouble(
+
+                ((EditText)findViewById(R.id.qty_edit)).getText().toString()
+
+        );
+
+        //caloriesEntry
+        int field = Integer.parseInt(((EditText)findViewById(R.id.caloriesEntry)).getText().toString());
+        String output = ((Double.toString(field * qty)));
+        output = output.split("\\.")[0];
+        ((EditText)findViewById(R.id.caloriesEntry)).setText(output);
+
+        //totalFat
+        field = Integer.parseInt(((EditText)findViewById(R.id.totalFat)).getText().toString());
+        ((EditText)findViewById(R.id.totalFat)).setText(
+                ((Double.toString(field * qty)).split("\\.")[0])
+        );
+
+        //satFat
+        field = Integer.parseInt(((EditText)findViewById(R.id.satFat)).getText().toString());
+        ((EditText)findViewById(R.id.satFat)).setText(
+                ((Double.toString(field * qty)).split("\\.")[0])
+        );
+
+
+        //tranFat
+        field = Integer.parseInt(((EditText)findViewById(R.id.tranFat)).getText().toString());
+        ((EditText)findViewById(R.id.tranFat)).setText(
+                ((Double.toString(field * qty)).split("\\.")[0])
+        );
+
+        //cholesterol
+        field = Integer.parseInt(((EditText)findViewById(R.id.cholesterol)).getText().toString());
+        ((EditText)findViewById(R.id.cholesterol)).setText(
+                ((Double.toString(field * qty)).split("\\.")[0])
+        );
+
+        //sodium
+        field = Integer.parseInt(((EditText)findViewById(R.id.sodium)).getText().toString());
+        ((EditText)findViewById(R.id.sodium)).setText(
+                ((Double.toString(field * qty)).split("\\.")[0])
+        );
+
+        //totalCarbs
+        field = Integer.parseInt(((EditText)findViewById(R.id.totalCarbs)).getText().toString());
+        ((EditText)findViewById(R.id.totalCarbs)).setText(
+                ((Double.toString(field * qty)).split("\\.")[0])
+        );
+
+        //fiber
+        field = Integer.parseInt(((EditText)findViewById(R.id.fiber)).getText().toString());
+        ((EditText)findViewById(R.id.fiber)).setText(
+                ((Double.toString(field * qty)).split("\\.")[0])
+        );
+
+        //sugar
+        field = Integer.parseInt(((EditText)findViewById(R.id.sugar)).getText().toString());
+        ((EditText)findViewById(R.id.sugar)).setText(
+                ((Double.toString(field * qty)).split("\\.")[0])
+        );
+
+        //protein
+        field = Integer.parseInt(((EditText)findViewById(R.id.protein)).getText().toString());
+        ((EditText)findViewById(R.id.protein)).setText(
+                ((Double.toString(field * qty)).split("\\.")[0])
+        );
+
+        //calcium
+        field = Integer.parseInt(((EditText)findViewById(R.id.calcium)).getText().toString());
+        ((EditText)findViewById(R.id.calcium)).setText(
+                ((Double.toString(field * qty)).split("\\.")[0])
+        );
+
+        //potassium
+        field = Integer.parseInt(((EditText)findViewById(R.id.potassium)).getText().toString());
+        ((EditText)findViewById(R.id.potassium)).setText(
+                ((Double.toString(field * qty)).split("\\.")[0])
+        );
+
+        //vitaminC
+        field = Integer.parseInt(((EditText)findViewById(R.id.vitaminC)).getText().toString());
+        ((EditText)findViewById(R.id.vitaminC)).setText(
+                ((Double.toString(field * qty)).split("\\.")[0])
+        );
+
+        //vitaminB6
+        field = Integer.parseInt(((EditText)findViewById(R.id.vitaminB6)).getText().toString());
+        ((EditText)findViewById(R.id.vitaminB6)).setText(
+                ((Double.toString(field * qty)).split("\\.")[0])
+        );
+    }
+
 }
