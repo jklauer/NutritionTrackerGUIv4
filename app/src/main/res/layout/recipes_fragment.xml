@@ -7,7 +7,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:paddingBottom="75dp">
 
             <TableLayout
                 android:id="@+id/linkTable"
@@ -126,15 +127,10 @@
 
                     <ImageButton
                         android:id="@+id/lowEffortButton"
-                        android:layout_width="163dp"
-                        android:layout_height="127dp"
-                        android:layout_weight="1"
+                        android:layout_weight="0"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/_00_easyicon" /><![CDATA[
-
-                    />
-                ]]>
+                        android:src="@drawable/_00_easyicon" />
                 </TableRow>
 
             </TableLayout>
