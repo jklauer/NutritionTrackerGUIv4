@@ -63,31 +63,32 @@ public class RecipesFragment extends Fragment {
 
         root.findViewById(R.id.lowEffortButton).setOnClickListener(view -> clicked_btn("https://www.taste.com.au/quick-easy/galleries/low-cook-dinners-busy-weeknights/hyu3sf13"));
 
-        TableLayout linkTable = (TableLayout) root.findViewById(R.id.linkTable);
+        TableLayout linkTable = root.findViewById(R.id.linkTable);
 
         db = NutritionDatabase.getDatabase(getContext());
         Allergies allergies = db.getAllergiesDAO().getAllAllergies().get(0);
+
+        System.out.println("Are there nut allergies? "+ allergies.getNuts());
 
         if (allergies.getNuts() || allergies.getSeafood())
         {
             TableRow tr = new TableRow(getContext());
             tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             if (allergies.getNuts()){
-                Button b = new Button(getContext());
-                b.setText("Nuts");
-                b.setOnClickListener(view -> clicked_btn("https://www.eatingwell.com/recipes/18051/dietary-restrictions/nut-free/"));
-                b.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-                tr.addView(b);
+                Button b1 = new Button(getContext());
+                b1.setText("Nut Free");
+                b1.setOnClickListener(view -> clicked_btn("https://www.eatingwell.com/recipes/18051/dietary-restrictions/nut-free/"));
+                b1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+                tr.addView(b1);
             }
             if (allergies.getSeafood()){
-                Button b = new Button(getContext());
-                b.setText("Seafood");
-                b.setOnClickListener(view -> clicked_btn("https://www.spokin.com/allergy-friendly-recipes/tag/Shellfish+Free"));
-                b.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-                tr.addView(b);
+                Button b2 = new Button(getContext());
+                b2.setText("Seafood Free");
+                b2.setOnClickListener(view -> clicked_btn("https://www.spokin.com/allergy-friendly-recipes/tag/Shellfish+Free"));
+                b2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+                tr.addView(b2);
             }
             linkTable.addView(tr, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-
         }
 
 
