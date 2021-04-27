@@ -161,7 +161,7 @@ public class InputMealForm extends Activity {
                                 System.out.println("Calories: " + calories);
                                 calories = calories.split("\\.")[0];
                             }
-                        int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.totalFat, R.id.satFat, R.id.cholesterol, R.id.totalCarbs, R.id.fiber, R.id.sugar, R.id.protein, R.id.calcium, R.id.potassium, R.id.vitaminB6, R.id.vitaminC, R.id.sodium, R.id.serving_size_edit};
+                        int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.totalFat, R.id.satFat, R.id.cholesterol, R.id.totalCarbs, R.id.fiber, R.id.sugar, R.id.protein, R.id.calcium, R.id.potassium, R.id.vitaminB6, R.id.vitaminC, R.id.sodium, R.id.serving_size_edit, R.id.tranFat};
                         for(int i = 0; i < editTexts.length; ++i) {
                             ((EditText) findViewById(editTexts[i])).setText("0");
                         }
@@ -356,9 +356,11 @@ public class InputMealForm extends Activity {
             @Override
             public void onClick(View v) {
 
-                convertValues();
+
 
                 try{
+                    convertValues();
+
                     //try to create a new ingredient with the same ingr_id, and update it in the database
                     Ingredient update_ingr = db.getIngredientDAO().findAllInfoForIngredient(Long.parseLong(ingr_id)).get(0);
                     update_ingr.setCalories(Integer.parseInt(((EditText)findViewById(R.id.caloriesEntry)).getText().toString()));
@@ -425,10 +427,12 @@ public class InputMealForm extends Activity {
             @Override
             public void onClick(View v) {
 
-                convertValues();
+
 
                 //System.out.println("Button clicked!");
                 try{
+                    convertValues();
+
                     //try to create a new ingredient and add it to the database
                     Ingredient add_ingr = new Ingredient(
                             ((EditText)findViewById(R.id.mealName)).getText().toString(),
