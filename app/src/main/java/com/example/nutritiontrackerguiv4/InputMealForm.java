@@ -85,12 +85,11 @@ public class InputMealForm extends Activity {
                     int sheetNum = 0;
                     //System.out.println("Input Char: " + input.charAt(0) + " = " + inChar + "\tUpper Bound: " + upperBound + "\tSheet Number: " + sheetNum);
                     Row item = searchSheet(myWorkBook.getSheetAt(sheetNum), input);
-                    int[] eTexts = {R.id.mealName, R.id.caloriesEntry, R.id.protein, R.id.totalFat, R.id.totalCarbs, R.id.fiber, R.id.sugar, R.id.calcium, R.id.potassium, R.id.sodium, R.id.vitaminC, R.id.vitaminB6, R.id.satFat, R.id.cholesterol};
+                    int[] eTexts = {R.id.mealName, R.id.caloriesEntry, R.id.protein, R.id.totalFat, R.id.totalCarbs, R.id.fiber, R.id.sugar, R.id.calcium, R.id.potassium, R.id.sodium, R.id.vitaminC, R.id.vitaminB6, R.id.satFat, R.id.cholesterol, R.id.tranFat};
                     for(int i = 0; i < eTexts.length; ++i) {
-                        if(i == 0) {
+                        if(i != 0) {
                             ((EditText)findViewById(eTexts[i])).setText("");
                         }
-                        else ((EditText)findViewById(eTexts[i])).setText("");
                     }
                     if(item != null) {
                         System.out.println("found on first search");

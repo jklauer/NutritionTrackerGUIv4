@@ -49,7 +49,7 @@ public class DashboardFragment extends Fragment {
 
         calView.setText("Calories: " + calories);
         vitAView.setText("Vitamin A: " + vitA);
-        vitCView.setText("Vitamin C: " + vitC);
+        vitCView.setText("Vitamin B6: " + vitC);
 
         Button goToGraphBtn = root.findViewById(R.id.goToGraphBtn);
         goToGraphBtn.setOnClickListener(v -> {
