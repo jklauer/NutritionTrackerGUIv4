@@ -20,6 +20,7 @@
         <activity android:name=".ui.dashboard.recap" />
         <activity android:name=".ui.Tracking.TrackingActivity" />
         <activity android:name=".NotificationSettingsActivity" />
+        <activity android:name=".Goals" />
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
