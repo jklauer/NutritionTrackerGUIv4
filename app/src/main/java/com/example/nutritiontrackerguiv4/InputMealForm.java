@@ -119,13 +119,6 @@ public class InputMealForm extends Activity {
                     int sheetNum = 0;
                     //System.out.println("Input Char: " + input.charAt(0) + " = " + inChar + "\tUpper Bound: " + upperBound + "\tSheet Number: " + sheetNum);
                     Row item = searchSheet(myWorkBook.getSheetAt(sheetNum), input);
-                    int[] eTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminB6};
-                    for(int i = 0; i < eTexts.length; ++i) {
-                        if(i == 0) {
-                            ((EditText)findViewById(eTexts[i])).setText("");
-                        }
-                        else ((EditText)findViewById(eTexts[i])).setText("");
-                    }
                     if(item != null) {
                         System.out.println("found on first search");
                         //1:description 3:calories 4:protein 5:total fat 7:carbohydrates 8:fiber, 9:sugar, 10:calcium, 14:potassium, 15:sodium 20:vitamin c, 25:vitamin b6, 32:vitamin a 44:saturated fat 47:cholesterol
@@ -168,7 +161,11 @@ public class InputMealForm extends Activity {
                                 System.out.println("Calories: " + calories);
                                 calories = calories.split("\\.")[0];
                             }
-                            ((EditText) findViewById(R.id.mealName)).setText(name);
+                        int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.totalFat, R.id.satFat, R.id.cholesterol, R.id.totalCarbs, R.id.fiber, R.id.sugar, R.id.protein, R.id.calcium, R.id.potassium, R.id.vitaminB6, R.id.vitaminC, R.id.sodium, R.id.serving_size_edit};
+                        for(int i = 0; i < editTexts.length; ++i) {
+                            ((EditText) findViewById(editTexts[i])).setText("0");
+                        }
+                        ((EditText) findViewById(R.id.mealName)).setText(name);
                             ((EditText) findViewById(R.id.caloriesEntry)).setText(calories);
                         }
 //                    }
