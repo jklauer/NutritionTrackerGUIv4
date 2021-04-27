@@ -14,6 +14,11 @@
         android:title="@string/title_meals" />
 
     <item
+        android:id="@+id/navigation_recipes"
+        android:icon="@drawable/ic_recipes"
+        android:title="@string/title_recipes" />
+
+    <item
         android:id="@+id/navigation_settings"
         android:icon="@android:drawable/ic_menu_manage"
         android:title="@string/title_settings" />
