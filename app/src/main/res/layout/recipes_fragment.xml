@@ -116,7 +116,7 @@
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/comp_vector_black_tag_sticker_label_260nw_157932791_min" />
+                        android:src="@drawable/comp_low_cost_blue_grunge_stamp_vector_16186628_min" />
                 </TableRow>
 
                 <TableRow
