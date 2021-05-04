@@ -40,6 +40,9 @@ public interface IngredientDAO {
     @Query("SELECT SUM(transFat) FROM Ingredients WHERE Date=:d")
     List<Integer> findTransFatOnDay(final String d);
 
+    @Query("SELECT SUM(totalFat) FROM Ingredients WHERE Date=:d")
+    List<Integer> findTotalFatOnDay(final String d);
+
     @Query("SELECT SUM(cholesterol) FROM Ingredients WHERE Date=:d")
     List<Integer> findCholesterolOnDay(final String d);
 
