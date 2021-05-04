@@ -27,7 +27,18 @@ public class DashboardFragment extends Fragment {
     private NutritionDatabase db;
 
     private Integer calories;
-    private Integer vitA;
+    private Integer totalFat;
+    private Integer tranFat;
+    private Integer cholesterol;
+    private Integer satFat;
+    private Integer sodium;
+    private Integer carbs;
+    private Integer fiber;
+    private Integer sugar;
+    private Integer protein;
+    private Integer calcium;
+    private Integer potassium;
+    private Integer vitB6;
     private Integer vitC;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -44,12 +55,25 @@ public class DashboardFragment extends Fragment {
         String date = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
 
         calories = db.getIngredientDAO().findCaloriesOnDay(date).get(0);
-        vitA = db.getIngredientDAO().findVitAOnDay(date).get(0);
+        tranFat = db.getIngredientDAO().findTransFatOnDay(date).get(0);
+        satFat = db.getIngredientDAO().findSatFatOnDay(date).get(0);
+        cholesterol = db.getIngredientDAO().findCholesterolOnDay(date).get(0);
+        sodium = db.getIngredientDAO().findSodiumOnDay(date).get(0);
+        carbs = db.getIngredientDAO().findTotalCarbsOnDay(date).get(0);
+        fiber = db.getIngredientDAO().findFiberOnDay(date).get(0);
+        sugar = db.getIngredientDAO().findTotalSugarOnDay(date).get(0);
+        protein = db.getIngredientDAO().findTotalProteinOnDay(date).get(0);
+        calcium = db.getIngredientDAO().findTotalCalciumOnDay(date).get(0);
+        potassium = db.getIngredientDAO().findTotalPotassiumOnDay(date).get(0);
+        if(tranFat != null && satFat != null){
+            totalFat = tranFat + satFat;
+        }
+        vitB6 = db.getIngredientDAO().findVitAOnDay(date).get(0);
         vitC = db.getIngredientDAO().findVitCOnDay(date).get(0);
 
         calView.setText("Calories: " + calories);
-        vitAView.setText("Vitamin A: " + vitA);
-        vitCView.setText("Vitamin B6: " + vitC);
+        vitAView.setText("Vitamin C: " + vitC);
+        vitCView.setText("Vitamin B6: " + vitB6);
 
         Button goToGraphBtn = root.findViewById(R.id.goToGraphBtn);
         goToGraphBtn.setOnClickListener(v -> {
@@ -71,7 +95,7 @@ public class DashboardFragment extends Fragment {
 
     public void nutrientsRecommended(View root){
         System.out.println("Calories today: "+calories);
-        System.out.println("a today: "+vitA);
+        System.out.println("b6 today: "+vitB6);
         System.out.println("c today: "+vitC);
 
 
@@ -92,13 +116,59 @@ public class DashboardFragment extends Fragment {
                 System.out.println("You've gone over the daily limit for calories.");
                 recommendationString += "You've gone over the daily limit for calories.\n";
             }
-            if(vitA*1000 < 900){
-                System.out.println("Try eating a meal with more Vitamin A.");
-                recommendationString += "Try eating a meal with more Vitamin A.\n";
+            if(totalFat > 78){
+                System.out.println("You've gone over the daily limit for calories.");
+                recommendationString += "You've gone over the daily limit for calories.\n";
             }
+            if(satFat > 20){
+                System.out.println("You've gone over the daily limit for satFat.");
+                recommendationString += "You've gone over the daily limit for saturated fat.\n";
+            }
+            if(tranFat > 0){
+                System.out.println("You've gone over the daily limit for trans fat.");
+                recommendationString += "You've gone over the daily limit for trans fat.\n";
+            }
+            if(cholesterol > 300){
+                System.out.println("You've gone over the daily limit for cholesterol.");
+                recommendationString += "You've gone over the daily limit for cholesterol.\n";
+            }
+            if(sodium > 2300){
+                System.out.println("You've gone over the daily limit for sodium.");
+                recommendationString += "You've gone over the daily limit for sodium.\n";
+            }
+            if(carbs > 275){
+                System.out.println("You've gone over the daily limit for carbs.");
+                recommendationString += "You've gone over the daily limit for carbs.\n";
+            }
+            if(fiber < 28){
+                System.out.println("Try eating a meal with more fiber.");
+                recommendationString += "Try eating a meal with more fiber.\n";
+            }
+            if(sugar > 50){
+                System.out.println("You've gone over the daily limit for sugar.");
+                recommendationString += "You've gone over the daily limit for sugar.\n";
+            }
+            if(protein < 50){
+                System.out.println("Try eating a meal with more protein.");
+                recommendationString += "Try eating a meal with more protein.\n";
+            }
+            if(calcium < 1300){
+                System.out.println("Try eating a meal with more calcium.");
+                recommendationString += "Try eating a meal with more calcium.\n";
+            }
+            if(potassium < 4700){
+                System.out.println("Try eating a meal with more potassium.");
+                recommendationString += "Try eating a meal with more potassium.\n";
+            }
+
+
             if(vitC < 90){
                 System.out.println("Try eating a meal with more Vitamin C.");
                 recommendationString += "Try eating a meal with more Vitamin C.\n";
+            }
+            if(vitB6 < 90){
+                System.out.println("Try eating a meal with more Vitamin B6.");
+                recommendationString += "Try eating a meal with more Vitamin B6.\n";
             }
 
 

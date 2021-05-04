@@ -83,7 +83,7 @@ public class MealsFragment extends Fragment {
         for(int i=0; i<numOfButtons; i++){
 
             Button newButton = new Button(getContext()); //create a new button
-
+            
             int finalI = i;
 
             String ingr_id = Long.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getIngredient_ID());
