@@ -131,9 +131,6 @@ public class BarcodeScanner extends AppCompatActivity{
                         //get the name and calories into variables of the string result
                         ingr_name = result.split("###")[0];
                         ingr_id = Long.toString(ingr.getIngredient_ID());
-
-                        barcodeToXML();
-
                         ingr_calories = result.split("###")[1];
                         if (ingr_calories.contains(".")) {
                             System.out.println("Calories: " + ingr_calories);
@@ -142,6 +139,8 @@ public class BarcodeScanner extends AppCompatActivity{
                         ingr_vitb6 = Integer.toString(ingr.getVitaminA());
                         ingr_vitc = Integer.toString(ingr.getVitaminC());
                         ingr_time = ingr.getTime();
+
+                        barcodeToXML();
 
                         //load input meal form with the scanned information and old other information
                         //  and the barcode == true or false value loaded in on activity startup
