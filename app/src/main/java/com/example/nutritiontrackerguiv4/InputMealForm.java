@@ -606,7 +606,7 @@ public class InputMealForm extends Activity {
         int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.totalFat, R.id.satFat, R.id.cholesterol, R.id.totalCarbs, R.id.fiber, R.id.sugar, R.id.protein, R.id.calcium, R.id.potassium, R.id.vitaminB6, R.id.vitaminC, R.id.sodium, R.id.serving_size_edit, R.id.tranFat};
         for(int i:editTexts) {
             EditText current = (EditText)findViewById(i);
-            current.setText(current.getText().toString().replaceAll("\\s+",""));
+            if(i != R.id.mealName) current.setText(current.getText().toString().replaceAll("\\s+",""));
             if(current.getText().toString().equals("")) {
                 current.setText("0");
             }
