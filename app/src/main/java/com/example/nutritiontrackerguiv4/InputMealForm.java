@@ -113,11 +113,7 @@ public class InputMealForm extends Activity {
                     InputStream fin = assetManager.open("FOOD.xls");
                     POIFSFileSystem myFileSystem = new POIFSFileSystem(fin);
                     HSSFWorkbook myWorkBook = new HSSFWorkbook(myFileSystem);
-//                    int upperBound = 'A' - 1;
-//                    int inChar = input.charAt(0);
-//                    int sheetNum = inChar-upperBound;
                     int sheetNum = 0;
-                    //System.out.println("Input Char: " + input.charAt(0) + " = " + inChar + "\tUpper Bound: " + upperBound + "\tSheet Number: " + sheetNum);
                     Row item = searchSheet(myWorkBook.getSheetAt(sheetNum), input);
                     if(item != null) {
                         System.out.println("found on first search");
@@ -135,38 +131,30 @@ public class InputMealForm extends Activity {
                             }else{
                                 ((EditText)findViewById(editTexts[i])).setText(result);
                             }
-
-
-
                         }
                         ((EditText)findViewById(R.id.tranFat)).setText("0");
                         ((EditText)findViewById(R.id.qty_edit)).setText("1");
                     }
                     else {
-//                        item = searchSheet(myWorkBook.getSheetAt(0), input);
-//                        if(item != null) {
-//                            System.out.println("found on second search");
-//                            //1:description 3:calories 4:protein 5:total fat 7:carbohydrates 15:sodium 20:vitamin c, 32:vitamin a 44:saturated fat 47:cholesterol
-//                            int[] colNums= {1,3, /*4,5,7,15,*/20, 32/*,44,47*/};
-//                            int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.vitaminC, R.id.vitaminB6};
-//                            for(int i=0; i<colNums.length; ++i) {
-//                                ((EditText)findViewById(editTexts[i])).setText(item.getCell(colNums[i]).toString());
-//                            }
-//                        }
-//                        else {
                             String result = SearchForFoodItemAPI.searchForFoodItem(((EditText) findViewById(R.id.mealName)).getText().toString());
-                            String name = result.split("###")[0];
-                            String calories = result.split("###")[1];
-                            if (calories.contains(".")) {
-                                System.out.println("Calories: " + calories);
-                                calories = calories.split("\\.")[0];
+                            if(result != null) {
+                                name = result.split("###")[0];
+                                calories = result.split("###")[1];
+                                if (calories.contains(".")) {
+                                    System.out.println("Calories: " + calories);
+                                    calories = calories.split("\\.")[0];
+                                }
+                            }
+                            else {
+                                name = "Failed to find food";
+                                calories = "0";
                             }
                         int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.totalFat, R.id.satFat, R.id.cholesterol, R.id.totalCarbs, R.id.fiber, R.id.sugar, R.id.protein, R.id.calcium, R.id.potassium, R.id.vitaminB6, R.id.vitaminC, R.id.sodium, R.id.serving_size_edit, R.id.tranFat};
                         for(int i = 0; i < editTexts.length; ++i) {
                             ((EditText) findViewById(editTexts[i])).setText("0");
                         }
                         ((EditText) findViewById(R.id.mealName)).setText(name);
-                            ((EditText) findViewById(R.id.caloriesEntry)).setText(calories);
+                        ((EditText) findViewById(R.id.caloriesEntry)).setText(calories);
                         }
 //                    }
                     fin.close();
@@ -355,10 +343,11 @@ public class InputMealForm extends Activity {
         ((Button)findViewById(R.id.enterMeal)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                fillBlanks();
 
 
                 try{
+
                     convertValues();
 
                     //try to create a new ingredient with the same ingr_id, and update it in the database
@@ -426,11 +415,12 @@ public class InputMealForm extends Activity {
         ((Button)findViewById(R.id.enterMeal)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                fillBlanks();
 
 
                 //System.out.println("Button clicked!");
                 try{
+
                     convertValues();
 
                     //try to create a new ingredient and add it to the database
@@ -610,6 +600,17 @@ public class InputMealForm extends Activity {
         ((EditText)findViewById(R.id.vitaminB6)).setText(
                 ((Double.toString(field * qty)).split("\\.")[0])
         );
+    }
+
+    public void fillBlanks() {
+        int[] editTexts = {R.id.mealName, R.id.caloriesEntry, R.id.totalFat, R.id.satFat, R.id.cholesterol, R.id.totalCarbs, R.id.fiber, R.id.sugar, R.id.protein, R.id.calcium, R.id.potassium, R.id.vitaminB6, R.id.vitaminC, R.id.sodium, R.id.serving_size_edit, R.id.tranFat};
+        for(int i:editTexts) {
+            EditText current = (EditText)findViewById(i);
+            current.setText(current.getText().toString().replaceAll("\\s+",""));
+            if(current.getText().toString().equals("")) {
+                current.setText("0");
+            }
+        }
     }
 
 }
