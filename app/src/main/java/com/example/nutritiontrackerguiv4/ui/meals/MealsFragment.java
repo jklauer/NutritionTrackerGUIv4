@@ -120,7 +120,7 @@ public class MealsFragment extends Fragment {
                 recommendationString += "You've gone over the daily limit for calories.\n";
             }
             if(totalFat > db.getUserDAO().getTotalFatGoal(user_id).get(0)){
-                System.out.println("You've gone over the daily limit for calories.");
+                System.out.println("You've gone over the daily limit for total fat.");
                 recommendationString += "You've gone over the daily limit for calories.\n";
             }
             if(satFat > db.getUserDAO().getSatFatGoal(user_id).get(0)){

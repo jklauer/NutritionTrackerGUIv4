@@ -122,6 +122,7 @@ public class TrackingActivity extends AppCompatActivity {
         lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setValueTextColor(Color.BLACK);
         lineDataSet.setValueTextSize(18f);
+        lineChart.invalidate();
     }
 
     private void fillChartWithVitA()
@@ -134,6 +135,7 @@ public class TrackingActivity extends AppCompatActivity {
         lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setValueTextColor(Color.BLACK);
         lineDataSet.setValueTextSize(18f);
+        lineChart.invalidate();
     }
 
     private void fillChartWithVitB12()
@@ -146,6 +148,7 @@ public class TrackingActivity extends AppCompatActivity {
         lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setValueTextColor(Color.BLACK);
         lineDataSet.setValueTextSize(18f);
+        lineChart.invalidate();
     }
 
     private void fillChartWithTotalFat()
@@ -158,6 +161,7 @@ public class TrackingActivity extends AppCompatActivity {
         lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setValueTextColor(Color.BLACK);
         lineDataSet.setValueTextSize(18f);
+        lineChart.invalidate();
     }
 
     private void fillChartWithSatFat()
@@ -170,6 +174,7 @@ public class TrackingActivity extends AppCompatActivity {
         lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setValueTextColor(Color.BLACK);
         lineDataSet.setValueTextSize(18f);
+        lineChart.invalidate();
     }
 
     private void fillChartWithTransFat()
@@ -182,6 +187,7 @@ public class TrackingActivity extends AppCompatActivity {
         lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setValueTextColor(Color.BLACK);
         lineDataSet.setValueTextSize(18f);
+        lineChart.invalidate();
     }
 
     private void fillChartWithCholesterol()
@@ -194,6 +200,7 @@ public class TrackingActivity extends AppCompatActivity {
         lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setValueTextColor(Color.BLACK);
         lineDataSet.setValueTextSize(18f);
+        lineChart.invalidate();
     }
 
     private void fillChartWithSodium()
@@ -206,6 +213,7 @@ public class TrackingActivity extends AppCompatActivity {
         lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setValueTextColor(Color.BLACK);
         lineDataSet.setValueTextSize(18f);
+        lineChart.invalidate();
     }
 
     private void fillChartWithTotalCarbs()
@@ -218,6 +226,7 @@ public class TrackingActivity extends AppCompatActivity {
         lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setValueTextColor(Color.BLACK);
         lineDataSet.setValueTextSize(18f);
+        lineChart.invalidate();
     }
 
     private void fillChartWithFiber()
@@ -230,6 +239,7 @@ public class TrackingActivity extends AppCompatActivity {
         lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setValueTextColor(Color.BLACK);
         lineDataSet.setValueTextSize(18f);
+        lineChart.invalidate();
     }
 
     private void fillChartWithSugar()
@@ -242,6 +252,7 @@ public class TrackingActivity extends AppCompatActivity {
         lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setValueTextColor(Color.BLACK);
         lineDataSet.setValueTextSize(18f);
+        lineChart.invalidate();
     }
 
     private void fillChartWithProtein()
@@ -254,6 +265,7 @@ public class TrackingActivity extends AppCompatActivity {
         lineDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
         lineDataSet.setValueTextColor(Color.BLACK);
         lineDataSet.setValueTextSize(18f);
+        lineChart.invalidate();
     }
 
     private int getCalorieHelper(String day)
