@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -28,6 +29,23 @@ public class MealsFragment extends Fragment {
     private long user_id;
     private NutritionDatabase db;
 
+    LinearLayout ll;
+
+    private Integer calories;
+    private Integer totalFat;
+    private Integer tranFat;
+    private Integer cholesterol;
+    private Integer satFat;
+    private Integer sodium;
+    private Integer carbs;
+    private Integer fiber;
+    private Integer sugar;
+    private Integer protein;
+    private Integer calcium;
+    private Integer potassium;
+    private Integer vitB6;
+    private Integer vitC;
+
     private MealsViewModel mealsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -37,6 +55,25 @@ public class MealsFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_meals, container, false);
 
         db = NutritionDatabase.getDatabase(getContext());
+
+        String date = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
+        calories = db.getIngredientDAO().findCaloriesOnDay(date).get(0);
+        tranFat = db.getIngredientDAO().findTransFatOnDay(date).get(0);
+        satFat = db.getIngredientDAO().findSatFatOnDay(date).get(0);
+        cholesterol = db.getIngredientDAO().findCholesterolOnDay(date).get(0);
+        sodium = db.getIngredientDAO().findSodiumOnDay(date).get(0);
+        carbs = db.getIngredientDAO().findTotalCarbsOnDay(date).get(0);
+        fiber = db.getIngredientDAO().findFiberOnDay(date).get(0);
+        sugar = db.getIngredientDAO().findTotalSugarOnDay(date).get(0);
+        protein = db.getIngredientDAO().findTotalProteinOnDay(date).get(0);
+        calcium = db.getIngredientDAO().findTotalCalciumOnDay(date).get(0);
+        potassium = db.getIngredientDAO().findTotalPotassiumOnDay(date).get(0);
+        if(tranFat != null && satFat != null){
+            totalFat = tranFat + satFat;
+        }
+        vitB6 = db.getIngredientDAO().findVitAOnDay(date).get(0);
+        vitC = db.getIngredientDAO().findVitCOnDay(date).get(0);
+
 
         //gets the user id from the User_ID.txt file
         loadUserID();
@@ -53,8 +90,96 @@ public class MealsFragment extends Fragment {
             }
         });
 
+        nutrientsRecommended(root);
+
 
         return root;
+    }
+
+    public void nutrientsRecommended(View root){
+        System.out.println("Calories today: "+calories);
+        System.out.println("b6 today: "+vitB6);
+        System.out.println("c today: "+vitC);
+
+
+        String date = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
+
+        Integer numOfMeals = db.getIngredientDAO().getNumOfMeals(date).size();
+
+        System.out.println("Num of meals: "+numOfMeals);
+
+        String recommendationString = "";
+
+        if(numOfMeals < 2){
+            System.out.println("Not enough meals to give feedback.");
+            recommendationString += "Not enough meals to give feedback.";
+        }else{
+
+            if(calories > db.getUserDAO().getCalorieGoal(user_id).get(0)){
+                System.out.println("You've gone over the daily limit for calories.");
+                recommendationString += "You've gone over the daily limit for calories.\n";
+            }
+            if(totalFat > db.getUserDAO().getTotalFatGoal(user_id).get(0)){
+                System.out.println("You've gone over the daily limit for calories.");
+                recommendationString += "You've gone over the daily limit for calories.\n";
+            }
+            if(satFat > db.getUserDAO().getSatFatGoal(user_id).get(0)){
+                System.out.println("You've gone over the daily limit for satFat.");
+                recommendationString += "You've gone over the daily limit for saturated fat.\n";
+            }
+            if(tranFat > db.getUserDAO().getTransFatGoal(user_id).get(0)){
+                System.out.println("You've gone over the daily limit for trans fat.");
+                recommendationString += "You've gone over the daily limit for trans fat.\n";
+            }
+            if(cholesterol > db.getUserDAO().getCholesterolGoal(user_id).get(0)){
+                System.out.println("You've gone over the daily limit for cholesterol.");
+                recommendationString += "You've gone over the daily limit for cholesterol.\n";
+            }
+            if(sodium > db.getUserDAO().getSodiumGoal(user_id).get(0)){
+                System.out.println("You've gone over the daily limit for sodium.");
+                recommendationString += "You've gone over the daily limit for sodium.\n";
+            }
+            if(carbs > db.getUserDAO().getTotalCarbsGoal(user_id).get(0)){
+                System.out.println("You've gone over the daily limit for carbs.");
+                recommendationString += "You've gone over the daily limit for carbs.\n";
+            }
+            if(fiber < db.getUserDAO().getFiberGoal(user_id).get(0)){
+                System.out.println("Try eating a meal with more fiber.");
+                recommendationString += "Try eating a meal with more fiber.\n";
+            }
+            if(sugar > db.getUserDAO().getSugarGoal(user_id).get(0)){
+                System.out.println("You've gone over the daily limit for sugar.");
+                recommendationString += "You've gone over the daily limit for sugar.\n";
+            }
+            if(protein < db.getUserDAO().getProteinGoal(user_id).get(0)){
+                System.out.println("Try eating a meal with more protein.");
+                recommendationString += "Try eating a meal with more protein.\n";
+            }
+            if(calcium < db.getUserDAO().getCalciumGoal(user_id).get(0)){
+                System.out.println("Try eating a meal with more calcium.");
+                recommendationString += "Try eating a meal with more calcium.\n";
+            }
+            if(potassium < db.getUserDAO().getPotassiumGoal(user_id).get(0)){
+                System.out.println("Try eating a meal with more potassium.");
+                recommendationString += "Try eating a meal with more potassium.\n";
+            }
+            if(vitC < db.getUserDAO().getVitCGoal(user_id).get(0)){
+                System.out.println("Try eating a meal with more Vitamin C.");
+                recommendationString += "Try eating a meal with more Vitamin C.\n";
+            }
+            if(vitB6 < db.getUserDAO().getVitAGoal(user_id).get(0)){
+                System.out.println("Try eating a meal with more Vitamin B6.");
+                recommendationString += "Try eating a meal with more Vitamin B6.\n";
+            }
+
+        }
+
+
+        TextView recommendationView = new TextView(getContext());
+        recommendationView.setTextSize(24);
+        recommendationView.setText(recommendationString);
+        ll.addView(recommendationView);
+
     }
 
     //loads the user_id variable using the User_ID.txt file
@@ -74,7 +199,7 @@ public class MealsFragment extends Fragment {
     //Puts a button on the screen for every Ingredient in the database
     public void loadButtons(View root){
 
-        LinearLayout ll = (LinearLayout)root.findViewById(R.id.fragment_meals_linear_layout); //where the buttons are placed
+        ll = (LinearLayout)root.findViewById(R.id.fragment_meals_linear_layout); //where the buttons are placed
 
         //Get the number of buttons to be added
         int numOfButtons = db.getIngredientDAO().getAllIngredients().size();

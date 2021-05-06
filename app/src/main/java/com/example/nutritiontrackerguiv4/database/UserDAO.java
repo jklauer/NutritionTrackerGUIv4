@@ -113,4 +113,16 @@ public interface UserDAO {
 
     @Query("UPDATE Users SET vitC=:C WHERE User_ID=:userID")
     void setVitCGoal(final Double C, final long userID);
+
+    @Query("SELECT calcium FROM Users WHERE User_id=:userId")
+    List<Double> getCalciumGoal(final long userId);
+
+    @Query("UPDATE Users SET calcium=:C WHERE User_ID=:userID")
+    void setCalciumGoal(final Double C, final long userID);
+
+    @Query("SELECT potassium FROM Users WHERE User_id=:userId")
+    List<Double> getPotassiumGoal(final long userId);
+
+    @Query("UPDATE Users SET potassium=:C WHERE User_ID=:userID")
+    void setPotassiumGoal(final Double C, final long userID);
 }

@@ -87,97 +87,13 @@ public class DashboardFragment extends Fragment {
             startActivity(startIntent);
         });
 
-        nutrientsRecommended(root);
+        //nutrientsRecommended(root);
 
         return root;
     }
 
 
-    public void nutrientsRecommended(View root){
-        System.out.println("Calories today: "+calories);
-        System.out.println("b6 today: "+vitB6);
-        System.out.println("c today: "+vitC);
 
-
-        String date = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
-
-        Integer numOfMeals = db.getIngredientDAO().getNumOfMeals(date).size();
-
-        System.out.println("Num of meals: "+numOfMeals);
-
-        String recommendationString = "";
-
-        if(numOfMeals < 2){
-            System.out.println("Not enough meals to give feedback.");
-            recommendationString += "Not enough meals to give feedback.";
-        }else{
-
-            if(calories > 2000){
-                System.out.println("You've gone over the daily limit for calories.");
-                recommendationString += "You've gone over the daily limit for calories.\n";
-            }
-            if(totalFat > 78){
-                System.out.println("You've gone over the daily limit for calories.");
-                recommendationString += "You've gone over the daily limit for calories.\n";
-            }
-            if(satFat > 20){
-                System.out.println("You've gone over the daily limit for satFat.");
-                recommendationString += "You've gone over the daily limit for saturated fat.\n";
-            }
-            if(tranFat > 0){
-                System.out.println("You've gone over the daily limit for trans fat.");
-                recommendationString += "You've gone over the daily limit for trans fat.\n";
-            }
-            if(cholesterol > 300){
-                System.out.println("You've gone over the daily limit for cholesterol.");
-                recommendationString += "You've gone over the daily limit for cholesterol.\n";
-            }
-            if(sodium > 2300){
-                System.out.println("You've gone over the daily limit for sodium.");
-                recommendationString += "You've gone over the daily limit for sodium.\n";
-            }
-            if(carbs > 275){
-                System.out.println("You've gone over the daily limit for carbs.");
-                recommendationString += "You've gone over the daily limit for carbs.\n";
-            }
-            if(fiber < 28){
-                System.out.println("Try eating a meal with more fiber.");
-                recommendationString += "Try eating a meal with more fiber.\n";
-            }
-            if(sugar > 50){
-                System.out.println("You've gone over the daily limit for sugar.");
-                recommendationString += "You've gone over the daily limit for sugar.\n";
-            }
-            if(protein < 50){
-                System.out.println("Try eating a meal with more protein.");
-                recommendationString += "Try eating a meal with more protein.\n";
-            }
-            if(calcium < 1300){
-                System.out.println("Try eating a meal with more calcium.");
-                recommendationString += "Try eating a meal with more calcium.\n";
-            }
-            if(potassium < 4700){
-                System.out.println("Try eating a meal with more potassium.");
-                recommendationString += "Try eating a meal with more potassium.\n";
-            }
-
-
-            if(vitC < 90){
-                System.out.println("Try eating a meal with more Vitamin C.");
-                recommendationString += "Try eating a meal with more Vitamin C.\n";
-            }
-            if(vitB6 < 90){
-                System.out.println("Try eating a meal with more Vitamin B6.");
-                recommendationString += "Try eating a meal with more Vitamin B6.\n";
-            }
-
-
-        }
-
-        ((TextView)root.findViewById(R.id.RecommendationView)).setText(recommendationString);
-
-
-    }
 
 
 
