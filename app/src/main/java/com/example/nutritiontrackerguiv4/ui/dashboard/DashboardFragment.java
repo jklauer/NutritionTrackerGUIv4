@@ -76,7 +76,6 @@ public class DashboardFragment extends Fragment {
         TextView B6Over = root.findViewById(R.id.B6Over);
         TextView COver = root.findViewById(R.id.COver);
 
-
         User user = db.getUserDAO().getAllUsers().get(0);
         long userID = user.getUser_ID();
         calorieGoal = db.getUserDAO().getCalorieGoal(userID).get(0);
