@@ -29,12 +29,10 @@ public class DashboardFragment extends Fragment {
     private NutritionDatabase db;
 
     private Integer calories;
-    private Integer totalFat;
-    private Integer tranFat;
-    private Integer cholesterol;
+    private Integer totFat;
     private Integer satFat;
-    private Integer sodium;
-    private Integer carbs;
+    private Integer cholesterol;
+    private Integer totalCarbs;
     private Integer fiber;
     private Integer sugar;
     private Integer protein;
@@ -42,6 +40,18 @@ public class DashboardFragment extends Fragment {
     private Integer potassium;
     private Integer vitB6;
     private Integer vitC;
+    private Double calorieGoal;
+    private Double totalFatGoal;
+    private Double satFatGoal;
+    private Double cholesterolGoal;
+    private Double carbsGoal;
+    private Double fiberGoal;
+    private Double sugarGoal;
+    private Double proteinGoal;
+    private Double calciumGoal;
+    private Double potassiumGoal;
+    private Double B6Goal;
+    private Double CGoal;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
