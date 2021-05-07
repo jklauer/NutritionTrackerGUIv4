@@ -17,6 +17,7 @@ import android.widget.ProgressBar;
 
 import com.example.nutritiontrackerguiv4.InputMealForm;
 import com.example.nutritiontrackerguiv4.R;
+import com.example.nutritiontrackerguiv4.database.Allergies;
 import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
 import com.example.nutritiontrackerguiv4.database.User;
 import com.example.nutritiontrackerguiv4.ui.Tracking.TrackingActivity;
@@ -74,6 +75,11 @@ public class DashboardFragment extends Fragment {
         TextView potassiumOver = root.findViewById(R.id.potassiumOver);
         TextView B6Over = root.findViewById(R.id.B6Over);
         TextView COver = root.findViewById(R.id.COver);
+
+        //Hack
+        db.getUserDAO().insert(new User(1, "test"));
+        db.getAllergiesDAO().insert(new Allergies(true, true));
+        //End Hack
 
         User user = db.getUserDAO().getAllUsers().get(0);
         long userID = user.getUser_ID();
