@@ -17,10 +17,12 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nutritiontrackerguiv4.InputMealForm;
 import com.example.nutritiontrackerguiv4.R;
+import com.example.nutritiontrackerguiv4.StartPage;
 import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
 import com.example.nutritiontrackerguiv4.database.User;
 import com.example.nutritiontrackerguiv4.ui.Tracking.TrackingActivity;
 
+import java.io.File;
 import java.util.Calendar;
 
 public class DashboardFragment extends Fragment {
@@ -59,12 +61,28 @@ public class DashboardFragment extends Fragment {
                 new ViewModelProvider(this).get(DashboardViewModel.class);
         View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
+
+        if(handleStartPage()){
+            Intent loadStartPage = new Intent(getActivity().getApplicationContext(), StartPage.class);
+            startActivity(loadStartPage);
+        }
+
+
         doBarStuff(root);
 
         return root;
     }
 
+    public boolean handleStartPage(){
 
+        File fileStartPage = new File(getActivity().getFilesDir(), "User_ID.txt");
+        if(fileStartPage.exists()){
+            return false;
+        }else{
+            return true;
+        }
+
+    }
 
     public void doBarStuff(View root){
         db = NutritionDatabase.getDatabase(getContext());
