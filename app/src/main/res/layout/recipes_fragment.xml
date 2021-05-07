@@ -30,7 +30,7 @@
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/_5_350615_vegetarian_icon_symbol_logo_vector_transparent_circle_hd" />
+                        android:src="@drawable/comp_5_350615_vegetarian_icon_symbol_logo_vector_transparent_circle_hd_min" />
 
                     <ImageButton
                         android:id="@+id/veganButton"
@@ -48,7 +48,7 @@
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/keto_icon_badge_logo_ketogenic_diet_stamp_vector_25366817" />
+                        android:src="@drawable/comp_keto_icon_badge_logo_ketogenic_diet_stamp_vector_25366817_min" />
                 </TableRow>
 
                 <TableRow
@@ -64,7 +64,7 @@
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/_cd68cf6c9d17c683178342fedf5dd0e" />
+                        android:src="@drawable/comp_cd68cf6c9d17c683178342fedf5dd0e_min" />
 
                     <ImageButton
                         android:id="@+id/lowFatButton"
@@ -73,7 +73,7 @@
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/low_fat_stamp_on_white_vector_21623971" />
+                        android:src="@drawable/comp_low_fat_stamp_on_white_vector_21623971_min" />
 
                     <ImageButton
                         android:id="@+id/highProteinButton"
@@ -82,7 +82,7 @@
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/_60_f_364970708_idj1olrqkafnc2bggtu0kss8kwciguip" />
+                        android:src="@drawable/comp_60_f_364970708_idj1olrqkafnc2bggtu0kss8kwciguip_min" />
                 </TableRow>
 
                 <TableRow
@@ -98,7 +98,7 @@
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/healthy_brain_mind_diet_nutrition_vector_25231644" />
+                        android:src="@drawable/comp_healthy_brain_mind_diet_nutrition_vector_25231644_min" />
 
                     <ImageButton
                         android:id="@+id/highFiberButton"
@@ -107,7 +107,7 @@
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/vector_black_tag_sticker_label_260nw_157932791" />
+                        android:src="@drawable/comp_vector_black_tag_sticker_label_260nw_157932791_min" />
 
                     <ImageButton
                         android:id="@+id/lowCostButton"
@@ -116,7 +116,7 @@
                         android:layout_weight="1"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/low_cost_blue_grunge_stamp_vector_16186628" />
+                        android:src="@drawable/comp_low_cost_blue_grunge_stamp_vector_16186628_min" />
                 </TableRow>
 
                 <TableRow
@@ -130,7 +130,7 @@
                         android:layout_weight="0"
                         android:adjustViewBounds="true"
                         android:scaleType="fitXY"
-                        android:src="@drawable/_00_easyicon" />
+                        android:src="@drawable/comp_00_easyicon_min" />
                 </TableRow>
 
             </TableLayout>

@@ -31,6 +31,8 @@ public class User {
     private Double calories  = 2000.0;
     private Double vitA = 400.0;
     private Double vitC = 90.0;
+    private Double calcium = 1300.0;
+    private Double potassium = 4700.0;
 
 
     public User(){}
@@ -77,6 +79,8 @@ public class User {
         calories = 2000.0;
         vitA = 400.0;
         vitC = 90.0;
+        potassium = 4700.0;
+        calcium = 1300.0;
     }
 
     public Double getTotalFat() {
@@ -167,11 +171,27 @@ public class User {
         this.vitA = vitA;
     }
 
+    public Double getCalcium() {
+        return calcium;
+    }
+
+    public void setCalcium(Double calcium) {
+        this.calcium = calcium;
+    }
+
     public Double getVitC() {
         return vitC;
     }
 
     public void setVitC(Double vitC) {
         this.vitC = vitC;
+    }
+
+    public Double getPotassium() {
+        return potassium;
+    }
+
+    public void setPotassium(Double potassium) {
+        this.potassium = potassium;
     }
 }
