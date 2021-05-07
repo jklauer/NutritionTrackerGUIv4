@@ -33,6 +33,8 @@ public interface UserDAO {
             "sugar = 50.0," +
             "protein = 50.0," +
             "calories = 2000.0," +
+            "calcium = 1300.0," +
+            "potassium = 4700.0," +
             "vitA = 400.0," +
             "vitC = 90.0" +
             " WHERE User_ID=:userId")
@@ -113,4 +115,16 @@ public interface UserDAO {
 
     @Query("UPDATE Users SET vitC=:C WHERE User_ID=:userID")
     void setVitCGoal(final Double C, final long userID);
+
+    @Query("SELECT vitC FROM Users WHERE User_id=:userId")
+    List<Double> getCalciumGoal(final long userId);
+
+    @Query("UPDATE Users SET calcium=:calc WHERE User_ID=:userID")
+    void setCalciumGoal(final Double calc, final long userID);
+
+    @Query("SELECT vitC FROM Users WHERE User_id=:userId")
+    List<Double> getPotassiumGoal(final long userId);
+
+    @Query("UPDATE Users SET potassium=:pot WHERE User_ID=:userID")
+    void setPotassiumGoal(final Double pot, final long userID);
 }

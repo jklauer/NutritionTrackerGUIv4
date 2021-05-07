@@ -29,7 +29,9 @@ public class User {
     private Double sugar = 50.0;
     private Double protein = 50.0;
     private Double calories  = 2000.0;
-    private Double vitA = 400.0;
+    private Double calcium = 1300.0;
+    private Double potassium = 4700.0;
+    private Double vitA = 1.7;
     private Double vitC = 90.0;
 
 
@@ -75,6 +77,8 @@ public class User {
         sugar = 50.0;
         protein = 50.0;
         calories = 2000.0;
+        calcium = 1300.0;
+        potassium = 4700.0;
         vitA = 400.0;
         vitC = 90.0;
     }
@@ -174,4 +178,13 @@ public class User {
     public void setVitC(Double vitC) {
         this.vitC = vitC;
     }
+
+    public Double getCalcium() {return calcium;}
+
+    public void setCalcium(Double calcium) { this.calcium = calcium;}
+
+    public Double getPotassium() {return potassium;}
+
+    public void setPotassium(Double potassium) { this.potassium = potassium;}
+
 }
