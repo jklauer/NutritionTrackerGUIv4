@@ -6,49 +6,468 @@
     android:layout_height="match_parent"
     tools:context=".ui.dashboard.DashboardFragment">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:paddingBottom="75dp">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/CalorieView"
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="center"
-            android:textSize="36sp" />
+            android:layout_height="match_parent" >
 
-        <TextView
-            android:id="@+id/VitaminAView"
+            <TextView
+                android:id="@+id/CalorieView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="36sp" />
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="center"
-            android:textSize="36sp" />
+            android:layout_height="match_parent" >
 
-        <TextView
-            android:id="@+id/VitaminCView"
+            <Button
+                android:id="@+id/goToGraphBtn"
+                android:layout_width="360dp"
+                android:layout_height="wrap_content"
+                android:text="Go To This Week's Analysis" />
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="TextView"
-            android:textAlignment="center"
-            android:textSize="36sp" />
+            android:layout_height="match_parent" >
 
-        <Button
-            android:id="@+id/goToGraphBtn"
+            <Button
+                android:id="@+id/goToRecapBtn"
+                android:layout_width="283dp"
+                android:layout_height="wrap_content"
+                android:text="See Last Week's Recap" />
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Go To This Week's Analysis" />
+            android:layout_height="match_parent" >
 
-        <Button
-            android:id="@+id/goToRecapBtn"
+            <TextView
+                android:id="@+id/CalorieOver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calories"
+                android:textAlignment="center"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="See Last Week's Recap" />
+            android:layout_height="match_parent" >
 
+            <ProgressBar
+                android:id="@+id/firstBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="267dp"
+                android:layout_height="31dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#D52D2D" />
+        </TableRow>
 
-    </LinearLayout>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/totalFatOver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calories"
+                android:textAlignment="center"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+        <ProgressBar
+            android:id="@+id/secondBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="267dp"
+            android:layout_height="31dp"
+            android:max="100"
+            android:progress="0"
+            android:progressTint="#D52D2D" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/satFatOver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ProgressBar
+                android:id="@+id/thirdBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="267dp"
+                android:layout_height="31dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#D52D2D" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/cholesterolOver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ProgressBar
+                android:id="@+id/fourthBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="267dp"
+                android:layout_height="31dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#D52D2D" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/carbsOver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ProgressBar
+                android:id="@+id/fifthBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="267dp"
+                android:layout_height="31dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#D52D2D" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/fiberOver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ProgressBar
+                android:id="@+id/sixthBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="267dp"
+                android:layout_height="31dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#D52D2D" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/sugarOver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ProgressBar
+                android:id="@+id/seventhBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="267dp"
+                android:layout_height="31dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#D52D2D" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/proteinOver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ProgressBar
+                android:id="@+id/eigthBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="267dp"
+                android:layout_height="31dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#D52D2D" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/calciumOver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ProgressBar
+                android:id="@+id/ninthBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="267dp"
+                android:layout_height="31dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#D52D2D" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/potassiumOver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ProgressBar
+                android:id="@+id/tenthBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="267dp"
+                android:layout_height="31dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#D52D2D" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/B6Over"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ProgressBar
+                android:id="@+id/eleventhBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="267dp"
+                android:layout_height="31dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#D52D2D" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="28dp" >
+
+            <TextView
+                android:id="@+id/COver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <ProgressBar
+                android:id="@+id/twelvthBar"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="267dp"
+                android:layout_height="31dp"
+                android:max="100"
+                android:progress="0"
+                android:progressTint="#D52D2D" />
+        </TableRow>
+    </TableLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
