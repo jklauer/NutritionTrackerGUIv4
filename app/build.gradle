@@ -63,4 +63,5 @@ dependencies {
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
 
     implementation 'com.google.android.gms:play-services-vision:11.0.2'
+    implementation 'com.github.draxdave:ConstraintAccordion:1.0.7'
 }

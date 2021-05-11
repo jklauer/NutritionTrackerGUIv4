@@ -3,6 +3,7 @@ package com.example.nutritiontrackerguiv4.ui.dashboard;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,6 +14,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+
+import ir.drax.constraintaccordionlist.AccordionItem;
+import ir.drax.constraintaccordionlist.AccordionList;
 
 public class recap extends AppCompatActivity {
     NutritionDatabase db;
@@ -25,7 +29,7 @@ public class recap extends AppCompatActivity {
 
         LocalDate today = LocalDate.now();
         ArrayList<Date> lastWeek = lastWeek(today);
-        LinearLayout L = this.findViewById(R.id.recapLayout);
+        AccordionList L = this.findViewById(R.id.accordion);
 
         for(int i=0; i<lastWeek.size(); i++)
         {
@@ -35,15 +39,14 @@ public class recap extends AppCompatActivity {
             int numCal = getCalorieHelper(formatDay);
             int numVitA = getVitAHelper(formatDay);
             int numVitC = getVitCHelper(formatDay);
-            TextView textView1 = new TextView(this);
-            textView1.setText(formatDay);
-            textView1.setTextSize(36);
-            TextView textView2 = new TextView(this);
-            textView2.setText(numCal+" cal, "+numVitA+" vit. A, "+ numVitC+" vit. C");
-            textView2.setTextSize(24);
-            L.addView(textView1);
-            L.addView(textView2);
+            //L.addView(textView1);
+            //L.addView(textView2);
+            String innerText = numCal+" cal, "+numVitA+" vit. A, "+ numVitC+" vit. C";
+            L.push(new AccordionItem(formatDay, innerText));
+
         }
+
+        L.build();
     }
 
     private int getCalorieHelper(String day)
