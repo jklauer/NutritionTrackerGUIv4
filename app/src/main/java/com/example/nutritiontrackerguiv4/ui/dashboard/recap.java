@@ -8,12 +8,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.nutritiontrackerguiv4.R;
+import com.example.nutritiontrackerguiv4.database.Ingredient;
 import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import ir.drax.constraintaccordionlist.AccordionItem;
 import ir.drax.constraintaccordionlist.AccordionList;
@@ -41,12 +43,35 @@ public class recap extends AppCompatActivity {
             int numVitC = getVitCHelper(formatDay);
             //L.addView(textView1);
             //L.addView(textView2);
+            List<Ingredient> Ings = getIng(formatDay);
+            String s = "";
+            System.out.println("Size of ings " + Ings.size());
+            for (int j = 0; j < Ings.size(); j++) {
+                String name = Ings.get(j).getName();
+                try {
+                    int cal = db.getIngredientDAO().findCaloriesForIng(name).get(0);
+                    s = s.concat(name + "calories: " + cal + "\r\n");
+                } catch (NullPointerException e)  {
+                    s = s.concat("No entries today");
+                }
+            }
+            System.out.println("Recap got the meals: "+s);
+
             String innerText = numCal+" cal, "+numVitA+" vit. A, "+ numVitC+" vit. C";
-            L.push(new AccordionItem(formatDay, innerText));
+            if (Ings.size() != 0)
+                L.push(new AccordionItem(formatDay, s));
+            else
+                L.push(new AccordionItem(formatDay, "No records for today"));
+
 
         }
 
         L.build();
+    }
+
+    private List<Ingredient> getIng(String day)
+    {
+        return db.getIngredientDAO().findAllIngredientsForDay(day);
     }
 
     private int getCalorieHelper(String day)
