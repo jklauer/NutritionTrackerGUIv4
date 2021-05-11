@@ -65,10 +65,12 @@ public class DashboardFragment extends Fragment {
         if(handleStartPage()){
             Intent loadStartPage = new Intent(getActivity().getApplicationContext(), StartPage.class);
             startActivity(loadStartPage);
+        }else{
+            doBarStuff(root);
         }
 
 
-        doBarStuff(root);
+
 
         return root;
     }
