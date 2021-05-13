@@ -2,6 +2,7 @@ package com.example.nutritiontrackerguiv4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
 import com.example.nutritiontrackerguiv4.database.User;
 import com.example.nutritiontrackerguiv4.ui.dashboard.DashboardFragment;
 import com.example.nutritiontrackerguiv4.ui.settings.SettingsFragment;
+import com.google.android.material.snackbar.Snackbar;
 
 import org.w3c.dom.Text;
 
@@ -34,6 +36,7 @@ public class Goals extends AppCompatActivity {
         user = db.getUserDAO().getAllUsers().get(0);
         userID = user.getUser_ID();
 
+
         TextView popupText = (TextView)findViewById(R.id.popupText);
         popupText.setText("Enter your goals here!");
 
@@ -42,13 +45,20 @@ public class Goals extends AppCompatActivity {
             db.getUserDAO().resetDefaultGoals(userID);
             popupText.setText("Reset is completed!");
             System.out.println("The reset did happen "+db.getUserDAO().getCalorieGoal(userID));
+            Snackbar.make(findViewById(R.id.goals_id), "Reset is completed!",
+                    Snackbar.LENGTH_SHORT)
+                    .show();
         });
 
         Button confirmGoalsBtn = (Button)findViewById(R.id.confirmGoalsBtn);
         confirmGoalsBtn.setOnClickListener(v -> {
             setNewGoals();
+
             popupText.setText("New goals are set!");
             System.out.println("New goals were set"+db.getUserDAO().getCalorieGoal(userID));
+            Snackbar.make(findViewById(R.id.goals_id), "New goals are set!",
+                    Snackbar.LENGTH_SHORT)
+                    .show();
         });
     }
 
