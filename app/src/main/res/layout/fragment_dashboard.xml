@@ -100,8 +100,7 @@
                     android:id="@+id/totalFatOver"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:textSize="14sp" />
+                    android:text="TextView" />
             </TableRow>
 
             <TableRow

@@ -17,24 +17,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NutritionTrackerGUIv4">
-        <activity android:name=".FavoriteMeals" />
-        <activity android:name=".ui.dashboard.recap" />
-        <activity android:name=".ui.Tracking.TrackingActivity" />
-        <activity android:name=".NotificationSettingsActivity" />
-        <activity android:name=".Goals" />
+        <activity android:name=".FavoriteMeals"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.dashboard.recap"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.Tracking.TrackingActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".NotificationSettingsActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Goals"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <activity android:name=".BarcodeScanner" />
+        <activity android:name=".BarcodeScanner"
+            android:screenOrientation="portrait"/>
 
         <uses-library android:name="android.test.runner" />
 
-        <activity android:name=".StartPage" />
-        <activity android:name=".InputMealForm" />
+        <activity android:name=".StartPage"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".InputMealForm"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

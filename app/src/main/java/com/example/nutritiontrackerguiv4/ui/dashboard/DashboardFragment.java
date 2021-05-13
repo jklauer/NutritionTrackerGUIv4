@@ -1,5 +1,6 @@
 package com.example.nutritiontrackerguiv4.ui.dashboard;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -86,6 +87,7 @@ public class DashboardFragment extends Fragment {
 
     }
 
+    @SuppressLint("SetTextI18n")
     public void doBarStuff(View root){
         db = NutritionDatabase.getDatabase(getContext());
         TextView calView = root.findViewById(R.id.CalorieView);
@@ -135,19 +137,32 @@ public class DashboardFragment extends Fragment {
         vitB6 = db.getIngredientDAO().findVitAOnDay(date).get(0);
         vitC = db.getIngredientDAO().findVitCOnDay(date).get(0);
 
+        if (calories == null) { calories = 0;}
+        if (totFat == null) { totFat = 0;}
+        if (satFat == null) { satFat = 0;}
+        if (cholesterol == null) { cholesterol = 0;}
+        if (totalCarbs == null) { totalCarbs = 0;}
+        if (fiber == null) { fiber = 0;}
+        if (sugar == null) { sugar = 0;}
+        if (protein == null) { protein = 0;}
+        if (calcium == null) { calcium = 0;}
+        if (potassium == null) { potassium = 0;}
+        if (vitB6 == null) { vitB6 = 0;}
+        if (vitC == null) { vitC = 0;}
+
         calView.setText("Calories: " + calories);
         calOver.setText(" Calories                                                            " + calories + " / " + calorieGoal);
-        totFatOver.setText(" Total Fat                                                           " + totFat + " / " + totalFatGoal);
-        satFatOver.setText(" Saturated Fat                                                        " + satFat + " / " + satFatGoal);
-        cholesterolOver.setText(" Cholesterol                                                     " + cholesterol + " / " + cholesterolGoal);
-        totCarbsOver.setText(" Total Carbohydrates                                             " + totalCarbs + " / " + carbsGoal);
-        fiberOver.setText(" Fiber                                                           " + fiber + " / " + fiberGoal);
-        sugarOver.setText(" Sugar                                                           " + sugar + " / " + sugarGoal);
-        proteinOver.setText(" Protein                                                            " + protein + " / " + proteinGoal);
-        calciumOver.setText(" Calcium                                                            " + calcium + " / " + calciumGoal);
-        potassiumOver.setText(" Potassium                                                          " + potassium + " / " + potassiumGoal);
-        B6Over.setText(" Vitamin B6                                                         " + vitB6 + " / " + B6Goal);
-        COver.setText(" Vitamin C                                                          " + vitC + " / " + CGoal);
+        totFatOver.setText(" Total Fat                                                          " + totFat + " / " + totalFatGoal + "g");
+        satFatOver.setText(" Saturated Fat                                                       " + satFat + " / " + satFatGoal + "g");
+        cholesterolOver.setText(" Cholesterol                                                   " + cholesterol + " / " + cholesterolGoal + "mg");
+        totCarbsOver.setText(" Total Carbohydrates                                            " + totalCarbs + " / " + carbsGoal + "g");
+        fiberOver.setText(" Fiber                                                          " + fiber + " / " + fiberGoal + "g");
+        sugarOver.setText(" Sugar                                                          " + sugar + " / " + sugarGoal + "g");
+        proteinOver.setText(" Protein                                                           " + protein + " / " + proteinGoal + "g");
+        calciumOver.setText(" Calcium                                                          " + calcium + " / " + calciumGoal + "mg");
+        potassiumOver.setText(" Potassium                                                        " + potassium + " / " + potassiumGoal + "mg");
+        B6Over.setText(" Vitamin B6                                                       " + vitB6 + " / " + B6Goal + "mg");
+        COver.setText(" Vitamin C                                                        " + vitC + " / " + CGoal + "mg");
 
 
 
@@ -296,9 +311,6 @@ public class DashboardFragment extends Fragment {
 
 
     }
-
-
-
 
 
 
