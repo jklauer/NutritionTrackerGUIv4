@@ -38,6 +38,7 @@ public class DashboardFragment extends Fragment {
     private Integer fiber;
     private Integer sugar;
     private Integer protein;
+    private Integer sodium;
     private Integer calcium;
     private Integer potassium;
     private Integer vitB6;
@@ -52,6 +53,7 @@ public class DashboardFragment extends Fragment {
     private Double proteinGoal;
     private Double calciumGoal;
     private Double potassiumGoal;
+    private Double sodiumGoal;
     private Double B6Goal;
     private Double CGoal;
 
@@ -97,6 +99,7 @@ public class DashboardFragment extends Fragment {
         TextView fiberOver = root.findViewById(R.id.fiberOver);
         TextView sugarOver = root.findViewById(R.id.sugarOver);
         TextView proteinOver = root.findViewById(R.id.proteinOver);
+        TextView sodiumOver = root.findViewById(R.id.sodiumOver);
         TextView calciumOver = root.findViewById(R.id.calciumOver);
         TextView potassiumOver = root.findViewById(R.id.potassiumOver);
         TextView B6Over = root.findViewById(R.id.B6Over);
@@ -114,6 +117,7 @@ public class DashboardFragment extends Fragment {
         fiberGoal = db.getUserDAO().getFiberGoal(userID).get(0);
         sugarGoal = db.getUserDAO().getSugarGoal(userID).get(0);
         proteinGoal = db.getUserDAO().getProteinGoal(userID).get(0);
+        sodiumGoal = db.getUserDAO().getSodiumGoal(userID).get(0);
         calciumGoal = db.getUserDAO().getCalciumGoal(userID).get(0);
         potassiumGoal = db.getUserDAO().getPotassiumGoal(userID).get(0);
         B6Goal = db.getUserDAO().getVitAGoal(userID).get(0);
@@ -131,6 +135,7 @@ public class DashboardFragment extends Fragment {
         sugar = db.getIngredientDAO().findTotalSugarOnDay(date).get(0);
         protein = db.getIngredientDAO().findTotalProteinOnDay(date).get(0);
         calcium = db.getIngredientDAO().findTotalCalciumOnDay(date).get(0);
+        sodium = db.getIngredientDAO().findTotalSodiumOnDay(date).get(0);
         potassium = db.getIngredientDAO().findTotalPotassiumOnDay(date).get(0);
         vitB6 = db.getIngredientDAO().findVitAOnDay(date).get(0);
         vitC = db.getIngredientDAO().findVitCOnDay(date).get(0);
@@ -139,6 +144,7 @@ public class DashboardFragment extends Fragment {
         calOver.setText(" Calories                                                            " + calories + " / " + calorieGoal);
         totFatOver.setText(" Total Fat                                                           " + totFat + " / " + totalFatGoal);
         satFatOver.setText(" Saturated Fat                                                        " + satFat + " / " + satFatGoal);
+        sodiumOver.setText(" Sodium                                                        " + sodium + " / " + sodiumGoal);
         cholesterolOver.setText(" Cholesterol                                                     " + cholesterol + " / " + cholesterolGoal);
         totCarbsOver.setText(" Total Carbohydrates                                             " + totalCarbs + " / " + carbsGoal);
         fiberOver.setText(" Fiber                                                           " + fiber + " / " + fiberGoal);
@@ -199,6 +205,15 @@ public class DashboardFragment extends Fragment {
             } else {
                 double holder = 100 * (totFat / totalFatGoal);
                 Bar2.setProgress((int)holder);
+            }
+
+            ProgressBar Bar13 = root.findViewById(R.id.thirteenthBar);
+
+            if(sodium > sodiumGoal){
+                Bar13.setProgress(100);
+            } else {
+                double holder = 100 * (sodium / sodiumGoal);
+                Bar13.setProgress((int)holder);
             }
 
             ProgressBar Bar3 = root.findViewById(R.id.thirdBar);
