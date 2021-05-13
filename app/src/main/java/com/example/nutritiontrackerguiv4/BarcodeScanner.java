@@ -190,7 +190,6 @@ public class BarcodeScanner extends AppCompatActivity{
                 int[] colNums= {1,3,5,44,47,7,8,9,4,10,14,25,20,15};
                 String[] editTexts = {ingr_name,ingr_calories,ingr_tofat,ingr_sfat,ingr_chol,ingr_carb,ingr_fiber,ingr_sugar,ingr_prot,ingr_calc,ingr_potas,ingr_vitb6,ingr_vitc,ingr_sod};
                 for(int i=0; i<colNums.length; ++i) {
-
                     String result = (item.getCell(colNums[i]).toString()).split("\\.")[0];
                     if(result.isEmpty() || result == null){
                         editTexts[i]="0";
@@ -200,9 +199,6 @@ public class BarcodeScanner extends AppCompatActivity{
                     }else{
                         editTexts[i]=(result);
                     }
-
-
-
                 }
                 ingr_trfat=("0");
             }
