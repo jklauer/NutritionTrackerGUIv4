@@ -26,8 +26,6 @@ public class FavoriteMeals extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_meals);
 
-        db = NutritionDatabase.getDatabase(this);
-
         loadButtons();
 
         Button backButton = (Button)findViewById(R.id.favMealsBack);
@@ -42,6 +40,8 @@ public class FavoriteMeals extends Activity {
 
     //Puts a button on the screen for every Ingredient in the database
     public void loadButtons(){
+
+        db = NutritionDatabase.getDatabase(getApplicationContext());
 
         ll = (LinearLayout) findViewById(R.id.favoriteMealsLayout); //where the buttons are placed
 
@@ -59,7 +59,7 @@ public class FavoriteMeals extends Activity {
             //for each button to be added...
             for (int i = 0; i < numOfButtons; i++) {
 
-                Button newButton = new Button(this); //create a new button
+                Button newButton = new Button(getApplicationContext()); //create a new button
 
                 int finalI = i;
 
