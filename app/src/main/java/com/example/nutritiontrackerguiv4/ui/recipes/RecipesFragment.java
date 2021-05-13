@@ -73,7 +73,11 @@ public class RecipesFragment extends Fragment {
         if (allergies.getNuts() || allergies.getSeafood() || allergies.getMilk() || allergies.getEggs() || allergies.getShellfish() || allergies.getSoybeans() || allergies.getWheat())
         {
             TableRow tr = new TableRow(getContext());
+            TableRow tr2 = new TableRow(getContext());
+            TableRow tr3 = new TableRow(getContext());
             tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            tr2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            tr3.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             if (allergies.getNuts()){
                 Button b1 = new Button(getContext());
                 b1.setText("Nut Free");
@@ -93,9 +97,39 @@ public class RecipesFragment extends Fragment {
                 b3.setText("Egg Free");
                 b3.setOnClickListener(view -> clicked_btn("https://www.skinnytaste.com/egg-free-recipes/"));
                 b3.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-                tr.addView(b3);
+                tr2.addView(b3);
+            }
+            if (allergies.getMilk()){
+                Button b4 = new Button(getContext());
+                b4.setText("Milk Free");
+                b4.setOnClickListener(view -> clicked_btn("https://www.godairyfree.org/dairy-free-recipes/"));
+                b4.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+                tr2.addView(b4);
+            }
+            if (allergies.getShellfish()){
+                Button b4 = new Button(getContext());
+                b4.setText("Shellfish Free");
+                b4.setOnClickListener(view -> clicked_btn("https://angelaskitchen.com/recipes/have-other-allergies/shellfish-free-recipes//"));
+                b4.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+                tr3.addView(b4);
+            }
+            if (allergies.getWheat()){
+                Button b5 = new Button(getContext());
+                b5.setText("Wheat Free");
+                b5.setOnClickListener(view -> clicked_btn("https://www.wheat-free.org/recipes.html/"));
+                b5.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+                tr3.addView(b5);
+            }
+            if (allergies.getSoybeans()){
+                Button b6 = new Button(getContext());
+                b6.setText("Soybean Free");
+                b6.setOnClickListener(view -> clicked_btn("https://www.homechef.com/recipes/without-soy/"));
+                b6.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+                tr.addView(b6);
             }
             linkTable.addView(tr, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            linkTable.addView(tr2, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+            linkTable.addView(tr3, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
         }
 
 
