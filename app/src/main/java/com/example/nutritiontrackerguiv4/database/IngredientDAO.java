@@ -73,6 +73,9 @@ public interface IngredientDAO {
     @Query("SELECT SUM(potassium) FROM Ingredients WHERE Date=:d")
     List<Integer> findTotalPotassiumOnDay(final String d);
 
+    @Query("SELECT SUM(sodium) FROM Ingredients WHERE Date=:d")
+    List<Integer> findTotalSodiumOnDay(final String d);
+
     @Query("SELECT * FROM Ingredients WHERE Date=:d")
     List<Ingredient> getNumOfMeals(final String d);
 
