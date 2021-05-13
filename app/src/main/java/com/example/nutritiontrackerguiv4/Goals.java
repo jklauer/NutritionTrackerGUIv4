@@ -39,6 +39,9 @@ public class Goals extends AppCompatActivity {
 
         TextView popupText = (TextView)findViewById(R.id.popupText);
         popupText.setText("Enter your daily intake value goals here!");
+        Snackbar.make(findViewById(R.id.goals_id), "Enter your daily intake value goals here!",
+                Snackbar.LENGTH_LONG)
+                .show();
 
         Button revertGoalsBtn = (Button)findViewById(R.id.revertGoalsBtn);
         revertGoalsBtn.setOnClickListener(v -> {

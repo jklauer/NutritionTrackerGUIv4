@@ -70,7 +70,7 @@ public class RecipesFragment extends Fragment {
 
         System.out.println("Are there nut allergies? "+ allergies.getNuts());
 
-        if (allergies.getNuts() || allergies.getSeafood())
+        if (allergies.getNuts() || allergies.getSeafood() || allergies.getMilk() || allergies.getEggs() || allergies.getShellfish() || allergies.getSoybeans() || allergies.getWheat())
         {
             TableRow tr = new TableRow(getContext());
             tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
@@ -87,6 +87,13 @@ public class RecipesFragment extends Fragment {
                 b2.setOnClickListener(view -> clicked_btn("https://www.spokin.com/allergy-friendly-recipes/tag/Shellfish+Free"));
                 b2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
                 tr.addView(b2);
+            }
+            if (allergies.getEggs()){
+                Button b3 = new Button(getContext());
+                b3.setText("Egg Free");
+                b3.setOnClickListener(view -> clicked_btn("https://www.skinnytaste.com/egg-free-recipes/"));
+                b3.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+                tr.addView(b3);
             }
             linkTable.addView(tr, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
         }
