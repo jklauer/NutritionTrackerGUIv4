@@ -103,9 +103,6 @@ public class InputMealForm extends Activity {
         barcode = getIntent().getStringExtra("barcode");
         //System.out.println("Barcode boolean value: "+barcode);
 
-        ToggleButton toggle = (ToggleButton) findViewById(R.id.favoriteMealToggle);
-        toggle.setChecked(favorite);
-
 
         /*Search feature*/
         Button searchButton = (Button)findViewById(R.id.input_meal_form_search_button);
@@ -256,7 +253,8 @@ public class InputMealForm extends Activity {
 
             // and if it is updating a meal
             if(
-                    name!=null
+                    time!=null
+                    &&name!=null
                     &&calories!=null
                     &&vitaminB6!=null
                     &&vitaminC!=null
@@ -298,11 +296,52 @@ public class InputMealForm extends Activity {
                 ((EditText)findViewById(R.id.protein)).setText(protein);
                 ((EditText)findViewById(R.id.calcium)).setText(calcium);
                 ((EditText)findViewById(R.id.potassium)).setText(potassium);
+                ToggleButton toggle = (ToggleButton) findViewById(R.id.favoriteMealToggle);
+                toggle.setChecked(favorite);
 
 
                 update(); //handle updating meal
                 delete(); //handle deleting meal
-            }else
+            } else if(name != null){
+                //if it is adding a meal from favorites
+                Button barcode_button = (Button)findViewById(R.id.scan_barcode_button);
+                barcode_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent loadBarcodeScanner = new Intent(getApplicationContext(), BarcodeScanner.class);
+
+                        loadBarcodeScanner.putExtra("ingr_id", ingr_id);
+                        loadBarcodeScanner.putExtra("barcode", "false");
+
+                        startActivity(loadBarcodeScanner);
+                    }
+                });
+
+                ((EditText)findViewById(R.id.mealDate)).setText(date);
+                ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
+                ((EditText)findViewById(R.id.mealTime)).setText(
+                        java.text.DateFormat.getTimeInstance().format(Calendar.getInstance().getTime()));
+                ((EditText)findViewById(R.id.mealName)).setText(name);
+                ((EditText)findViewById(R.id.vitaminB6)).setText(vitaminB6);
+                ((EditText)findViewById(R.id.vitaminC)).setText(vitaminC);
+                ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
+                ((EditText)findViewById(R.id.totalFat)).setText(totalFat);
+                ((EditText)findViewById(R.id.satFat)).setText(satFat);
+                ((EditText)findViewById(R.id.tranFat)).setText(tranFat);
+                ((EditText)findViewById(R.id.cholesterol)).setText(cholesterol);
+                ((EditText)findViewById(R.id.sodium)).setText(sodium);
+                ((EditText)findViewById(R.id.totalCarbs)).setText(totalCarbs);
+                ((EditText)findViewById(R.id.fiber)).setText(fiber);
+                ((EditText)findViewById(R.id.sugar)).setText(sugar);
+                ((EditText)findViewById(R.id.protein)).setText(protein);
+                ((EditText)findViewById(R.id.calcium)).setText(calcium);
+                ((EditText)findViewById(R.id.potassium)).setText(potassium);
+                ToggleButton toggle = (ToggleButton) findViewById(R.id.favoriteMealToggle);
+                toggle.setChecked(false);
+
+                add();
+
+            } else
                 //if it is adding a meal
                 {
 
@@ -322,7 +361,6 @@ public class InputMealForm extends Activity {
                 //end setting up barcode scanner button
 
                 //System.out.println("Adding a meal...");
-
                 //Set the input meal form UI to the current data
                 ((EditText)findViewById(R.id.mealDate)).setText(date);
                 ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
