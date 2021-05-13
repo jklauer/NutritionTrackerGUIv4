@@ -81,11 +81,7 @@ public class DashboardFragment extends Fragment {
     public boolean handleStartPage(){
 
         File fileStartPage = new File(getActivity().getFilesDir(), "User_ID.txt");
-        if(fileStartPage.exists()){
-            return false;
-        }else{
-            return true;
-        }
+        return !fileStartPage.exists();
 
     }
 
@@ -106,6 +102,20 @@ public class DashboardFragment extends Fragment {
         TextView potassiumOver = root.findViewById(R.id.potassiumOver);
         TextView B6Over = root.findViewById(R.id.B6Over);
         TextView COver = root.findViewById(R.id.COver);
+
+        TextView inputter = root.findViewById(R.id.inputter);
+        TextView inputter2 = root.findViewById(R.id.inputter2);
+        TextView inputter3 = root.findViewById(R.id.inputter3);
+        TextView inputter4 = root.findViewById(R.id.inputter4);
+        TextView inputter5 = root.findViewById(R.id.inputter5);
+        TextView inputter6 = root.findViewById(R.id.inputter6);
+        TextView inputter7 = root.findViewById(R.id.inputter7);
+        TextView inputter8 = root.findViewById(R.id.inputter8);
+        TextView inputter9 = root.findViewById(R.id.inputter9);
+        TextView inputter10 = root.findViewById(R.id.inputter10);
+        TextView inputter11 = root.findViewById(R.id.inputter11);
+        TextView inputter12 = root.findViewById(R.id.inputter12);
+        TextView inputter13 = root.findViewById(R.id.inputter13);
 
 
 
@@ -157,20 +167,32 @@ public class DashboardFragment extends Fragment {
         if (sodium == null) { sodium = 0;}
 
         calView.setText("Calories: " + calories);
-        calOver.setText(" Calories                                                            " + calories + " / " + calorieGoal);
-
-        totFatOver.setText(" Total Fat                                                          " + totFat + " / " + totalFatGoal + "g");
-        sodiumOver.setText(" Sodium                                                        " + sodium + " / " + sodiumGoal + "mg");
-        satFatOver.setText(" Saturated Fat                                                       " + satFat + " / " + satFatGoal + "g");
-        cholesterolOver.setText(" Cholesterol                                                   " + cholesterol + " / " + cholesterolGoal + "mg");
-        totCarbsOver.setText(" Total Carbohydrates                                            " + totalCarbs + " / " + carbsGoal + "g");
-        fiberOver.setText(" Fiber                                                          " + fiber + " / " + fiberGoal + "g");
-        sugarOver.setText(" Sugar                                                          " + sugar + " / " + sugarGoal + "g");
-        proteinOver.setText(" Protein                                                           " + protein + " / " + proteinGoal + "g");
-        calciumOver.setText(" Calcium                                                          " + calcium + " / " + calciumGoal + "mg");
-        potassiumOver.setText(" Potassium                                                        " + potassium + " / " + potassiumGoal + "mg");
-        B6Over.setText(" Vitamin B6                                                       " + vitB6 + " / " + B6Goal + "mg");
-        COver.setText(" Vitamin C                                                        " + vitC + " / " + CGoal + "mg");
+        inputter.setText(" Calories ");
+        calOver.setText(calories + " / " + calorieGoal + " ");
+        inputter2.setText(" Total Fat ");
+        totFatOver.setText(totFat + " / " + totalFatGoal + "g ");
+        inputter3.setText(" Sodium ");
+        sodiumOver.setText(sodium + " / " + sodiumGoal + "mg ");
+        inputter4.setText(" Saturated Fat ");
+        satFatOver.setText(satFat + " / " + satFatGoal + "g ");
+        inputter5.setText(" Cholesterol ");
+        cholesterolOver.setText(cholesterol + " / " + cholesterolGoal + "mg ");
+        inputter6.setText(" Total Carbohydrates ");
+        totCarbsOver.setText(totalCarbs + " / " + carbsGoal + "g ");
+        inputter7.setText(" Fiber ");
+        fiberOver.setText(fiber + " / " + fiberGoal + "g ");
+        inputter8.setText(" Sugar ");
+        sugarOver.setText(sugar + " / " + sugarGoal + "g ");
+        inputter9.setText(" Protein ");
+        proteinOver.setText(protein + " / " + proteinGoal + "g ");
+        inputter10.setText(" Calcium ");
+        calciumOver.setText(calcium + " / " + calciumGoal + "mg ");
+        inputter11.setText(" Potassium ");
+        potassiumOver.setText(potassium + " / " + potassiumGoal + "mg ");
+        inputter12.setText(" Vitamin B6");
+        B6Over.setText(vitB6 + " / " + B6Goal + "mg ");
+        inputter13.setText(" Vitamin C ");
+        COver.setText(vitC + " / " + CGoal + "mg ");
 
 
 
@@ -195,7 +217,7 @@ public class DashboardFragment extends Fragment {
 
         String date = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
 
-        Integer numOfMeals = db.getIngredientDAO().getNumOfMeals(date).size();
+        int numOfMeals = db.getIngredientDAO().getNumOfMeals(date).size();
 
         System.out.println("Num of meals: "+numOfMeals);
 
