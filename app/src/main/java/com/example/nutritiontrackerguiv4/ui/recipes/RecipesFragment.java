@@ -116,7 +116,7 @@ public class RecipesFragment extends Fragment {
             if (allergies.getWheat()){
                 Button b5 = new Button(getContext());
                 b5.setText("Wheat Free");
-                b5.setOnClickListener(view -> clicked_btn("https://www.wheat-free.org/recipes.html/"));
+                b5.setOnClickListener(view -> clicked_btn("https://www.wheat-free.org/recipes.html"));
                 b5.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
                 tr3.addView(b5);
             }
