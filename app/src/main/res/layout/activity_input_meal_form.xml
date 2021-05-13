@@ -210,12 +210,15 @@
         android:id="@+id/scan_barcode_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="81dp"
         android:text="Scan Barcode"
         app:layout_constraintBottom_toTopOf="@+id/mealTime"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/favoriteMealToggle"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.986" />
+        app:layout_constraintVertical_bias="0.973" />
 
     <Button
         android:id="@+id/delete_button"
@@ -275,6 +278,20 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toStartOf="@+id/qty_edit"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout" />
+
+    <ToggleButton
+        android:id="@+id/favoriteMealToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ToggleButton"
+        android:textOff="Not Favorited"
+        android:textOn="Favorited"
+        app:layout_constraintBottom_toTopOf="@+id/mealTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.985"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/qty_edit"
+        app:layout_constraintVertical_bias="0.533" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

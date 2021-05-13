@@ -17,6 +17,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NutritionTrackerGUIv4">
+        <activity android:name=".FavoriteMeals" />
         <activity android:name=".ui.dashboard.recap" />
         <activity android:name=".ui.Tracking.TrackingActivity" />
         <activity android:name=".NotificationSettingsActivity" />

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ToggleButton;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -44,6 +45,7 @@ public class InputMealForm extends Activity {
     private String potassium;
     private String vitaminB6;
     private String vitaminC;
+    private boolean favorite;
     private String ingr_id;
 
 
@@ -95,6 +97,7 @@ public class InputMealForm extends Activity {
         potassium = getIntent().getStringExtra("ingr_potas");
         vitaminB6 = getIntent().getStringExtra("ingr_vitb6");
         vitaminC = getIntent().getStringExtra("ingr_vitc");
+        favorite = getIntent().getBooleanExtra("ingr_fav", false);
         ingr_id = getIntent().getStringExtra("ingr_id");
 
         barcode = getIntent().getStringExtra("barcode");
@@ -293,11 +296,52 @@ public class InputMealForm extends Activity {
                 ((EditText)findViewById(R.id.protein)).setText(protein);
                 ((EditText)findViewById(R.id.calcium)).setText(calcium);
                 ((EditText)findViewById(R.id.potassium)).setText(potassium);
+                ToggleButton toggle = (ToggleButton) findViewById(R.id.favoriteMealToggle);
+                toggle.setChecked(favorite);
 
 
                 update(); //handle updating meal
                 delete(); //handle deleting meal
-            }else
+            } else if(name != null){
+                //if it is adding a meal from favorites
+                Button barcode_button = (Button)findViewById(R.id.scan_barcode_button);
+                barcode_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent loadBarcodeScanner = new Intent(getApplicationContext(), BarcodeScanner.class);
+
+                        loadBarcodeScanner.putExtra("ingr_id", ingr_id);
+                        loadBarcodeScanner.putExtra("barcode", "false");
+
+                        startActivity(loadBarcodeScanner);
+                    }
+                });
+
+                ((EditText)findViewById(R.id.mealDate)).setText(date);
+                ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
+                ((EditText)findViewById(R.id.mealTime)).setText(
+                        java.text.DateFormat.getTimeInstance().format(Calendar.getInstance().getTime()));
+                ((EditText)findViewById(R.id.mealName)).setText(name);
+                ((EditText)findViewById(R.id.vitaminB6)).setText(vitaminB6);
+                ((EditText)findViewById(R.id.vitaminC)).setText(vitaminC);
+                ((EditText)findViewById(R.id.caloriesEntry)).setText(calories);
+                ((EditText)findViewById(R.id.totalFat)).setText(totalFat);
+                ((EditText)findViewById(R.id.satFat)).setText(satFat);
+                ((EditText)findViewById(R.id.tranFat)).setText(tranFat);
+                ((EditText)findViewById(R.id.cholesterol)).setText(cholesterol);
+                ((EditText)findViewById(R.id.sodium)).setText(sodium);
+                ((EditText)findViewById(R.id.totalCarbs)).setText(totalCarbs);
+                ((EditText)findViewById(R.id.fiber)).setText(fiber);
+                ((EditText)findViewById(R.id.sugar)).setText(sugar);
+                ((EditText)findViewById(R.id.protein)).setText(protein);
+                ((EditText)findViewById(R.id.calcium)).setText(calcium);
+                ((EditText)findViewById(R.id.potassium)).setText(potassium);
+                ToggleButton toggle = (ToggleButton) findViewById(R.id.favoriteMealToggle);
+                toggle.setChecked(false);
+
+                add();
+
+            } else
                 //if it is adding a meal
                 {
 
@@ -317,7 +361,6 @@ public class InputMealForm extends Activity {
                 //end setting up barcode scanner button
 
                 //System.out.println("Adding a meal...");
-
                 //Set the input meal form UI to the current data
                 ((EditText)findViewById(R.id.mealDate)).setText(date);
                 ((EditText)findViewById(R.id.mealDate)).setEnabled(false);
@@ -379,6 +422,13 @@ public class InputMealForm extends Activity {
                     update_ingr.setPotassium(Integer.parseInt(((EditText)findViewById(R.id.potassium)).getText().toString()));
                     update_ingr.setVitaminA(Integer.parseInt(((EditText)findViewById(R.id.vitaminB6)).getText().toString()));
                     update_ingr.setVitaminC(Integer.parseInt(((EditText)findViewById(R.id.vitaminC)).getText().toString()));
+
+                    ToggleButton toggle = (ToggleButton) findViewById(R.id.favoriteMealToggle);
+                    if(toggle.isChecked()){
+                        update_ingr.setFavorite(true);
+                    }
+                    else update_ingr.setFavorite(false);
+
                     db.getIngredientDAO().update(update_ingr); //update in database
 
                     //load main activity
@@ -467,6 +517,11 @@ public class InputMealForm extends Activity {
                             ((EditText)findViewById(R.id.mealTime)).getText().toString(),
                             ((EditText)findViewById(R.id.mealDate)).getText().toString()
                             );
+
+                    ToggleButton toggle = (ToggleButton) findViewById(R.id.favoriteMealToggle);
+                    if(toggle.isChecked()) add_ingr.setFavorite(true);
+                    else add_ingr.setFavorite(false);
+
                     db.getIngredientDAO().insert(add_ingr); //add the ingredient to the database
 
                     //load the main activity

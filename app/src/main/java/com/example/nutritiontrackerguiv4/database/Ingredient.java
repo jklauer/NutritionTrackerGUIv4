@@ -28,6 +28,7 @@ public class Ingredient {
     private int potassium;
     private String time;
     private String date;
+    private boolean favorite;
 
     public Ingredient(){}
 
@@ -47,6 +48,7 @@ public class Ingredient {
         this.protein = pro;
         this.calcium = calc;
         this.potassium = pot;
+        this.favorite = false;
 
         this.time = t;
         this.date = d;
@@ -184,5 +186,9 @@ public class Ingredient {
     public void setCalcium(int calcium) { this.calcium = calcium; }
 
     public void setPotassium(int potassium) { this.potassium = potassium; }
+
+    public void setFavorite(boolean favorite) { this.favorite = favorite; }
+
+    public boolean getFavorite() { return favorite; }
 
 }
