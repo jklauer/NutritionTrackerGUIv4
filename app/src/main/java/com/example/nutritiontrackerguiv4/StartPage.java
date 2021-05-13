@@ -87,11 +87,19 @@ public class StartPage extends AppCompatActivity {
                         BufferedWriter bw = new BufferedWriter(new FileWriter(fileStartPage));
                         NutritionDatabase db = NutritionDatabase.getDatabase(getApplicationContext());
 
-                        boolean tree_nuts = ((CheckBox)findViewById(R.id.allergy_tree_nuts_start_page)).isChecked();
+
+                        boolean milk = ((CheckBox)findViewById(R.id.allergy_milk_start_page)).isChecked();
+                        boolean eggs = ((CheckBox)findViewById(R.id.allergy_eggs_start_page)).isChecked();
                         boolean fish = ((CheckBox)findViewById(R.id.allergy_fish_start_page)).isChecked();
+                        boolean shellfish = ((CheckBox)findViewById(R.id.allergy_shellfish_start_page)).isChecked();
+                        boolean tree_nuts = ((CheckBox)findViewById(R.id.allergy_tree_nuts_start_page)).isChecked();
+                        boolean peanuts = ((CheckBox)findViewById(R.id.allergy_peanuts_start_page)).isChecked();
+                        boolean wheat = ((CheckBox)findViewById(R.id.allergy_wheat_start_page)).isChecked();
+                        boolean soybeans = ((CheckBox)findViewById(R.id.allergy_soybeans_start_page)).isChecked();
+
+
                         Allergies new_allergies = new Allergies(
-                                tree_nuts,
-                                fish
+                                tree_nuts,fish,shellfish,milk,eggs,peanuts,wheat,soybeans
                         );
 
                         db.getAllergiesDAO().insert(new_allergies); //insert the allergy information into the database
@@ -125,19 +133,34 @@ public class StartPage extends AppCompatActivity {
 
         //Get the user's allergies
         Allergies load_allergies = db.getAllergiesDAO().findAllInfoForAllergies(allergies_id).get(0);
-        boolean tree_nuts = load_allergies.getNuts();
         //System.out.println("User id: "+user_id);
         //System.out.println("Allergies id: "+allergies_id);
         //System.out.println("Tree nuts: "+tree_nuts);
+
+        boolean milk = load_allergies.getMilk();
+        boolean eggs = load_allergies.getEggs();
         boolean fish = load_allergies.getSeafood();
+        boolean shellfish = load_allergies.getShellfish();
+        boolean tree_nuts = load_allergies.getNuts();
+        boolean peanuts = load_allergies.getPeanuts();
+        boolean wheat = load_allergies.getWheat();
+        boolean soybeans = load_allergies.getSoybeans();
+
+
         //System.out.println("Fish: "+fish);
         User load_user = db.getUserDAO().findAllInfoForUser(user_id).get(0);
         String user_name = load_user.getName();
+        ((EditText)findViewById(R.id.username_input_Start_Page)).setText(user_name);
 
         //set the allergies and username in the start page form
-        ((CheckBox)findViewById(R.id.allergy_tree_nuts_start_page)).setChecked(tree_nuts);
+        ((CheckBox)findViewById(R.id.allergy_milk_start_page)).setChecked(milk);
+        ((CheckBox)findViewById(R.id.allergy_eggs_start_page)).setChecked(eggs);
         ((CheckBox)findViewById(R.id.allergy_fish_start_page)).setChecked(fish);
-        ((EditText)findViewById(R.id.username_input_Start_Page)).setText(user_name);
+        ((CheckBox)findViewById(R.id.allergy_shellfish_start_page)).setChecked(shellfish);
+        ((CheckBox)findViewById(R.id.allergy_tree_nuts_start_page)).setChecked(tree_nuts);
+        ((CheckBox)findViewById(R.id.allergy_peanuts_start_page)).setChecked(peanuts);
+        ((CheckBox)findViewById(R.id.allergy_wheat_start_page)).setChecked(wheat);
+        ((CheckBox)findViewById(R.id.allergy_soybeans_start_page)).setChecked(soybeans);
     }
 
     //handles the continue button for when the user already existed
@@ -152,11 +175,19 @@ public class StartPage extends AppCompatActivity {
                 NutritionDatabase db = NutritionDatabase.getDatabase(getApplicationContext());
 
                 //create new allergy based on inputted information
-                boolean tree_nuts = ((CheckBox)findViewById(R.id.allergy_tree_nuts_start_page)).isChecked();
+                boolean milk = ((CheckBox)findViewById(R.id.allergy_milk_start_page)).isChecked();
+                boolean eggs = ((CheckBox)findViewById(R.id.allergy_eggs_start_page)).isChecked();
                 boolean fish = ((CheckBox)findViewById(R.id.allergy_fish_start_page)).isChecked();
+                boolean shellfish = ((CheckBox)findViewById(R.id.allergy_shellfish_start_page)).isChecked();
+                boolean tree_nuts = ((CheckBox)findViewById(R.id.allergy_tree_nuts_start_page)).isChecked();
+                boolean peanuts = ((CheckBox)findViewById(R.id.allergy_peanuts_start_page)).isChecked();
+                boolean wheat = ((CheckBox)findViewById(R.id.allergy_wheat_start_page)).isChecked();
+                boolean soybeans = ((CheckBox)findViewById(R.id.allergy_soybeans_start_page)).isChecked();
+
+                //Boolean nuts, Boolean Seafood, Boolean shellfish, Boolean milk, Boolean eggs, Boolean peanuts, Boolean wheat, Boolean soybeans
+
                 Allergies update_allergies = new Allergies(
-                        tree_nuts,
-                        fish
+                        tree_nuts,fish,shellfish,milk,eggs,peanuts,wheat,soybeans
                 );
                 update_allergies.setAllergy_ID(allergies_id);
 
