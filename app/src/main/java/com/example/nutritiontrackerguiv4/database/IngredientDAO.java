@@ -69,4 +69,7 @@ public interface IngredientDAO {
 
     @Query("SELECT * FROM Ingredients WHERE Date=:d")
     List<Ingredient> getNumOfMeals(final String d);
+
+    @Query("SELECT * FROM Ingredients WHERE Favorite=:fav")
+    List<Ingredient> getFavoriteMeals(final boolean fav);
 }

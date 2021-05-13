@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ToggleButton;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -44,6 +45,7 @@ public class InputMealForm extends Activity {
     private String potassium;
     private String vitaminB6;
     private String vitaminC;
+    private boolean favorite;
     private String ingr_id;
 
 
@@ -95,10 +97,14 @@ public class InputMealForm extends Activity {
         potassium = getIntent().getStringExtra("ingr_potas");
         vitaminB6 = getIntent().getStringExtra("ingr_vitb6");
         vitaminC = getIntent().getStringExtra("ingr_vitc");
+        favorite = getIntent().getBooleanExtra("ingr_fav", false);
         ingr_id = getIntent().getStringExtra("ingr_id");
 
         barcode = getIntent().getStringExtra("barcode");
         //System.out.println("Barcode boolean value: "+barcode);
+
+        ToggleButton toggle = (ToggleButton) findViewById(R.id.favoriteMealToggle);
+        toggle.setChecked(favorite);
 
 
         /*Search feature*/
@@ -250,8 +256,7 @@ public class InputMealForm extends Activity {
 
             // and if it is updating a meal
             if(
-                    time!=null
-                    &&name!=null
+                    name!=null
                     &&calories!=null
                     &&vitaminB6!=null
                     &&vitaminC!=null
@@ -379,6 +384,13 @@ public class InputMealForm extends Activity {
                     update_ingr.setPotassium(Integer.parseInt(((EditText)findViewById(R.id.potassium)).getText().toString()));
                     update_ingr.setVitaminA(Integer.parseInt(((EditText)findViewById(R.id.vitaminB6)).getText().toString()));
                     update_ingr.setVitaminC(Integer.parseInt(((EditText)findViewById(R.id.vitaminC)).getText().toString()));
+
+                    ToggleButton toggle = (ToggleButton) findViewById(R.id.favoriteMealToggle);
+                    if(toggle.isChecked()){
+                        update_ingr.setFavorite(true);
+                    }
+                    else update_ingr.setFavorite(false);
+
                     db.getIngredientDAO().update(update_ingr); //update in database
 
                     //load main activity
@@ -467,6 +479,11 @@ public class InputMealForm extends Activity {
                             ((EditText)findViewById(R.id.mealTime)).getText().toString(),
                             ((EditText)findViewById(R.id.mealDate)).getText().toString()
                             );
+
+                    ToggleButton toggle = (ToggleButton) findViewById(R.id.favoriteMealToggle);
+                    if(toggle.isChecked()) add_ingr.setFavorite(true);
+                    else add_ingr.setFavorite(false);
+
                     db.getIngredientDAO().insert(add_ingr); //add the ingredient to the database
 
                     //load the main activity

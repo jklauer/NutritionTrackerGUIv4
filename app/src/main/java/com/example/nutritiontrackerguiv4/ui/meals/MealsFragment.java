@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.nutritiontrackerguiv4.FavoriteMeals;
 import com.example.nutritiontrackerguiv4.InputMealForm;
 import com.example.nutritiontrackerguiv4.R;
 import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
@@ -87,6 +88,15 @@ public class MealsFragment extends Fragment {
             public void onClick(View v) {
                 Intent loadInputMealForm = new Intent(getContext(), InputMealForm.class);
                 startActivity(loadInputMealForm);
+            }
+        });
+
+        //the action listener for the go to favorite meals button
+        ((Button)(root.findViewById(R.id.favMealsButton))).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent loadFavoriteMeals = new Intent(getContext(), FavoriteMeals.class);
+                startActivity(loadFavoriteMeals);
             }
         });
 
@@ -241,6 +251,7 @@ public class MealsFragment extends Fragment {
                     String ingr_prot = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getProtein());
                     String ingr_calc = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getCalcium());
                     String ingr_potas = Integer.toString(db.getIngredientDAO().getAllIngredients().get(finalI).getPotassium());
+                    boolean ingr_fav = db.getIngredientDAO().getAllIngredients().get(finalI).getFavorite();
 
                     String ingr_time = db.getIngredientDAO().getAllIngredients().get(finalI).getTime();
 
@@ -263,6 +274,7 @@ public class MealsFragment extends Fragment {
                     loadInputMealForm.putExtra("ingr_vitb6", ingr_vitb6);
                     loadInputMealForm.putExtra("ingr_vitc", ingr_vitc);
                     loadInputMealForm.putExtra("ingr_time", ingr_time);
+                    loadInputMealForm.putExtra("ingr_fav", ingr_fav);
 
                     //load the input meal form
                     startActivity(loadInputMealForm);
