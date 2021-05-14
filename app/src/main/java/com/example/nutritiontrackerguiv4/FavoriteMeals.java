@@ -125,16 +125,11 @@ public class FavoriteMeals extends Activity {
                 });
 
                 //set the text of the current new button to the name of meal followed by time
-                newButton.setText(db.getIngredientDAO().getAllIngredients().get(finalI).getName());
+                newButton.setText(db.getIngredientDAO().getFavoriteMeals(true).get(finalI).getName());
 
 
                 //add the button to the layout
-                String date = java.text.DateFormat.getDateInstance().format(Calendar.getInstance().getTime());
-                if (date.equals(
-                        ((db.getIngredientDAO().findAllInfoForIngredient(Long.parseLong(ingr_id))).get(0).getDate())
-                )) {
-                    ll.addView(newButton);
-                }
+                ll.addView(newButton);
             }
         }
     }
