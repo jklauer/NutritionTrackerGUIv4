@@ -18,15 +18,13 @@ import java.util.Calendar;
 
 public class FavoriteMeals extends Activity {
 
-    private NutritionDatabase db;
+
     private LinearLayout ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favorite_meals);
-
-        db = NutritionDatabase.getDatabase(this);
 
         loadButtons();
 
@@ -44,6 +42,8 @@ public class FavoriteMeals extends Activity {
     public void loadButtons(){
 
         ll = (LinearLayout) findViewById(R.id.favoriteMealsLayout); //where the buttons are placed
+
+        NutritionDatabase db = NutritionDatabase.getDatabase(getApplicationContext());
 
         //Get the number of buttons to be added
         int numOfButtons = db.getIngredientDAO().getFavoriteMeals(true).size();
