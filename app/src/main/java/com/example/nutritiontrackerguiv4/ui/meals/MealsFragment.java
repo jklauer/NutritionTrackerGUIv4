@@ -186,7 +186,7 @@ public class MealsFragment extends Fragment {
 
 
         TextView recommendationView = new TextView(getContext());
-        recommendationView.setTextSize(24);
+        recommendationView.setTextSize(16);
         recommendationView.setText(recommendationString);
         ll.addView(recommendationView);
 
