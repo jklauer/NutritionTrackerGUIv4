@@ -100,14 +100,10 @@
                 android:id="@+id/imageView5"
                 android:layout_width="54dp"
                 android:layout_height="55dp"
-                android:layout_weight=".00001"
-                android:background="#00000000"
-                android:backgroundTint="#000000"
-                android:foregroundTint="#000000"
                 android:foregroundTintMode="add"
                 android:scaleX="1"
                 android:scaleY="1"
-                android:src="@android:drawable/ic_menu_help" />
+                android:src="@drawable/ic_baseline_help_24" />
 
             <Button
                 android:id="@+id/about_button"

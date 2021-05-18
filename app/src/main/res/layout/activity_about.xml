@@ -32,21 +32,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text="Powered by Edamam"></TextView>
+            android:text="Powered by Edamam\n"></TextView>
 
         <TextView
             android:id="@+id/nutritionixCredit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text="Powered by Nutritionix"></TextView>
+            android:text="Powered by Nutritionix\n"></TextView>
 
         <TextView
             android:id="@+id/apacheCredit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:text="Copyright 2021 Klauer, Torres, Czarnezki\nLicensed under the Apache License, Version 2.0 (the 'License');"></TextView>
+            android:text="Copyright 2021 Klauer, Torres, Czarnezki, Wink\nLicensed under the Apache License, Version 2.0 (the 'License');\n"></TextView>
 
         <TextView
             android:id="@+id/USDAcredit"
