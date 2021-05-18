@@ -50,7 +50,7 @@ public class recap extends AppCompatActivity {
                 String name = Ings.get(j).getName();
                 try {
                     int cal = db.getIngredientDAO().findCaloriesForIng(name).get(0);
-                    s = s.concat(name + "calories: " + cal + "\r\n");
+                    s = s.concat(name + "\ncalories: " + cal + "\r\n");
                 } catch (NullPointerException e)  {
                     s = s.concat("No entries today");
                 }
