@@ -33,6 +33,8 @@ public class NotificationSettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_settings);
 
+        db = NutritionDatabase.getDatabase(getApplicationContext());
+
         try {
 
             db.getNotificationsDAO().getAllNotifications().get(0).getHours_one();
@@ -93,9 +95,31 @@ public class NotificationSettingsActivity extends AppCompatActivity {
                 } catch (Throwable e) {
 
                 }
+                try{
+                    if(hour1.isEmpty()){
+                        hour1 = "0";
+                    }
+                    if(hour2.isEmpty()){
+                        hour2 = "0";
+                    }
+                    if(hour3.isEmpty()){
+                        hour3 = "0";
+                    }
+                    if(minute1.isEmpty()){
+                        minute1 = "0";
+                    }
+                    if(minute2.isEmpty()){
+                        minute2 = "0";
+                    }
+                    if(minute3.isEmpty()){
+                        minute3 = "0";
+                    }
+                    Notifications notArr = new Notifications(Integer.parseInt(hour1),Integer.parseInt(hour2),Integer.parseInt(hour3),Integer.parseInt(minute1),Integer.parseInt(minute2),Integer.parseInt(minute3));
+                    db.getNotificationsDAO().insert(notArr);
+                }catch(NumberFormatException e){
 
-                Notifications notArr = new Notifications(Integer.parseInt(hour1),Integer.parseInt(hour2),Integer.parseInt(hour3),Integer.parseInt(minute1),Integer.parseInt(minute2),Integer.parseInt(minute3));
-                db.getNotificationsDAO().insert(notArr);
+                }
+
 
                 Intent loadApp = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(loadApp);
