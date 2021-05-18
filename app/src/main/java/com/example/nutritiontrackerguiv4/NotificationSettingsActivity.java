@@ -37,7 +37,6 @@ public class NotificationSettingsActivity extends AppCompatActivity {
 
         try {
 
-            db.getNotificationsDAO().getAllNotifications().get(0).getHours_one();
             Notifications load_nots = db.getNotificationsDAO().getAllNotifications().get(0);
 
             Integer h1 = load_nots.getHours_one();
@@ -59,6 +58,20 @@ public class NotificationSettingsActivity extends AppCompatActivity {
             ((EditText) findViewById(R.id.editMinute)).setText(M1);
             ((EditText) findViewById(R.id.editMinute2)).setText(M2);
             ((EditText) findViewById(R.id.editMinute3)).setText(M3);
+
+            if(H1.equals("0") && M1.equals("0")){
+                ((EditText) findViewById(R.id.editHour)).setText("");
+                ((EditText) findViewById(R.id.editMinute)).setText("");
+            }
+            if(H2.equals("0") && M2.equals("0")){
+                ((EditText) findViewById(R.id.editHour2)).setText("");
+                ((EditText) findViewById(R.id.editMinute2)).setText("");
+            }
+            if(H3.equals("0") && M3.equals("0")){
+                ((EditText) findViewById(R.id.editHour3)).setText("");
+                ((EditText) findViewById(R.id.editMinute3)).setText("");
+            }
+
         } catch(Exception e) {
 
         }
@@ -115,7 +128,9 @@ public class NotificationSettingsActivity extends AppCompatActivity {
                         minute3 = "0";
                     }
                     Notifications notArr = new Notifications(Integer.parseInt(hour1),Integer.parseInt(hour2),Integer.parseInt(hour3),Integer.parseInt(minute1),Integer.parseInt(minute2),Integer.parseInt(minute3));
+                    //System.out.println("Hours id: "+hour1);
                     db.getNotificationsDAO().insert(notArr);
+                    //System.out.println("Hours id2: "+db.getNotificationsDAO().getAllNotifications().get(0).getHours_one());
                 }catch(NumberFormatException e){
 
                 }
