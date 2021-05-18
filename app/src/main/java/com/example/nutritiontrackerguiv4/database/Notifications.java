@@ -7,12 +7,12 @@ import androidx.room.PrimaryKey;
 public class Notifications {
     @PrimaryKey(autoGenerate = true)
     private long Notifications_ID;
-    private int minutes_one;
-    private int minutes_two;
-    private int minutes_three;
-    private int hours_one;
-    private int hours_two;
-    private int hours_three;
+    private Integer minutes_one;
+    private Integer minutes_two;
+    private Integer minutes_three;
+    private Integer hours_one;
+    private Integer hours_two;
+    private Integer hours_three;
 
     public Notifications(){}
 
@@ -29,19 +29,31 @@ public class Notifications {
         return this.Notifications_ID;
     }
 
-    public int getMinutes_one(){return this.minutes_one;}
+    public void setNotifications_ID(long in){this.Notifications_ID = in;}
 
-    public int getMinutes_two(){return this.minutes_two;}
+    public Integer getMinutes_one(){return this.minutes_one;}
 
-    public int getMinutes_three(){return this.minutes_three;}
+    public void setMinutes_one(Integer m1){this.minutes_one = m1;}
 
-    public int getHours_one(){return this.hours_one;}
+    public Integer getMinutes_two(){return this.minutes_two;}
 
-    public int getHours_two(){return this.hours_two;}
+    public void setMinutes_two(Integer m2){this.minutes_two = m2;}
 
-    public int getHours_three(){return this.hours_three;}
+    public Integer getMinutes_three(){return this.minutes_three;}
 
+    public void setMinutes_three(Integer m3){this.minutes_three = m3;}
 
+    public Integer getHours_one(){return this.hours_one;}
+
+    public void setHours_one(Integer h1){this.hours_one = h1;}
+
+    public Integer getHours_two(){return this.hours_two;}
+
+    public void setHours_two(Integer h2){this.hours_two = h2;}
+
+    public Integer getHours_three(){return this.hours_three;}
+
+    public void setHours_three(Integer h3){this.hours_three = h3;}
 
 
 }

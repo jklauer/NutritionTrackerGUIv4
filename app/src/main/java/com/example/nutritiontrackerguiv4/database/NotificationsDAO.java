@@ -16,7 +16,7 @@ public interface NotificationsDAO {
     void insert(Notifications notifications);
 
     @Update
-    void update(Notification notification);
+    void update(Notifications notifications);
 
     @Delete
     void delete(Notifications notifications);
