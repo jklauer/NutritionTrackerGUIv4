@@ -16,6 +16,7 @@ public abstract class NutritionDatabase extends RoomDatabase {
     public abstract IngredientDAO getIngredientDAO();
     public abstract Meal_Recipe_Join_DAO getMealRecipeJoinDAO();
     public abstract MealDAO getMealDAO();
+    public abstract NotificationsDAO getNotificationsDAO();
     public abstract Recipe_Ingredient_JoinDAO getRecipeIngredientJoinDAO();
     public abstract RecipeDAO getRecipeDAO();
     public abstract UserDAO getUserDAO();
