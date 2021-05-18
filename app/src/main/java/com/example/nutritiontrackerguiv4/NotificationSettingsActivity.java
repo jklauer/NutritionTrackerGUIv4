@@ -31,7 +31,7 @@ public class NotificationSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    db.
+
 
                     String hour = ((EditText)findViewById(R.id.editHour)).getText().toString(); // user input for hours
                     String minute = ((EditText)findViewById(R.id.editMinute)).getText().toString(); // user input for minutes
