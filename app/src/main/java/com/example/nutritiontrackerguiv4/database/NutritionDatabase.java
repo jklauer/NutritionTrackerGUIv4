@@ -7,7 +7,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = { Allergies.class, Day.class, Ingredient.class, Meal.class,
+@Database(entities = { Allergies.class, Day.class, Ingredient.class, Notifications.class, Meal.class,
         Meal_Recipe_Join.class, Recipe.class, Recipe_Ingredient_Join.class, User.class },
         version = 5)
 public abstract class NutritionDatabase extends RoomDatabase {
