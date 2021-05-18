@@ -9,13 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-
+import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
+import com.example.nutritiontrackerguiv4.database.Notifications;
 import com.example.nutritiontrackerguiv4.Notifications.CreateNotification;
 
 import java.util.Calendar;
 import java.util.Random;
 
 public class NotificationSettingsActivity extends AppCompatActivity {
+
+    private NutritionDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +31,7 @@ public class NotificationSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    Random rand = new Random();
-                    Integer channelID = rand.nextInt(999);
+                    db.
 
                     String hour = ((EditText)findViewById(R.id.editHour)).getText().toString(); // user input for hours
                     String minute = ((EditText)findViewById(R.id.editMinute)).getText().toString(); // user input for minutes
@@ -58,13 +60,6 @@ public class NotificationSettingsActivity extends AppCompatActivity {
                 }
 
 
-                /*hour = ((EditText)findViewById(R.id.editHour2)).getText().toString(); // user input for hours
-                minute = ((EditText)findViewById(R.id.editMinute2)).getText().toString(); // user input for minutes
-                makeNotification(hour,minute);
-
-                hour = ((EditText)findViewById(R.id.editHour3)).getText().toString(); // user input for hours
-                minute = ((EditText)findViewById(R.id.editMinute3)).getText().toString(); // user input for minutes
-                makeNotification(hour,minute);*/
 
 
                 Intent loadApp = new Intent(getApplicationContext(), MainActivity.class);
