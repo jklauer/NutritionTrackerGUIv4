@@ -75,6 +75,9 @@ public class RecipesFragment extends Fragment {
             TableRow tr = new TableRow(getContext());
             TableRow tr2 = new TableRow(getContext());
             TableRow tr3 = new TableRow(getContext());
+            TableRow[] trarr = {tr, tr2, tr3};
+            int numOfAllergies = 0;
+
             tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             tr2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             tr3.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
@@ -83,49 +86,56 @@ public class RecipesFragment extends Fragment {
                 b1.setText("Nut Free");
                 b1.setOnClickListener(view -> clicked_btn("https://www.eatingwell.com/recipes/18051/dietary-restrictions/nut-free/"));
                 b1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-                tr.addView(b1);
+                trarr[numOfAllergies/3].addView(b1);
+                numOfAllergies += 1;
             }
             if (allergies.getSeafood()){
                 Button b2 = new Button(getContext());
                 b2.setText("Seafood Free");
                 b2.setOnClickListener(view -> clicked_btn("https://www.spokin.com/allergy-friendly-recipes/tag/Shellfish+Free"));
                 b2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-                tr.addView(b2);
+                trarr[numOfAllergies/3].addView(b2);
+                numOfAllergies += 1;
             }
             if (allergies.getEggs()){
                 Button b3 = new Button(getContext());
                 b3.setText("Egg Free");
                 b3.setOnClickListener(view -> clicked_btn("https://www.skinnytaste.com/egg-free-recipes/"));
                 b3.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-                tr2.addView(b3);
+                trarr[numOfAllergies/3].addView(b3);
+                numOfAllergies += 1;
             }
             if (allergies.getMilk()){
                 Button b4 = new Button(getContext());
                 b4.setText("Milk Free");
                 b4.setOnClickListener(view -> clicked_btn("https://www.godairyfree.org/dairy-free-recipes/"));
                 b4.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-                tr2.addView(b4);
+                trarr[numOfAllergies/3].addView(b4);
+                numOfAllergies += 1;
             }
             if (allergies.getShellfish()){
                 Button b4 = new Button(getContext());
                 b4.setText("Shellfish Free");
                 b4.setOnClickListener(view -> clicked_btn("https://angelaskitchen.com/recipes/have-other-allergies/shellfish-free-recipes//"));
                 b4.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-                tr3.addView(b4);
+                trarr[numOfAllergies/3].addView(b4);
+                numOfAllergies += 1;
             }
             if (allergies.getWheat()){
                 Button b5 = new Button(getContext());
                 b5.setText("Wheat Free");
                 b5.setOnClickListener(view -> clicked_btn("https://www.wheat-free.org/recipes.html"));
                 b5.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-                tr3.addView(b5);
+                trarr[numOfAllergies/3].addView(b5);
+                numOfAllergies += 1;
             }
             if (allergies.getSoybeans()){
                 Button b6 = new Button(getContext());
                 b6.setText("Soybean Free");
                 b6.setOnClickListener(view -> clicked_btn("https://www.homechef.com/recipes/without-soy/"));
                 b6.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-                tr.addView(b6);
+                trarr[numOfAllergies/3].addView(b6);
+                numOfAllergies += 1;
             }
             linkTable.addView(tr, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
             linkTable.addView(tr2, new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
