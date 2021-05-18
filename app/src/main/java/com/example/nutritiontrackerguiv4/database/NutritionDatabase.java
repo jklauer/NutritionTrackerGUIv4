@@ -9,7 +9,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 @Database(entities = { Allergies.class, Day.class, Ingredient.class, Notifications.class, Meal.class,
         Meal_Recipe_Join.class, Recipe.class, Recipe_Ingredient_Join.class, User.class },
-        version = 5)
+        version = 6)
 public abstract class NutritionDatabase extends RoomDatabase {
     public abstract AllergiesDAO getAllergiesDAO();
     public abstract DayDAO getDayDAO();
