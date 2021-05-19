@@ -60,6 +60,7 @@ public class NotificationSettingsActivity extends AppCompatActivity {
             M2 = m2.toString();
             M3 = m3.toString();
 
+
             ((EditText) findViewById(R.id.editHour)).setText(H1);
             ((EditText) findViewById(R.id.editHour2)).setText(H2);
             ((EditText) findViewById(R.id.editHour3)).setText(H3);
@@ -67,18 +68,10 @@ public class NotificationSettingsActivity extends AppCompatActivity {
             ((EditText) findViewById(R.id.editMinute2)).setText(M2);
             ((EditText) findViewById(R.id.editMinute3)).setText(M3);
 
-            /*if(H1.equals("0") && M1.equals("0")){
-                ((EditText) findViewById(R.id.editHour)).setText("");
-                ((EditText) findViewById(R.id.editMinute)).setText("");
-            }
-            if(H2.equals("0") && M2.equals("0")){
-                ((EditText) findViewById(R.id.editHour2)).setText("");
-                ((EditText) findViewById(R.id.editMinute2)).setText("");
-            }
-            if(H3.equals("0") && M3.equals("0")){
-                ((EditText) findViewById(R.id.editHour3)).setText("");
-                ((EditText) findViewById(R.id.editMinute3)).setText("");
-            }*/
+            //Intent loadStart = new Intent(getApplicationContext(), StartPage.class);
+            //startActivity(loadStart);
+
+
             if(!db.getNotificationsDAO().getAllNotifications().isEmpty()){
                 checker = true;
             }else{

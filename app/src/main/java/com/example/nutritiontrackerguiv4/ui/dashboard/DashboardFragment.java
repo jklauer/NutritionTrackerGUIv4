@@ -17,11 +17,14 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nutritiontrackerguiv4.InputMealForm;
+import com.example.nutritiontrackerguiv4.NotificationSettingsActivity;
 import com.example.nutritiontrackerguiv4.R;
 import com.example.nutritiontrackerguiv4.StartPage;
+import com.example.nutritiontrackerguiv4.database.Notifications;
 import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
 import com.example.nutritiontrackerguiv4.database.User;
 import com.example.nutritiontrackerguiv4.ui.Tracking.TrackingActivity;
+import com.example.nutritiontrackerguiv4.GlobalVars;
 
 import java.io.File;
 import java.util.Calendar;
@@ -71,9 +74,6 @@ public class DashboardFragment extends Fragment {
         }else{
             doBarStuff(root);
         }
-
-
-
 
         return root;
     }
