@@ -141,7 +141,6 @@
         android:id="@+id/textView17"
         android:layout_width="289dp"
         android:layout_height="37dp"
-        android:text="Please note that all notifications will last for only one day, you will have to re-enter them after each day."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.77"
