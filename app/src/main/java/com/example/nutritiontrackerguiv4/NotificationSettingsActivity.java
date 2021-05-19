@@ -3,6 +3,7 @@ package com.example.nutritiontrackerguiv4;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -101,6 +102,11 @@ public class NotificationSettingsActivity extends AppCompatActivity {
                 try {
                     hour1 = ((EditText)findViewById(R.id.editHour)).getText().toString(); // user input for hours
                     minute1 = ((EditText)findViewById(R.id.editMinute)).getText().toString(); // user input for minutes
+                    Notifications newNot = db.getNotificationsDAO().getAllNotifications().get(0);
+                    newNot.setHours_one(Integer.parseInt(hour1));
+                    newNot.setMinutes_one(Integer.parseInt(minute1));
+                    db.getNotificationsDAO().update(newNot);
+
                     makeNotification(hour1,minute1);
 
                 } catch (Throwable e) {
@@ -110,6 +116,11 @@ public class NotificationSettingsActivity extends AppCompatActivity {
                 try {
                     hour2 = ((EditText)findViewById(R.id.editHour2)).getText().toString(); // user input for hours
                     minute2 = ((EditText)findViewById(R.id.editMinute2)).getText().toString(); // user input for minutes
+                    Notifications newNot = db.getNotificationsDAO().getAllNotifications().get(0);
+                    newNot.setHours_two(Integer.parseInt(hour2));
+                    newNot.setMinutes_two(Integer.parseInt(minute2));
+                    db.getNotificationsDAO().update(newNot);
+
                     makeNotification(hour2,minute2);
 
                 } catch (Throwable e) {
@@ -119,6 +130,11 @@ public class NotificationSettingsActivity extends AppCompatActivity {
                 try {
                     hour3 = ((EditText)findViewById(R.id.editHour3)).getText().toString(); // user input for hours
                     minute3 = ((EditText)findViewById(R.id.editMinute3)).getText().toString(); // user input for minutes
+                    Notifications newNot = db.getNotificationsDAO().getAllNotifications().get(0);
+                    newNot.setHours_three(Integer.parseInt(hour3));
+                    newNot.setMinutes_three(Integer.parseInt(minute3));
+                    db.getNotificationsDAO().update(newNot);
+
                     makeNotification(hour3,minute3);
 
                 } catch (Throwable e) {
