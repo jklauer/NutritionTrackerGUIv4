@@ -78,10 +78,18 @@ public class NotificationSettingsActivity extends AppCompatActivity {
                 ((EditText) findViewById(R.id.editHour3)).setText("");
                 ((EditText) findViewById(R.id.editMinute3)).setText("");
             }*/
-            checker = false;
+            if(!db.getNotificationsDAO().getAllNotifications().isEmpty()){
+                checker = true;
+            }else{
+                checker = false;
+            }
 
         } catch(Exception e) {
-            checker = false;
+            if(!db.getNotificationsDAO().getAllNotifications().isEmpty()){
+                checker = true;
+            }else{
+                checker = false;
+            }
         }
 
 
@@ -137,11 +145,13 @@ public class NotificationSettingsActivity extends AppCompatActivity {
                     }
                     Notifications notArr = new Notifications(Integer.parseInt(hour1),Integer.parseInt(hour2),Integer.parseInt(hour3),Integer.parseInt(minute1),Integer.parseInt(minute2),Integer.parseInt(minute3));
                     System.out.println(checker);
-                    if(checker){
+                    if(!checker){
                         db.getNotificationsDAO().insert(notArr);
+                        System.out.println("i made it here");
                     }
                     else {
                         db.getNotificationsDAO().update(notArr);
+                        System.out.println("i made it here2");
                     }
 
                 }catch(NumberFormatException e){
