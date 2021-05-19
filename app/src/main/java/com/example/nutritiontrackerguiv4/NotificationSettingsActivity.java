@@ -26,6 +26,13 @@ public class NotificationSettingsActivity extends AppCompatActivity {
     private String minute1;
     private String minute2;
     private String minute3;
+    private boolean checker = false;
+    String H1;
+    String H2;
+    String H3;
+    String M1;
+    String M2;
+    String M3;
 
 
     @Override
@@ -45,12 +52,12 @@ public class NotificationSettingsActivity extends AppCompatActivity {
             Integer m1 = load_nots.getMinutes_one();
             Integer m2 = load_nots.getMinutes_two();
             Integer m3 = load_nots.getMinutes_three();
-            String H1 = h1.toString();
-            String H2 = h2.toString();
-            String H3 = h3.toString();
-            String M1 = m1.toString();
-            String M2 = m2.toString();
-            String M3 = m3.toString();
+            H1 = h1.toString();
+            H2 = h2.toString();
+            H3 = h3.toString();
+            M1 = m1.toString();
+            M2 = m2.toString();
+            M3 = m3.toString();
 
             ((EditText) findViewById(R.id.editHour)).setText(H1);
             ((EditText) findViewById(R.id.editHour2)).setText(H2);
@@ -59,7 +66,7 @@ public class NotificationSettingsActivity extends AppCompatActivity {
             ((EditText) findViewById(R.id.editMinute2)).setText(M2);
             ((EditText) findViewById(R.id.editMinute3)).setText(M3);
 
-            if(H1.equals("0") && M1.equals("0")){
+            /*if(H1.equals("0") && M1.equals("0")){
                 ((EditText) findViewById(R.id.editHour)).setText("");
                 ((EditText) findViewById(R.id.editMinute)).setText("");
             }
@@ -70,10 +77,11 @@ public class NotificationSettingsActivity extends AppCompatActivity {
             if(H3.equals("0") && M3.equals("0")){
                 ((EditText) findViewById(R.id.editHour3)).setText("");
                 ((EditText) findViewById(R.id.editMinute3)).setText("");
-            }
+            }*/
+            checker = false;
 
         } catch(Exception e) {
-
+            checker = false;
         }
 
 
@@ -128,9 +136,14 @@ public class NotificationSettingsActivity extends AppCompatActivity {
                         minute3 = "0";
                     }
                     Notifications notArr = new Notifications(Integer.parseInt(hour1),Integer.parseInt(hour2),Integer.parseInt(hour3),Integer.parseInt(minute1),Integer.parseInt(minute2),Integer.parseInt(minute3));
-                    //System.out.println("Hours id: "+hour1);
-                    db.getNotificationsDAO().insert(notArr);
-                    //System.out.println("Hours id2: "+db.getNotificationsDAO().getAllNotifications().get(0).getHours_one());
+                    System.out.println(checker);
+                    if(checker){
+                        db.getNotificationsDAO().insert(notArr);
+                    }
+                    else {
+                        db.getNotificationsDAO().update(notArr);
+                    }
+
                 }catch(NumberFormatException e){
 
                 }

@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 import com.example.nutritiontrackerguiv4.Notifications.ReminderBroadcast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
+import com.example.nutritiontrackerguiv4.database.Notifications;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -15,6 +17,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import java.io.File;
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,13 +40,9 @@ public class MainActivity extends AppCompatActivity {
             NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
             NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
             NavigationUI.setupWithNavController(navView, navController);
+
+
         }
-
-
-
-
-
-
 
     }
 
