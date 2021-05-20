@@ -12,6 +12,7 @@ import com.example.nutritiontrackerguiv4.GlobalVars;
 import com.example.nutritiontrackerguiv4.MainActivity;
 import com.example.nutritiontrackerguiv4.NotificationSettingsActivity;
 import com.example.nutritiontrackerguiv4.R;
+import com.example.nutritiontrackerguiv4.ui.meals.MealsFragment;
 
 import java.util.Random;
 
@@ -20,7 +21,7 @@ public class ReminderBroadcast extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         //System.out.println("Here");
-        Intent loadNotification = new Intent(context.getApplicationContext(), NotificationSettingsActivity.class);
+        Intent loadNotification = new Intent(context.getApplicationContext(), MealsFragment.class);
         loadNotification.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pI = PendingIntent.getActivity(context.getApplicationContext(), 0, loadNotification,0);
 
