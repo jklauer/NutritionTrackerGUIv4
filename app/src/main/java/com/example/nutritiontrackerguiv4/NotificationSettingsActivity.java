@@ -2,21 +2,21 @@ package com.example.nutritiontrackerguiv4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-import android.app.Notification;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.nutritiontrackerguiv4.database.Allergies;
+import com.example.nutritiontrackerguiv4.Notifications.ReminderBroadcast;
 import com.example.nutritiontrackerguiv4.database.NutritionDatabase;
 import com.example.nutritiontrackerguiv4.database.Notifications;
 import com.example.nutritiontrackerguiv4.Notifications.CreateNotification;
 
 import java.util.Calendar;
-import java.util.Random;
 
 public class NotificationSettingsActivity extends AppCompatActivity {
 
@@ -60,16 +60,12 @@ public class NotificationSettingsActivity extends AppCompatActivity {
             M2 = m2.toString();
             M3 = m3.toString();
 
-
             ((EditText) findViewById(R.id.editHour)).setText(H1);
             ((EditText) findViewById(R.id.editHour2)).setText(H2);
             ((EditText) findViewById(R.id.editHour3)).setText(H3);
             ((EditText) findViewById(R.id.editMinute)).setText(M1);
             ((EditText) findViewById(R.id.editMinute2)).setText(M2);
             ((EditText) findViewById(R.id.editMinute3)).setText(M3);
-
-            //Intent loadStart = new Intent(getApplicationContext(), StartPage.class);
-            //startActivity(loadStart);
 
 
             if(!db.getNotificationsDAO().getAllNotifications().isEmpty()){
@@ -85,7 +81,6 @@ public class NotificationSettingsActivity extends AppCompatActivity {
                 checker = false;
             }
         }
-
 
 
         Button notificationEntry = (Button)findViewById(R.id.enterNotification);
@@ -127,7 +122,6 @@ public class NotificationSettingsActivity extends AppCompatActivity {
                     newNot.setHours_three(Integer.parseInt(hour3));
                     newNot.setMinutes_three(Integer.parseInt(minute3));
                     db.getNotificationsDAO().update(newNot);
-
                     makeNotification(hour3,minute3);
 
                 } catch (Throwable e) {
@@ -172,11 +166,8 @@ public class NotificationSettingsActivity extends AppCompatActivity {
                 startActivity(loadApp);
             }
         });
-
-
-
-
     }
+
 
     public void makeNotification(String hourIn, String minuteIn){
 
