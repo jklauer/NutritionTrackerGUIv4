@@ -7,15 +7,16 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = { Allergies.class, Day.class, Ingredient.class, Meal.class,
+@Database(entities = { Allergies.class, Day.class, Ingredient.class, Notifications.class, Meal.class,
         Meal_Recipe_Join.class, Recipe.class, Recipe_Ingredient_Join.class, User.class },
-        version = 5)
+        version = 6)
 public abstract class NutritionDatabase extends RoomDatabase {
     public abstract AllergiesDAO getAllergiesDAO();
     public abstract DayDAO getDayDAO();
     public abstract IngredientDAO getIngredientDAO();
     public abstract Meal_Recipe_Join_DAO getMealRecipeJoinDAO();
     public abstract MealDAO getMealDAO();
+    public abstract NotificationsDAO getNotificationsDAO();
     public abstract Recipe_Ingredient_JoinDAO getRecipeIngredientJoinDAO();
     public abstract RecipeDAO getRecipeDAO();
     public abstract UserDAO getUserDAO();

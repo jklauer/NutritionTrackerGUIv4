@@ -29,8 +29,8 @@ public class CreateNotification {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), GlobalVars.cID, intent,0);
         AlarmManager alarmManager = (AlarmManager) context.getApplicationContext().getSystemService(ALARM_SERVICE);
         long timeAtButtonClick = System.currentTimeMillis();
-        alarmManager.set(AlarmManager.RTC_WAKEUP,
-                timeAtButtonClick + delayMillis,
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,
+                timeAtButtonClick + delayMillis,AlarmManager.INTERVAL_DAY,
                 pendingIntent);
     }
 
@@ -50,22 +50,21 @@ public class CreateNotification {
         timeOff9.set(Calendar.SECOND, SECONDS);
 
         //set that timer as a RTC Wakeup to alarm manager object
-        alarmManager.set(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(), pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, timeOff9.getTimeInMillis(),AlarmManager.INTERVAL_DAY, pendingIntent);
 
     }
 
     //This must be called before making a notification
     private static void createNotificationChannel(Context context, String title, String body){
 
-        GlobalVars.cID = (int)System.currentTimeMillis();
+        int sub = (int)(Math.random()*(1000-1+1)+1);
+
+        GlobalVars.cID = (int)System.currentTimeMillis() + sub;
 
         Intent intent = new Intent(context, ReminderBroadcast.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), GlobalVars.cID, intent,0);
         AlarmManager alarmManager = (AlarmManager) context.getApplicationContext().getSystemService(ALARM_SERVICE);
-        //long timeAtButtonClick = System.currentTimeMillis();
-        //alarmManager.set(AlarmManager.RTC_WAKEUP,
-        //        timeAtButtonClick + 5000,
-        //        pendingIntent);
+
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
 
