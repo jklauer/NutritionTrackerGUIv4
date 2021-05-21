@@ -95,7 +95,10 @@ public class NotificationSettingsActivity extends AppCompatActivity {
                     newNot.setMinutes_one(Integer.parseInt(minute1));
                     db.getNotificationsDAO().update(newNot);
 
-                    makeNotification(hour1,minute1);
+                    if(!(hour1.equals("0") && minute1.equals("0"))){
+                        makeNotification(hour1,minute1);
+                    }
+
 
                 } catch (Throwable e) {
                     CreateNotification.CreateNotificationWithDelay(getApplicationContext(), "Nutrition Tracker", "Invalid Notification: Please re-enter your notification", 2000);
@@ -109,7 +112,10 @@ public class NotificationSettingsActivity extends AppCompatActivity {
                     newNot.setMinutes_two(Integer.parseInt(minute2));
                     db.getNotificationsDAO().update(newNot);
 
-                    makeNotification(hour2,minute2);
+                    if(!(hour2.equals("0") && minute2.equals("0"))){
+                        makeNotification(hour2,minute2);
+                    }
+
 
                 } catch (Throwable e) {
 
@@ -122,7 +128,11 @@ public class NotificationSettingsActivity extends AppCompatActivity {
                     newNot.setHours_three(Integer.parseInt(hour3));
                     newNot.setMinutes_three(Integer.parseInt(minute3));
                     db.getNotificationsDAO().update(newNot);
-                    makeNotification(hour3,minute3);
+
+                    if(!(hour3.equals("0") && minute3.equals("0"))){
+                        makeNotification(hour3,minute3);
+                    }
+
 
                 } catch (Throwable e) {
 
